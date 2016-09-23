@@ -48,7 +48,8 @@ Project 3 for GA
 
 
 ##Prototypes
-<img src="main.gif" width="300" height="400">
+<img src="main.gif" width="300" height="500">
+<img src="search.gif" width="300" height="500">
 
 
 ##Requirements / Constraints
