@@ -48,9 +48,9 @@ Project 3 for GA
 
 
 ##Prototypes
-<img src="main.gif" width="400" height="600">
-<img src="search.gif" width="400" height="600">
-<img src="tools.gif" width="400" height="600">
+<img src="Resources/main.gif" width="400" height="600">
+<img src="Resources/search.gif" width="400" height="600">
+<img src="Resources/tools.gif" width="400" height="600">
 
 
 
