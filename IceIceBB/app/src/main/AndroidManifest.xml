@@ -56,6 +56,13 @@
                 android:resource="@xml/syncadapter" />
         </service>
 
+        <provider
+            android:name=".IcebreakerContentProvider"
+            android:authorities="com.example.lmont.iceicebb.NewsContentProvider"
+            android:label="my provider"
+            android:exported="false"
+            android:syncable="true"/>
+
     </application>
 
 </manifest>
