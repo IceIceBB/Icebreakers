@@ -15,10 +15,10 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 
-public class splashscreen extends AppCompatActivity {
+public class SplashScreenActivity extends AppCompatActivity {
 
 
-    //Set waktu lama splashscreen
+    //Set waktu lama SplashScreenActivity
     private static int splashInterval = 3000;
 
     @Override
@@ -31,7 +31,7 @@ public class splashscreen extends AppCompatActivity {
         setContentView(R.layout.splashscreen);
         ImageView splashView = (ImageView)findViewById(R.id.splashView);
 
-        final Animation anim = AnimationUtils.loadAnimation(splashscreen.this,R.anim.fade);
+        final Animation anim = AnimationUtils.loadAnimation(SplashScreenActivity.this,R.anim.fade);
         splashView.startAnimation(anim);
 
 
@@ -43,7 +43,7 @@ public class splashscreen extends AppCompatActivity {
                 // TODO Auto-generated method stub
 
 
-                Intent i = new Intent(splashscreen.this, GameActivity.class);
+                Intent i = new Intent(SplashScreenActivity.this, GameActivity.class);
                 startActivity(i);
 
 
