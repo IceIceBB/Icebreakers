@@ -1,0 +1,59 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+                                             tools:context="com.example.lmont.iceicebb.Fragments.MaterialFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ImageView
+        android:id="@+id/dice"
+        android:layout_height="101dp"
+        android:layout_width="100dp"
+        android:textSize="40sp"
+        android:background="@drawable/dice"
+        android:layout_marginStart="80dp"
+        app:layout_constraintLeft_toRightOf="@+id/cards"
+        android:layout_marginLeft="80dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/material"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintVertical_bias="0.53"/>
+    <ImageView
+        android:id="@+id/cards"
+        android:layout_height="101dp"
+        android:textSize="40sp"
+        android:layout_width="100dp"
+        android:background="@drawable/cards"
+        android:layout_marginStart="56dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="56dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/material"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintVertical_bias="0.53"/>
+
+    <TextView
+        android:text="Cards or Dice "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="55sp"
+        android:id="@+id/material"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="152dp"
+        app:layout_constraintHorizontal_bias="0.54"/>
+
+</android.support.constraint.ConstraintLayout>
