@@ -17,61 +17,88 @@
         android:layout_weight="1"></FrameLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="8"
+        android:layout_weight="4"
         android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/deckBack"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="4" />
+            android:layout_weight="4"
+            android:background="@drawable/playingCardBack"/>
 
         <FrameLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2" />
+            android:layout_weight=".5" />
 
         <RelativeLayout
-            android:background="#edbdbd"
             android:id="@+id/cardFace"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="4" >
+            android:layout_weight="4">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/blankCardFace"/>
 
-            <TextView
-                android:id="@+id/topLeftValue"
+            <LinearLayout
+                android:id="@+id/cardIdTop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                android:layout_marginTop="@dimen/cardBoarder"
                 android:layout_marginLeft="@dimen/cardBoarder"
-                android:text="X"/>
+                android:layout_marginTop="@dimen/cardBoarder"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/topLeftValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/drawnCardValue"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/topLeftSuit"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"/>
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/cardFaceImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"/>
+                android:layout_centerInParent="true" />
 
-            <TextView
-                android:id="@+id/bottomRightValue"
+            <LinearLayout
+                android:id="@+id/cardIdBottom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="X"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
                 android:layout_marginBottom="@dimen/cardBoarder"
-                android:layout_marginRight="@dimen/cardBoarder"/>
+                android:layout_marginRight="@dimen/cardBoarder">
+
+                <ImageView
+                    android:id="@+id/bottomRightSuit"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"/>
+                <TextView
+                    android:id="@+id/bottomRightValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/drawnCardValue"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"></RelativeLayout>
+        android:layout_weight="1">
+    </RelativeLayout>
 </LinearLayout>

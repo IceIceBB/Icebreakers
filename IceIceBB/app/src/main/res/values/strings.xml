@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">IceIceBB</string>
+    <string name="drawnCardValue">X</string>
 </resources>
