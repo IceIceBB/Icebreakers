@@ -4,15 +4,20 @@ import android.accounts.Account;
 import android.content.AbstractThreadedSyncAdapter;
 import android.content.ContentProviderClient;
 import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.SyncResult;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 /**
  * Created by lmont on 9/25/2016.
@@ -66,6 +71,34 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
     @Override
     public void onPerformSync(Account account, Bundle extras, String authority, ContentProviderClient provider, SyncResult syncResult) {
         Log.d("LEO", "onPerformSync: ");
+        mContentResolver.delete(IcebreakerContentProvider.CONTENT_URI_ICEBREAKERS, null, null);
+        mContentResolver.delete(IcebreakerContentProvider.CONTENT_URI_QUESTIONS, null, null);
+
+        //Do api call to our API to get new data
+        String gamesAPI = "https://floating-island-55807.herokuapp.com/games";
+        String questionsAPI = "https://floating-island-55807.herokuapp.com/questions";
+        String gamesData = "";
+        String questionsData = "";
+        try {
+            URL gamesURL = new URL(gamesAPI);
+            URL questionsURL = new URL(questionsAPI);
+            HttpURLConnection gamesConnection = (HttpURLConnection) gamesURL.openConnection();
+            HttpURLConnection questionsConnection = (HttpURLConnection) questionsURL.openConnection();
+            gamesConnection.connect();
+            questionsConnection.connect();
+            InputStream gamesInStream = gamesConnection.getInputStream();
+            InputStream questionsInStream = questionsConnection.getInputStream();
+            gamesData = getInputData(gamesInStream);
+            questionsData = getInputData(questionsInStream);
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+
+        Log.d(TAG, "onPerformSync: " + gamesData);
+        Log.d(TAG, "onPerformSync: " + questionsData);
+
+        Gson gamesGson = new Gson();
+        //GamesArrayFromGson g = gamesGson.toJson(gamesData, GamesArrayFromGson.class);
     }
 
     /**
@@ -87,5 +120,9 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
         reader.close();
 
         return builder.toString();
+    }
+
+    private class GamesArrayFromGson {
+        public Game[] games;
     }
 }
