@@ -1,5 +1,6 @@
 package com.example.lmont.iceicebb;
 
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -43,11 +44,21 @@ public class GameListRecyclerAdapter extends RecyclerView.Adapter<GameListRecycl
         TextView gameRating;
 
 
-        GameListViewHolder(View itemView) {
+        public GameListViewHolder(final View itemView) {
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.gameView);
             gameName = (TextView)itemView.findViewById(R.id.gameName);
             gameRating = (TextView)itemView.findViewById(R.id.gameRating);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(itemView.getContext(), GameDetailActivity.class);
+                    intent.putExtra("name", gameName.getText());
+                    intent.putExtra("rating", gameRating.getText());
+                    itemView.getContext().startActivity(intent);
+                }
+            });
         }
     }
 
