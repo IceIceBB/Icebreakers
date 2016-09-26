@@ -31,15 +31,42 @@
                 android:layout_margin="@dimen/large_spacing"
                 android:textSize="36sp" />
 
-            <ImageView
-                android:id="@+id/playersIcon"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/gameNameDetail"
-                android:layout_toEndOf="@+id/gameNameDetail"
-                android:layout_margin="@dimen/large_spacing"
-                android:src="@drawable/group"/>
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/playersIcon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="@dimen/large_spacing"
+                    android:src="@drawable/group" />
+
+                   <TextView
+                       android:id="@+id/playerCount"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="4"
+                       android:textSize="24sp"
+                       android:layout_centerInParent="true"/>
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/sfwIcon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="@dimen/large_spacing"
+                    android:src="@drawable/angel"/>
+
+            </LinearLayout>
 
         </RelativeLayout>
 
@@ -53,19 +80,65 @@
             android:isIndicator="false" />
 
         <LinearLayout
-            android:id="@+id/tagFrame"
+            android:id="@+id/tagFrameDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_below="@+id/ratingBarDetail"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_margin="@dimen/small_spacing"
+                android:src="@drawable/drink"/>
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height= "25dp"
+                android:layout_margin="@dimen/small_spacing"
+                android:src="@drawable/moving"/>
+
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/gameRatingDetail"
+            android:id="@+id/gameMaterials"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tagFrame"
+            android:layout_below="@id/tagFrameDetail"
             android:layout_margin="@dimen/large_spacing" />
+
+        <TextView
+            android:id="@+id/gameRules"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/gameMaterials"
+            android:layout_margin="@dimen/large_spacing"/>
+
+        <TextView
+            android:id="@+id/gameComments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/gameRules"
+            android:layout_margin="@dimen/large_spacing"/>
+
+        <Button
+            android:id="@+id/diceRollerButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/dice_icon_trans"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"/>
+
+        <Button
+            android:id="@+id/cardFlipperButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/playing_cards_icon_trans"
+            android:layout_toLeftOf="@+id/diceRollerButton"
+            android:layout_toStartOf="@+id/diceRollerButton"
+            android:layout_alignParentBottom="true"/>
 
     </RelativeLayout>
 </RelativeLayout>
