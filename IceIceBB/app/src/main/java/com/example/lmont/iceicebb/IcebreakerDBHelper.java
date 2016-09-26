@@ -3,7 +3,6 @@ package com.example.lmont.iceicebb;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 /**
  * Created by lmont on 9/25/2016.
@@ -130,10 +129,10 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
         test.minPlayers = 2;
         test.maxPlayers = 10;
         test.materials = "Paper, Pencil, Anal Beads";
-        test.rating = 69;
+        test.rating = 9;
 
         Game test2 = new Game();
-        test2.name = "Game1";
+        test2.name = "Game2";
         test2.comment = "Comment";
         test2.rules = "1) Rules \n2)Rules \n3)Rules";
         test2.isClean = false;
@@ -143,7 +142,7 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
         test2.minPlayers = 2;
         test2.maxPlayers = 10;
         test2.materials = "Paper, Pencil, Anal Beads";
-        test2.rating = 69;
+        test2.rating = 5;
 
         return new Game[]{test, test2};
     }

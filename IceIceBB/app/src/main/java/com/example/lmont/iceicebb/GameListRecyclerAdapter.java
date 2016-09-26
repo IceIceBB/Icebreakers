@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import static android.R.attr.rating;
-
 /**
  * Created by klaus_000 on 9/25/2016.
  */
@@ -18,6 +16,7 @@ import static android.R.attr.rating;
 public class GameListRecyclerAdapter extends RecyclerView.Adapter<GameListRecyclerAdapter.GameListViewHolder> {
 
     Game[] gameArray;
+    String gameRules;
 
     @Override
     public GameListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -29,12 +28,11 @@ public class GameListRecyclerAdapter extends RecyclerView.Adapter<GameListRecycl
     @Override
     public void onBindViewHolder(GameListViewHolder holder, int position) {
         TextView nameTextView = holder.gameName;
-        TextView ratingTextView = holder.gameRating;
         RatingBar ratingBar = holder.ratingBar;
-//        float rating = (float) games.get(position).getGameRating()/2;
-//        nameTextView.setText("ASDFAGWE");
+        float rating = (float) (gameArray[position].rating)/2;
         nameTextView.setText(gameArray[position].name);
-        ratingTextView.setText(gameArray[position].materials);
+        String gameRules = gameArray[position].rules;
+//        ratingTextView.setText(gameArray[position].materials);
         ratingBar.setRating(rating);
     }
 
@@ -47,15 +45,14 @@ public class GameListRecyclerAdapter extends RecyclerView.Adapter<GameListRecycl
     public static class GameListViewHolder extends RecyclerView.ViewHolder{
         CardView cv;
         TextView gameName;
-        TextView gameRating;
         RatingBar ratingBar;
+
 
 
         public GameListViewHolder(final View itemView) {
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.gameView);
             gameName = (TextView)itemView.findViewById(R.id.gameName);
-            gameRating = (TextView)itemView.findViewById(R.id.gameRating);
             ratingBar = (RatingBar)itemView.findViewById(R.id.ratingBar);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +60,6 @@ public class GameListRecyclerAdapter extends RecyclerView.Adapter<GameListRecycl
                 public void onClick(View view) {
                     Intent intent = new Intent(itemView.getContext(), GameDetailActivity.class);
                     intent.putExtra("name", gameName.getText());
-//                    intent.putExtra("rating", gameRating.getText());
                     itemView.getContext().startActivity(intent);
                 }
             });
