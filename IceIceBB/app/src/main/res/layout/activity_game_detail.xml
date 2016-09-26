@@ -16,13 +16,13 @@
         android:layout_height="match_parent"
         android:layout_margin="5dp"
         android:background="#deb1f4ed"
-        android:elevation="10dp"
         android:padding="5dp">
 
         <RelativeLayout
             android:id="@+id/gameNameLayout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true">
 
             <TextView
                 android:id="@+id/gameNameDetail"
@@ -36,10 +36,10 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@+id/gameNameDetail"
+                android:layout_toEndOf="@+id/gameNameDetail"
                 android:layout_margin="@dimen/large_spacing"
-                android:src="@drawable/group" />
+                android:src="@drawable/group"/>
 
         </RelativeLayout>
 
@@ -56,13 +56,15 @@
             android:id="@+id/tagFrame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" />
+            android:orientation="horizontal"
+            android:layout_below="@+id/ratingBarDetail"
+            android:layout_centerHorizontal="true"/>
 
         <TextView
             android:id="@+id/gameRatingDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/ratingBarDetail"
+            android:layout_below="@id/tagFrame"
             android:layout_margin="@dimen/large_spacing" />
 
     </RelativeLayout>
