@@ -2,11 +2,9 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-<<<<<<< HEAD
     <dimen name="emptyTestHeightValue">100dp</dimen>
-    <dimen name="cardBoarder">15dp</dimen>
-=======
+    <dimen name="cardBoarderTopBottom">6dp</dimen>
     <dimen name="small_spacing">5dp</dimen>
     <dimen name="large_spacing">10dp</dimen>
->>>>>>> IceIceBB/master
+
 </resources>

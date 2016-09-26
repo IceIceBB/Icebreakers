@@ -27,7 +27,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4"
-            android:background="@drawable/playingCardBack"/>
+            android:background="@drawable/playing_card_back"/>
 
         <FrameLayout
             android:layout_width="0dp"
@@ -38,19 +38,20 @@
             android:id="@+id/cardFace"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="4">
+            android:layout_weight="4"
+            android:background="@drawable/background_border">
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/blankCardFace"/>
+                android:background="@drawable/blank_card_face"/>
 
             <LinearLayout
                 android:id="@+id/cardIdTop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/cardBoarder"
-                android:layout_marginTop="@dimen/cardBoarder"
-                android:orientation="horizontal">
+                android:layout_marginLeft="@dimen/cardBoarderTopBottom"
+                android:layout_marginTop="@dimen/cardBoarderTopBottom"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/topLeftValue"
@@ -78,8 +79,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginBottom="@dimen/cardBoarder"
-                android:layout_marginRight="@dimen/cardBoarder">
+                android:orientation="vertical"
+                android:layout_marginBottom="@dimen/cardBoarderTopBottom"
+                android:layout_marginRight="@dimen/cardBoarderTopBottom">
 
                 <ImageView
                     android:id="@+id/bottomRightSuit"
