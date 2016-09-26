@@ -22,7 +22,7 @@ public class GameActivity extends AppCompatActivity {
 
     public static final String ACCOUNT_TYPE = "example.com";
     public static final String ACCOUNT = "default_account";
-    public static final String AUTHORITY = "com.example.lmont.iceicebb.NewsContentProvider";
+    public static final String AUTHORITY = "com.example.lmont.iceicebb.IcebreakerContentProvider";
 
     ArrayList <Game> games;
 

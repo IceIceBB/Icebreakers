@@ -58,7 +58,7 @@
 
         <provider
             android:name=".IcebreakerContentProvider"
-            android:authorities="com.example.lmont.iceicebb.NewsContentProvider"
+            android:authorities="com.example.lmont.iceicebb.IcebreakerContentProvider"
             android:label="my provider"
             android:exported="false"
             android:syncable="true"/>

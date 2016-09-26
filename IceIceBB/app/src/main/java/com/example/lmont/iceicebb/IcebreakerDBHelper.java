@@ -82,6 +82,10 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
         return test;
     }
 
+    public void addGame(Game game) {
+
+    }
+
     public Game[] getAllGames() {
         // Mock Data
         Game test = new Game();
