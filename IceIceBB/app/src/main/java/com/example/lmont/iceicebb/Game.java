@@ -1,8 +1,6 @@
 package com.example.lmont.iceicebb;
 
-/**
- * Created by lmont on 9/25/2016.
- */
+
 public class Game {
     // To create a new game, for now, just use postman to do a post to
     // https://floating-island-55807.herokuapp.com/games

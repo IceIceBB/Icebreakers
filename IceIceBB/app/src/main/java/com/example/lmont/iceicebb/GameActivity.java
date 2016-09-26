@@ -6,23 +6,25 @@ import android.app.SearchManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class GameActivity extends AppCompatActivity {
 
     public static final String ACCOUNT_TYPE = "example.com";
     public static final String ACCOUNT = "default_account";
     public static final String AUTHORITY = "com.example.lmont.iceicebb.NewsContentProvider";
+
+    ArrayList <Game> games;
 
     IcebreakerDBHelper dbHelper = IcebreakerDBHelper.getInstance(this);
     Account mAccount;
@@ -38,7 +40,29 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void setup() {
+        RecyclerView gameList = (RecyclerView) findViewById(R.id.gameList);
+        gameList.setHasFixedSize(true);
 
+//        GridLayoutManager manager = new GridLayoutManager(this, 2);
+//        gameList.setLayoutManager(manager);
+        if(this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+            gameList.setLayoutManager(new GridLayoutManager(this, 2));
+        }
+        else{
+            gameList.setLayoutManager(new GridLayoutManager(this, 4));
+        }
+
+
+        ArrayList<Game> games = new ArrayList<Game>();
+//        for (int i = 1; i < 5; i++){
+//            games.add(new Game(7, "testName1-"+i));
+//            games.add(new Game(8, "testName2-"+i));
+//            games.add(new Game(4, "testName3-"+i));
+//            games.add(new Game(5, "testName4-"+i));
+//        }
+
+        GameListRecyclerAdapter adapter = new GameListRecyclerAdapter(games);
+        gameList.setAdapter(adapter);
     }
 
     @Override
