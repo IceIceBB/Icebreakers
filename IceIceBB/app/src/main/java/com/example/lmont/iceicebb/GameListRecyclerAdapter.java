@@ -9,13 +9,15 @@ import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import java.util.List;
+import static android.R.attr.rating;
 
 /**
  * Created by klaus_000 on 9/25/2016.
  */
 
 public class GameListRecyclerAdapter extends RecyclerView.Adapter<GameListRecyclerAdapter.GameListViewHolder> {
+
+    Game[] gameArray;
 
     @Override
     public GameListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -25,21 +27,29 @@ public class GameListRecyclerAdapter extends RecyclerView.Adapter<GameListRecycl
     }
 
     @Override
-    public void onBindViewHolder(final GameListViewHolder holder, final int position) {
+    public void onBindViewHolder(GameListViewHolder holder, int position) {
         TextView nameTextView = holder.gameName;
         TextView ratingTextView = holder.gameRating;
         RatingBar ratingBar = holder.ratingBar;
+<<<<<<< HEAD
         float rating = (float) games.get(position).rating/2;
 
         nameTextView.setText(games.get(position).name);
         ratingTextView.setText(String.valueOf(rating));
+=======
+//        float rating = (float) games.get(position).getGameRating()/2;
+
+//        nameTextView.setText("ASDFAGWE");
+        nameTextView.setText(gameArray[position].name);
+        ratingTextView.setText(gameArray[position].materials);
+>>>>>>> 37d5fe2b2d04952cc4080eafbaa1ab2beffecb16
         ratingBar.setRating(rating);
     }
 
 
     @Override
     public int getItemCount() {
-        return games.size();
+        return gameArray.length;
     }
 
     public static class GameListViewHolder extends RecyclerView.ViewHolder{
@@ -61,16 +71,14 @@ public class GameListRecyclerAdapter extends RecyclerView.Adapter<GameListRecycl
                 public void onClick(View view) {
                     Intent intent = new Intent(itemView.getContext(), GameDetailActivity.class);
                     intent.putExtra("name", gameName.getText());
-                    intent.putExtra("rating", gameRating.getText());
+//                    intent.putExtra("rating", gameRating.getText());
                     itemView.getContext().startActivity(intent);
                 }
             });
         }
     }
 
-    List<Game> games;
-
-    GameListRecyclerAdapter(List<Game> games){
-        this.games = games;
+    GameListRecyclerAdapter(Game[] gameArray){
+        this.gameArray = gameArray;
     }
 }

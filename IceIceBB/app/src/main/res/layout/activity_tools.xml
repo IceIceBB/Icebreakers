@@ -10,4 +10,48 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.lmont.iceicebb.ToolsActivity">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:background="@drawable/background_border"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/cardToolButton"
+                android:layout_width="@dimen/emptyTestHeightValue"
+                android:layout_height="@dimen/emptyTestHeightValue"
+                android:layout_weight="8"
+                android:background="@drawable/playing_cards_icon"
+                android:layout_centerInParent="true"></ImageView>
+        </RelativeLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"></FrameLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:background="@drawable/background_border"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/diceToolButton"
+                android:layout_width="@dimen/emptyTestHeightValue"
+                android:layout_height="@dimen/emptyTestHeightValue"
+                android:background="@drawable/dice_icon"
+                android:layout_centerInParent="true"></ImageView>
+        </RelativeLayout>
+
+    </LinearLayout>
+
 </RelativeLayout>
