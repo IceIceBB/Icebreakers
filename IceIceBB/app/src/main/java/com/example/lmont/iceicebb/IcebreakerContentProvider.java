@@ -39,10 +39,10 @@ public class IcebreakerContentProvider extends ContentProvider {
         int uriType = uriMatcher.match(uri);
         switch (uriType) {
             case ICEBREAKERS:
-
+                dbHelper.addGame(values);
                 break;
             case QUESTIONS:
-
+                dbHelper.addQuestion(values);
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
