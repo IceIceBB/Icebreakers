@@ -126,6 +126,6 @@ public class GameActivity extends AppCompatActivity {
                 mAccount,
                 AUTHORITY,
                 Bundle.EMPTY,
-                5);
+                30);
     }
 }

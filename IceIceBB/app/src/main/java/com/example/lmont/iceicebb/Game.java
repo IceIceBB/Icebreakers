@@ -15,5 +15,23 @@ public class Game {
     public int minPlayers;
     public int maxPlayers;
     public String materials;
+    public String url;
     public int rating;
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "name='" + name + '\'' +
+                ", comment='" + comment + '\'' +
+                ", rules='" + rules + '\'' +
+                ", isClean=" + isClean +
+                ", hasCards=" + hasCards +
+                ", hasDice=" + hasDice +
+                ", tags='" + tags + '\'' +
+                ", minPlayers=" + minPlayers +
+                ", maxPlayers=" + maxPlayers +
+                ", materials='" + materials + '\'' +
+                ", rating=" + rating +
+                '}';
+    }
 }
