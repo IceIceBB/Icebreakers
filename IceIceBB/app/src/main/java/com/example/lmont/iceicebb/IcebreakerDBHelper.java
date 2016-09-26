@@ -63,4 +63,22 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + QUESTIONS_TABLE_NAME);
         this.onCreate(sqLiteDatabase);
     }
+
+    public Game getGameWithName(String gameName) {
+        // Movk Data
+        Game test = new Game();
+        test.name = gameName;
+        test.comment = "Comment";
+        test.rules = "1) Rules \n2)Rules \n3)Rules";
+        test.isClean = false;
+        test.hasCards = true;
+        test.hasDice = true;
+        test.tags = "TAGS TAGS TAGS";
+        test.minPlayers = 2;
+        test.maxPlayers = 10;
+        test.materials = "Paper, Pencil, Anal Beads";
+        test.rating = 69;
+
+        return test;
+    }
 }
