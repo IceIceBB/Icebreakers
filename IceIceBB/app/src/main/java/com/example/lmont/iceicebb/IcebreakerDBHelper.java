@@ -3,6 +3,7 @@ package com.example.lmont.iceicebb;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by lmont on 9/25/2016.
@@ -82,6 +83,40 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
         return test;
     }
 
+    public Game[] getGamesLike(String query) {
+        Game test = new Game();
+        test.name = "Game1" + query;
+        test.comment = "Comment";
+        test.rules = "1) Rules \n2)Rules \n3)Rules";
+        test.isClean = false;
+        test.hasCards = true;
+        test.hasDice = true;
+        test.tags = "TAGS TAGS TAGS";
+        test.minPlayers = 2;
+        test.maxPlayers = 10;
+        test.materials = "Paper, Pencil, Anal Beads";
+        test.rating = 69;
+
+        Game test2 = new Game();
+        test2.name = query + "Game1";
+        test2.comment = "Comment";
+        test2.rules = "1) Rules \n2)Rules \n3)Rules";
+        test2.isClean = false;
+        test2.hasCards = true;
+        test2.hasDice = true;
+        test2.tags = "TAGS TAGS TAGS";
+        test2.minPlayers = 2;
+        test2.maxPlayers = 10;
+        test2.materials = "Paper, Pencil, Anal Beads";
+        test2.rating = 69;
+
+        return new Game[]{test, test2};
+    }
+
+    public void addGame(Game game) {
+
+    }
+
     public Game[] getAllGames() {
         // Mock Data
         Game test = new Game();
@@ -113,7 +148,8 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
         return new Game[]{test, test2};
     }
 
-    public void deleteAllGames() {}
+    public void deleteAllGames() {
+    }
 
     public Question getRandomQuestion(boolean isSFW) {
         Question test = new Question();
@@ -130,5 +166,6 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
         return test;
     }
 
-    public void deleteAllQuestions() {}
+    public void deleteAllQuestions() {
+    }
 }

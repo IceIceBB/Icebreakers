@@ -32,7 +32,6 @@ public class GameListRecyclerAdapter extends RecyclerView.Adapter<GameListRecycl
         TextView ratingTextView = holder.gameRating;
         RatingBar ratingBar = holder.ratingBar;
 //        float rating = (float) games.get(position).getGameRating()/2;
-
 //        nameTextView.setText("ASDFAGWE");
         nameTextView.setText(gameArray[position].name);
         ratingTextView.setText(gameArray[position].materials);
