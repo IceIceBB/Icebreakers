@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.List;
@@ -27,9 +28,12 @@ public class GameListRecyclerAdapter extends RecyclerView.Adapter<GameListRecycl
     public void onBindViewHolder(final GameListViewHolder holder, final int position) {
         TextView nameTextView = holder.gameName;
         TextView ratingTextView = holder.gameRating;
+        RatingBar ratingBar = holder.ratingBar;
+        float rating = (float) games.get(position).getGameRating()/2;
 
         nameTextView.setText(games.get(position).getGameName());
-        ratingTextView.setText(String.valueOf(games.get(position).getGameRating()));
+        ratingTextView.setText(String.valueOf(rating));
+        ratingBar.setRating(rating);
     }
 
 
@@ -42,6 +46,7 @@ public class GameListRecyclerAdapter extends RecyclerView.Adapter<GameListRecycl
         CardView cv;
         TextView gameName;
         TextView gameRating;
+        RatingBar ratingBar;
 
 
         public GameListViewHolder(final View itemView) {
@@ -49,6 +54,7 @@ public class GameListRecyclerAdapter extends RecyclerView.Adapter<GameListRecycl
             cv = (CardView)itemView.findViewById(R.id.gameView);
             gameName = (TextView)itemView.findViewById(R.id.gameName);
             gameRating = (TextView)itemView.findViewById(R.id.gameRating);
+            ratingBar = (RatingBar)itemView.findViewById(R.id.ratingBar);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

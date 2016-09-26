@@ -7,9 +7,9 @@ package com.example.lmont.iceicebb;
 public class Game {
 
     String gameName;
-    int gameRating;
+    long gameRating;
 
-    public Game(int gameRating, String gameName) {
+    public Game(long gameRating, String gameName) {
         this.gameRating = gameRating;
         this.gameName = gameName;
     }
@@ -18,7 +18,7 @@ public class Game {
         return gameName;
     }
 
-    public int getGameRating() {
+    public long getGameRating() {
         return gameRating;
     }
 
@@ -26,7 +26,7 @@ public class Game {
         this.gameName = gameName;
     }
 
-    public void setGameRating(int gameRating) {
+    public void setGameRating(long gameRating) {
         this.gameRating = gameRating;
     }
 }
