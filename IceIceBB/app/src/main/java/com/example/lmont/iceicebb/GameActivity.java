@@ -29,7 +29,7 @@ public class GameActivity extends AppCompatActivity {
         }
 
 
-        ArrayList games = new ArrayList<Game>();
+        ArrayList<Game> games = new ArrayList<Game>();
         for (int i = 1; i < 5; i++){
             games.add(new Game(7, "testName1-"+i));
             games.add(new Game(8, "testName2-"+i));

@@ -4,21 +4,21 @@ package com.example.lmont.iceicebb;
  * Created by klaus_000 on 9/25/2016.
  */
 
-public class Game {
+class Game {
 
-    String gameName;
-    long gameRating;
+    private String gameName;
+    private float gameRating;
 
-    public Game(long gameRating, String gameName) {
+    Game(long gameRating, String gameName) {
         this.gameRating = gameRating;
         this.gameName = gameName;
     }
 
-    public String getGameName() {
+    String getGameName() {
         return gameName;
     }
 
-    public long getGameRating() {
+    float getGameRating() {
         return gameRating;
     }
 
@@ -26,7 +26,7 @@ public class Game {
         this.gameName = gameName;
     }
 
-    public void setGameRating(long gameRating) {
+    public void setGameRating(float gameRating) {
         this.gameRating = gameRating;
     }
 }

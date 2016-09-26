@@ -18,10 +18,10 @@ public class GameDetailActivity extends AppCompatActivity {
 
         String name = getIntent().getStringExtra("name");
         String rating = getIntent().getStringExtra("rating");
-        Long ratingLong = Long.valueOf(getIntent().getStringExtra("rating")).longValue();
+        Float ratingFloat = Float.valueOf(getIntent().getStringExtra("rating"));
 
         gameName.setText(name);
         gameRating.setText(rating);
-        ratingBar.setRating(ratingLong);
+        ratingBar.setRating(ratingFloat);
     }
 }
