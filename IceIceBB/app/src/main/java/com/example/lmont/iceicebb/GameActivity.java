@@ -16,6 +16,25 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.Toast;
 
+//        Your work must:
+//
+//   [X]   Include at least 2 prototypes
+//   []   Include user stories based on your research and feature prioritization in a Trello board for the complete flow of your app
+//   []   Have at least one Activity--more if it makes sense. The activity should include a list of interactive cards implemented with Android’s RecyclerView and CardView APIs.
+//   []   Include at least three types of cards:
+//        []  One card should present data that is stored and updated on the user’s phone using a Content Provider or Shared Preferences (e.g. To-do card, Reminder card, Alarm card).
+//        []    Two cards should present data provided through a web API (e.g. Weather card, Twitter card, Maps card, Photo of the Day). Check out this directory of APIs if you need some API ideas.
+//   []   Use the Retrofit library to handle HTTP requests and parse JSON data
+//   []   Include at least one Notifications feature (e.g. reminder, alarm)
+//   []   Look great in both landscape and portrait modes and reflect Material Design principles
+//   []   Not crash or hang and should handle for when networking/internet is slow or unavailable
+//   []   Have code that is semantically clean and well-organized
+//   []   Integrate with the Twitter and/or Facebook's APIs
+//   []   Allow the user to share breaking news developments with friends
+
+//        Bonus:
+//   []   Integrate additional APIs
+
 public class GameActivity extends AppCompatActivity {
 
     public static final String ACCOUNT_TYPE = "example.com";
