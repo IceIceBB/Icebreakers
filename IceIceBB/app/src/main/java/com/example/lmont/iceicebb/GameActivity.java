@@ -16,17 +16,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
 public class GameActivity extends AppCompatActivity {
 
     public static final String ACCOUNT_TYPE = "example.com";
     public static final String ACCOUNT = "default_account";
     public static final String AUTHORITY = "com.example.lmont.iceicebb.NewsContentProvider";
 
-    ArrayList <Game> games;
-
     IcebreakerDBHelper dbHelper = IcebreakerDBHelper.getInstance(this);
+    Game[] gameArray;
     Account mAccount;
 
     @Override
@@ -40,11 +37,10 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void setup() {
+        gameArray = dbHelper.getAllGames();
         RecyclerView gameList = (RecyclerView) findViewById(R.id.gameList);
         gameList.setHasFixedSize(true);
 
-//        GridLayoutManager manager = new GridLayoutManager(this, 2);
-//        gameList.setLayoutManager(manager);
         if(this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
             gameList.setLayoutManager(new GridLayoutManager(this, 2));
         }
@@ -52,16 +48,7 @@ public class GameActivity extends AppCompatActivity {
             gameList.setLayoutManager(new GridLayoutManager(this, 4));
         }
 
-
-        ArrayList<Game> games = new ArrayList<Game>();
-//        for (int i = 1; i < 5; i++){
-//            games.add(new Game(7, "testName1-"+i));
-//            games.add(new Game(8, "testName2-"+i));
-//            games.add(new Game(4, "testName3-"+i));
-//            games.add(new Game(5, "testName4-"+i));
-//        }
-
-        GameListRecyclerAdapter adapter = new GameListRecyclerAdapter(games);
+        GameListRecyclerAdapter adapter = new GameListRecyclerAdapter(gameArray);
         gameList.setAdapter(adapter);
     }
 
