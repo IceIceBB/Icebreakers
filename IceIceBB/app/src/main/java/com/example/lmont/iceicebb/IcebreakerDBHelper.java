@@ -63,4 +63,72 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + QUESTIONS_TABLE_NAME);
         this.onCreate(sqLiteDatabase);
     }
+
+    public Game getGameWithName(String gameName) {
+        // Mock Data
+        Game test = new Game();
+        test.name = gameName;
+        test.comment = "Comment";
+        test.rules = "1) Rules \n2)Rules \n3)Rules";
+        test.isClean = false;
+        test.hasCards = true;
+        test.hasDice = true;
+        test.tags = "TAGS TAGS TAGS";
+        test.minPlayers = 2;
+        test.maxPlayers = 10;
+        test.materials = "Paper, Pencil, Anal Beads";
+        test.rating = 69;
+
+        return test;
+    }
+
+    public Game[] getAllGames() {
+        // Mock Data
+        Game test = new Game();
+        test.name = "Game1";
+        test.comment = "Comment";
+        test.rules = "1) Rules \n2)Rules \n3)Rules";
+        test.isClean = false;
+        test.hasCards = true;
+        test.hasDice = true;
+        test.tags = "TAGS TAGS TAGS";
+        test.minPlayers = 2;
+        test.maxPlayers = 10;
+        test.materials = "Paper, Pencil, Anal Beads";
+        test.rating = 69;
+
+        Game test2 = new Game();
+        test2.name = "Game1";
+        test2.comment = "Comment";
+        test2.rules = "1) Rules \n2)Rules \n3)Rules";
+        test2.isClean = false;
+        test2.hasCards = true;
+        test2.hasDice = true;
+        test2.tags = "TAGS TAGS TAGS";
+        test2.minPlayers = 2;
+        test2.maxPlayers = 10;
+        test2.materials = "Paper, Pencil, Anal Beads";
+        test2.rating = 69;
+
+        return new Game[]{test, test2};
+    }
+
+    public void deleteAllGames() {}
+
+    public Question getRandomQuestion(boolean isSFW) {
+        Question test = new Question();
+        if (isSFW) {
+            test.name = "Game1";
+            test.text = "Sister Margeret";
+            test.sfw = true;
+        } else {
+            test.name = "Game2";
+            test.text = "Balls";
+            test.sfw = false;
+        }
+
+        return test;
+    }
+
+    public void deleteAllQuestions() {}
 }
