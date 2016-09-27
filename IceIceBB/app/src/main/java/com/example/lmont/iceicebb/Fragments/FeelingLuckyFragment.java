@@ -26,7 +26,8 @@ public class FeelingLuckyFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_feeling_lucky, container, false);
 
 
-        return null;
+        return view;
+        //TODO Add api call to create random question everytime
     }
 
 }

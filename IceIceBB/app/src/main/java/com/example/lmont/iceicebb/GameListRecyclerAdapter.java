@@ -66,7 +66,7 @@ public class GameListRecyclerAdapter extends RecyclerView.Adapter<GameListRecycl
         }
     }
 
-    GameListRecyclerAdapter(Game[] gameArray){
+    public GameListRecyclerAdapter(Game[] gameArray){
         this.gameArray = gameArray;
     }
 }
