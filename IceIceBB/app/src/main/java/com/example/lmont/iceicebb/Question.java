@@ -10,4 +10,13 @@ public class Question {
     public String name;
     public String text;
     public boolean sfw;
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "name='" + name + '\'' +
+                ", text='" + text + '\'' +
+                ", sfw=" + sfw +
+                '}';
+    }
 }

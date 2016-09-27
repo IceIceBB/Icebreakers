@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -70,7 +71,6 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
      */
     @Override
     public void onPerformSync(Account account, Bundle extras, String authority, ContentProviderClient provider, SyncResult syncResult) {
-        Log.d("LEO", "onPerformSync: ");
         mContentResolver.delete(IcebreakerContentProvider.CONTENT_URI_ICEBREAKERS, null, null);
         mContentResolver.delete(IcebreakerContentProvider.CONTENT_URI_QUESTIONS, null, null);
 
@@ -94,11 +94,42 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
             e.printStackTrace();
         }
 
-        Log.d(TAG, "onPerformSync: " + gamesData);
-        Log.d(TAG, "onPerformSync: " + questionsData);
+        GamesArrayFromGson g = (new Gson()).fromJson(gamesData, GamesArrayFromGson.class);
+        //IcebreakerDBHelper.getInstance(getContext()).resetDB();
 
-        Gson gamesGson = new Gson();
-        //GamesArrayFromGson g = gamesGson.toJson(gamesData, GamesArrayFromGson.class);
+        for (Game game: g.games) {
+            ContentValues gamesContentValues = new ContentValues();
+            gamesContentValues.put("name", game.name);
+            gamesContentValues.put("comment", game.comment);
+            gamesContentValues.put("rules", game.rules);
+            gamesContentValues.put("isClean", game.isClean);
+            gamesContentValues.put("hasCards", game.hasCards);
+            gamesContentValues.put("hasDice", game.hasDice);
+            gamesContentValues.put("tags", game.tags);
+            gamesContentValues.put("minPlayers", game.minPlayers);
+            gamesContentValues.put("maxPlayers", game.maxPlayers);
+            gamesContentValues.put("materials", game.materials);
+            gamesContentValues.put("rating", game.rating);
+            gamesContentValues.put("url", game.url);
+            mContentResolver.insert(IcebreakerContentProvider.CONTENT_URI_ICEBREAKERS, gamesContentValues);
+        }
+
+        QuestionsArrayFromGson q = (new Gson()).fromJson(questionsData, QuestionsArrayFromGson.class);
+        for (Question question : q.questions) {
+            ContentValues questionsContentValues = new ContentValues();
+            questionsContentValues.put("name", question.name);
+            questionsContentValues.put("text", question.text);
+            questionsContentValues.put("sfw", question.sfw);
+            mContentResolver.insert(IcebreakerContentProvider.CONTENT_URI_QUESTIONS, questionsContentValues);
+        }
+    }
+
+    private class GamesArrayFromGson {
+        public Game[] games;
+    }
+
+    private class QuestionsArrayFromGson {
+        public Question[] questions;
     }
 
     /**
@@ -120,9 +151,5 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
         reader.close();
 
         return builder.toString();
-    }
-
-    private class GamesArrayFromGson {
-        public Game[] games;
     }
 }

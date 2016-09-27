@@ -1,8 +1,12 @@
 package com.example.lmont.iceicebb;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.Random;
 
 /**
  * Created by lmont on 9/25/2016.
@@ -14,7 +18,7 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
     public static final String ICEBREAKERS_TABLE_NAME = "icebreakers";
     public static final String QUESTIONS_TABLE_NAME = "questions";
 
-    public static final String[] ICEBREAKERS_COLUMNS = new String[]{"name", "comment", "rules", "isclean", "hasDice", "hasCards", "tags", "minPlayers", "maxPlayers", "materials", "rating"};
+    public static final String[] ICEBREAKERS_COLUMNS = new String[]{"name", "comment", "rules", "isclean", "hasDice", "hasCards", "tags", "minPlayers", "maxPlayers", "materials", "url", "rating"};
     public static final String[] QUESTIONS_COLUMNS = new String[]{"name", "text", "sfw"};
 
     // CREATE TABLE [TABLE NAME] ([ATTRIBUTE NAME] [ATTRIBUTE TYPE], ...)
@@ -30,6 +34,7 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
             "minPlayers INTEGER," +
             "maxPlayers INTEGER," +
             "materials TEXT," +
+            "url TEXT," +
             "rating INTEGER" + ")";
 
     public static final String CREATE_QUESTIONS_TABLE =
@@ -64,107 +69,123 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
         this.onCreate(sqLiteDatabase);
     }
 
-    public Game getGameWithName(String gameName) {
-        // Mock Data
-        Game test = new Game();
-        test.name = gameName;
-        test.comment = "Comment";
-        test.rules = "1) Rules \n2)Rules \n3)Rules";
-        test.isClean = false;
-        test.hasCards = true;
-        test.hasDice = true;
-        test.tags = "TAGS TAGS TAGS";
-        test.minPlayers = 2;
-        test.maxPlayers = 10;
-        test.materials = "Paper, Pencil, Anal Beads";
-        test.rating = 69;
+    public Game getGameWithName(String query) {
+        Cursor cursor = getReadableDatabase().query(
+                ICEBREAKERS_TABLE_NAME,
+                ICEBREAKERS_COLUMNS,
+                "name = '" + query + "'", null, null, null, null);
 
-        return test;
+        if (cursor.moveToFirst() == false)
+            return null;
+
+        Game game = new Game();
+        game.name = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[0]));
+        game.comment = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[1]));
+        game.rules = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[2]));
+        game.isClean = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[3])) > 0;
+        game.hasCards = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[4])) > 0;
+        game.hasDice = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[5])) > 0;
+        game.tags = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[6]));
+        game.minPlayers = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[7]));
+        game.maxPlayers = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[8]));
+        game.materials = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[9]));
+        game.url = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[10]));
+        game.rating = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[11]));
+
+        return game;
     }
 
     public Game[] getGamesLike(String query) {
-        Game test = new Game();
-        test.name = "Game1" + query;
-        test.comment = "Comment";
-        test.rules = "1) Rules \n2)Rules \n3)Rules";
-        test.isClean = false;
-        test.hasCards = true;
-        test.hasDice = true;
-        test.tags = "TAGS TAGS TAGS";
-        test.minPlayers = 2;
-        test.maxPlayers = 10;
-        test.materials = "Paper, Pencil, Anal Beads";
-        test.rating = 69;
+        Cursor cursor = getReadableDatabase().query(
+                ICEBREAKERS_TABLE_NAME,
+                ICEBREAKERS_COLUMNS,
+                "name LIKE '%" + query + "%'", null, null, null, null);
 
-        Game test2 = new Game();
-        test2.name = query + "Game1";
-        test2.comment = "Comment";
-        test2.rules = "1) Rules \n2)Rules \n3)Rules";
-        test2.isClean = false;
-        test2.hasCards = true;
-        test2.hasDice = true;
-        test2.tags = "TAGS TAGS TAGS";
-        test2.minPlayers = 2;
-        test2.maxPlayers = 10;
-        test2.materials = "Paper, Pencil, Anal Beads";
-        test2.rating = 69;
+        Game[] games = new Game[cursor.getCount()];
 
-        return new Game[]{test, test2};
+        for (int x=0; x<games.length; x++) {
+            cursor.moveToPosition(x);
+            games[x] = new Game();
+            games[x].name = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[0]));
+            games[x].comment = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[1]));
+            games[x].rules = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[2]));
+            games[x].isClean = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[3])) > 0;
+            games[x].hasCards = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[4])) > 0;
+            games[x].hasDice = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[5])) > 0;
+            games[x].tags = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[6]));
+            games[x].minPlayers = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[7]));
+            games[x].maxPlayers = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[8]));
+            games[x].materials = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[9]));
+            games[x].url = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[10]));
+            games[x].rating = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[11]));
+        }
+
+        return games;
     }
 
-    public void addGame(Game game) {
-
+    public void addGame(ContentValues cv) {
+        getWritableDatabase().insert(ICEBREAKERS_TABLE_NAME, null, cv);
     }
 
     public Game[] getAllGames() {
-        // Mock Data
-        Game test = new Game();
-        test.name = "Game1";
-        test.comment = "Comment";
-        test.rules = "1) Rules \n2)Rules \n3)Rules";
-        test.isClean = false;
-        test.hasCards = true;
-        test.hasDice = true;
-        test.tags = "TAGS TAGS TAGS";
-        test.minPlayers = 2;
-        test.maxPlayers = 10;
-        test.materials = "Paper, Pencil, Anal Beads";
-        test.rating = 9;
+        Cursor cursor = getReadableDatabase().query(
+                ICEBREAKERS_TABLE_NAME,
+                ICEBREAKERS_COLUMNS,
+                null, null, null, null, null);
 
-        Game test2 = new Game();
-        test2.name = "Game2";
-        test2.comment = "Comment";
-        test2.rules = "1) Rules \n2)Rules \n3)Rules";
-        test2.isClean = false;
-        test2.hasCards = true;
-        test2.hasDice = true;
-        test2.tags = "TAGS TAGS TAGS";
-        test2.minPlayers = 2;
-        test2.maxPlayers = 10;
-        test2.materials = "Paper, Pencil, Anal Beads";
-        test2.rating = 5;
+        Game[] games = new Game[cursor.getCount()];
 
-        return new Game[]{test, test2};
+        for (int x=0; x<games.length; x++) {
+            cursor.moveToPosition(x);
+            games[x] = new Game();
+            games[x].name = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[0]));
+            games[x].comment = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[1]));
+            games[x].rules = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[2]));
+            games[x].isClean = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[3])) > 0;
+            games[x].hasCards = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[4])) > 0;
+            games[x].hasDice = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[5])) > 0;
+            games[x].tags = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[6]));
+            games[x].minPlayers = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[7]));
+            games[x].maxPlayers = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[8]));
+            games[x].materials = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[9]));
+            games[x].url = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[10]));
+            games[x].rating = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[11]));
+        }
+
+        return games;
     }
 
     public void deleteAllGames() {
+        getWritableDatabase().delete(ICEBREAKERS_TABLE_NAME,null,null);
+    }
+
+    public void addQuestion(ContentValues cv) {
+        getWritableDatabase().insert(QUESTIONS_TABLE_NAME, null, cv);
     }
 
     public Question getRandomQuestion(boolean isSFW) {
-        Question test = new Question();
-        if (isSFW) {
-            test.name = "Game1";
-            test.text = "Sister Margeret";
-            test.sfw = true;
-        } else {
-            test.name = "Game2";
-            test.text = "Balls";
-            test.sfw = false;
-        }
+        Cursor cursor = getReadableDatabase().query(
+                QUESTIONS_TABLE_NAME,
+                QUESTIONS_COLUMNS,
+                null, null, null, null, null);
 
-        return test;
+        int randomNum = (new Random()).nextInt(cursor.getCount());
+        cursor.moveToPosition(randomNum);
+
+        Question question = new Question();
+
+        question.name = cursor.getString(cursor.getColumnIndex(QUESTIONS_COLUMNS[0]));
+        question.text = cursor.getString(cursor.getColumnIndex(QUESTIONS_COLUMNS[1]));
+        question.sfw = cursor.getInt(cursor.getColumnIndex(QUESTIONS_COLUMNS[2])) > 0;
+
+        return question;
     }
 
     public void deleteAllQuestions() {
+        getWritableDatabase().delete(QUESTIONS_TABLE_NAME,null,null);
+    }
+
+    public void resetDB() {
+        onUpgrade(getWritableDatabase(), 0, 0);
     }
 }
