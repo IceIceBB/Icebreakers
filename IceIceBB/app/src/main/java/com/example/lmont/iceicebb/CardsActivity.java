@@ -4,11 +4,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Random;
-
-import static android.R.attr.value;
 
 //The activity where Cards are randomly picked from a simulated deck
 public class CardsActivity extends AppCompatActivity {
@@ -22,6 +22,11 @@ public class CardsActivity extends AppCompatActivity {
 
     Button nextCard;
 
+    TextView topLeftValue;
+    ImageView topLeftSuit;
+
+    TextView bottomRightValue;
+    ImageView bottomRightSuit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +35,20 @@ public class CardsActivity extends AppCompatActivity {
 
         //Make deck clickable to draw new card.
         nextCard = (Button) findViewById(R.id.deckBack);
+        topLeftValue = (TextView) findViewById(R.id.topLeftValue);
+        topLeftSuit = (ImageView) findViewById(R.id.topLeftSuit);
+        bottomRightValue = (TextView) findViewById(R.id.bottomRightValue);
+        bottomRightSuit = (ImageView) findViewById(R.id.bottomRightSuit);
+
+
         nextCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int[] nextCard = drawCard();
+                topLeftValue.setText(nextCard[0]);
+                bottomRightValue.setText(nextCard[0]);
+                //TODO: set suit image.
+                //TODO: set card image.
             }
         });
 
