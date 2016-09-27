@@ -23,13 +23,13 @@
             android:background="@drawable/background_border"
             android:padding="5dp">
 
-            <ImageView
+            <Button
                 android:id="@+id/cardToolButton"
                 android:layout_width="@dimen/emptyTestHeightValue"
                 android:layout_height="@dimen/emptyTestHeightValue"
                 android:layout_weight="8"
                 android:background="@drawable/playing_cards_icon"
-                android:layout_centerInParent="true"></ImageView>
+                android:layout_centerInParent="true"></Button>
         </RelativeLayout>
 
         <FrameLayout
@@ -44,12 +44,12 @@
             android:background="@drawable/background_border"
             android:padding="5dp">
 
-            <ImageView
+            <Button
                 android:id="@+id/diceToolButton"
                 android:layout_width="@dimen/emptyTestHeightValue"
                 android:layout_height="@dimen/emptyTestHeightValue"
                 android:background="@drawable/dice_icon"
-                android:layout_centerInParent="true"></ImageView>
+                android:layout_centerInParent="true"></Button>
         </RelativeLayout>
 
     </LinearLayout>
