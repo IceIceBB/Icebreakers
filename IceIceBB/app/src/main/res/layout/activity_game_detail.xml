@@ -98,6 +98,18 @@
                 android:layout_margin="@dimen/small_spacing"
                 android:src="@drawable/moving"/>
 
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height= "25dp"
+                android:layout_margin="@dimen/small_spacing"
+                android:src="@drawable/car"/>
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height= "25dp"
+                android:layout_margin="@dimen/small_spacing"
+                android:src="@drawable/paper"/>
+
         </LinearLayout>
 
         <TextView

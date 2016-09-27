@@ -1,5 +1,6 @@
 package com.example.lmont.iceicebb;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -53,12 +54,30 @@ public class GameDetailActivity extends AppCompatActivity {
             cardDeckButton.setVisibility(View.GONE);
         }
 
+        diceRollerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), DiceActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        cardDeckButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), CardsActivity.class);
+                startActivity(intent);
+            }
+        });
+
         if (game.isClean){
             sfwIcon.setImageDrawable(getResources().getDrawable(R.drawable.angel));
         }
         else {
             sfwIcon.setImageDrawable(getResources().getDrawable(R.drawable.devil));
         }
+//TODO: check what tags are present and toggle visibility of appropriate tag icons
+//        if (game.tags)
 
     }
 }
