@@ -40,7 +40,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
             @Override
             public void run() {
-                // TODO Auto-generated method stub
+
 
 
                 Intent i = new Intent(SplashScreenActivity.this, GameActivity.class);
@@ -52,7 +52,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             }
 
             private void finish() {
-                // TODO Auto-generated method stub
+
 
             }
         }, splashInterval);

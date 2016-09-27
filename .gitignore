@@ -2,6 +2,7 @@ node_modules
 .env
 
 *.idea
+.idea
 
 # Built application files
 *.apk
@@ -46,3 +47,4 @@ captures/
 
 #DS stores
 *.DS_Store
+IceIceBB/.idea/misc.xml

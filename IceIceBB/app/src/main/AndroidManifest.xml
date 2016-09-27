@@ -2,7 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.lmont.iceicebb">
 
+    <uses-permission
+        android:name="android.permission.INTERNET"/>
+    <uses-permission
+        android:name="android.permission.READ_SYNC_SETTINGS"/>
+    <uses-permission
+        android:name="android.permission.WRITE_SYNC_SETTINGS"/>
+    <uses-permission
+        android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
+
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"/>
+
     <application
+        android:name=".StethoApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -21,9 +33,18 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
         </activity>
         <activity android:name=".GameActivity"
+
             android:label="@string/app_name">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
 
 
         </activity>
@@ -31,7 +52,36 @@
         <activity android:name=".ToolsActivity" />
         <activity android:name=".CardsActivity" />
         <activity android:name=".DiceActivity" />
-        <activity android:name=".FeelingLuckyActivity"></activity>
+        <activity android:name=".FeelingLuckyActivity"/>
+
+
+        <service
+            android:name="com.example.lmont.iceicebb.PlaceholderAuthenticatorService">
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator" />
+        </service>
+
+        <service
+            android:name="com.example.lmont.iceicebb.MySyncService">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/syncadapter" />
+        </service>
+
+        <provider
+            android:name=".IcebreakerContentProvider"
+            android:authorities="com.example.lmont.iceicebb.IcebreakerContentProvider"
+            android:label="my provider"
+            android:exported="false"
+            android:syncable="true"/>
+
 
     </application>
 

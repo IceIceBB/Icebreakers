@@ -4,7 +4,7 @@
              android:layout_height="match_parent"
              tools:context="com.example.lmont.iceicebb.Fragments.GamesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:id="@+id/games"
         android:layout_width="match_parent"
