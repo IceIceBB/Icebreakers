@@ -21,6 +21,7 @@ public class CardsActivity extends AppCompatActivity {
     ArrayList<Integer> clubsLeft = new ArrayList<>();
 
     Button nextCard;
+    Button reshuffleButton;
 
     TextView topLeftValue;
     ImageView topLeftSuit;
@@ -35,6 +36,8 @@ public class CardsActivity extends AppCompatActivity {
 
         //Make deck clickable to draw new card.
         nextCard = (Button) findViewById(R.id.deckBack);
+        reshuffleButton = (Button) findViewById(R.id.reshuffleButton);
+
         topLeftValue = (TextView) findViewById(R.id.topLeftValue);
         topLeftSuit = (ImageView) findViewById(R.id.topLeftSuit);
         bottomRightValue = (TextView) findViewById(R.id.bottomRightValue);
@@ -49,6 +52,13 @@ public class CardsActivity extends AppCompatActivity {
                 bottomRightValue.setText(nextCard[0]);
                 //TODO: set suit image.
                 //TODO: set card image.
+            }
+        });
+
+        reshuffleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                shuffleDeck();
             }
         });
 
