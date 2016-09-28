@@ -44,16 +44,36 @@
             android:orientation="horizontal" >
 
             <ImageView
+                android:id="@+id/drinkIconList"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_margin="@dimen/small_spacing"
-                android:src="@drawable/drink"/>
+                android:src="@drawable/drink"
+                android:visibility="gone"/>
 
             <ImageView
+                android:id="@+id/movingIconList"
                 android:layout_width="25dp"
                 android:layout_height= "25dp"
                 android:layout_margin="@dimen/small_spacing"
-                android:src="@drawable/moving"/>
+                android:src="@drawable/moving"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/carIconList"
+                android:layout_width="25dp"
+                android:layout_height= "25dp"
+                android:layout_margin="@dimen/small_spacing"
+                android:src="@drawable/car"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/paperIconList"
+                android:layout_width="25dp"
+                android:layout_height= "25dp"
+                android:layout_margin="@dimen/small_spacing"
+                android:src="@drawable/paper"
+                android:visibility="gone"/>
 
         </LinearLayout>
 
