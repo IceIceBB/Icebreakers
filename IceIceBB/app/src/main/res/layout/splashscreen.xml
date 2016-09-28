@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                              xmlns:app="http://schemas.android.com/apk/res-auto"
                                              xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_marginTop="20dp"
                                              android:layout_width="match_parent"
                                              android:layout_height="match_parent"
                                           >
@@ -21,5 +22,21 @@
         android:layout_marginLeft="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="24dp"/>
+
+    <TextView
+        android:text="@string/ice_breakers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/splashTitle"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="36sp"
+        android:fontFamily="serif-monospace"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textStyle="normal|bold"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/splashView"
+        android:layout_marginBottom="64dp"/>
 
 </android.support.constraint.ConstraintLayout>
