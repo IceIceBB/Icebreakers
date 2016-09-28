@@ -8,10 +8,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.SyncResult;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -115,7 +113,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
         }
 
         QuestionsArrayFromGson q = (new Gson()).fromJson(questionsData, QuestionsArrayFromGson.class);
-        for (Question question : q.questions) {
+        for (Game.Question question : q.questions) {
             ContentValues questionsContentValues = new ContentValues();
             questionsContentValues.put("name", question.name);
             questionsContentValues.put("text", question.text);
@@ -129,7 +127,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
     }
 
     private class QuestionsArrayFromGson {
-        public Question[] questions;
+        public Game.Question[] questions;
     }
 
     /**
