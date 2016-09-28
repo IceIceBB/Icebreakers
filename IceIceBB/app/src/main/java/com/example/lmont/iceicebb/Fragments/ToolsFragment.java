@@ -27,7 +27,7 @@ public class ToolsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tools, container, false);
 
-        //TODO: Find out if this needs to be different inside a fragment...
+        //TODOne: Find out if this needs to be different inside a fragment...
         //Set button to direct to Card tool activity
         cardToolButton = (Button) view.findViewById(R.id.cardToolButton);
         cardToolButton.setOnClickListener(new View.OnClickListener() {
