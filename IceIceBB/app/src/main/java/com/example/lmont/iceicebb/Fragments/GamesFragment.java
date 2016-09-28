@@ -18,6 +18,7 @@ import com.example.lmont.iceicebb.Game;
 import com.example.lmont.iceicebb.GameListRecyclerAdapter;
 import com.example.lmont.iceicebb.IcebreakerDBHelper;
 import com.example.lmont.iceicebb.R;
+import com.example.lmont.iceicebb.TabMainActivity;
 
 import static android.content.Context.ACCOUNT_SERVICE;
 
@@ -26,13 +27,8 @@ import static android.content.Context.ACCOUNT_SERVICE;
  */
 public class GamesFragment extends Fragment {
 
-    public static final String ACCOUNT_TYPE = "example.com";
-    public static final String ACCOUNT = "default_account";
-    public static final String AUTHORITY = "com.example.lmont.iceicebb.IcebreakerContentProvider";
-
     IcebreakerDBHelper dbHelper = IcebreakerDBHelper.getInstance(getContext());
     Game[] gameArray;
-    Account mAccount;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,12 +38,11 @@ public class GamesFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_games, container, false);
 
         setup(view);
-        setupContentResolver();
 
     return view;
     }
     public void setup(View view) {
-        gameArray = dbHelper.getAllGames();
+        gameArray = dbHelper.getGamesLike(TabMainActivity.query);
         RecyclerView gameList = (RecyclerView)view.findViewById(R.id.gameList);
         gameList.setHasFixedSize(true);
 
@@ -61,58 +56,4 @@ public class GamesFragment extends Fragment {
         GameListRecyclerAdapter adapter = new GameListRecyclerAdapter(gameArray);
         gameList.setAdapter(adapter);
     }
-
-
-
-    public static Account createSyncAccount(Context context) {
-        // Create the account type and default account
-        Account newAccount = new Account(
-                ACCOUNT, ACCOUNT_TYPE);
-        // Get an instance of the Android account manager
-        AccountManager accountManager =
-                (AccountManager) context.getSystemService(
-                        ACCOUNT_SERVICE);
-        /*
-         * Add the account and account type, no password or user data
-         * If successful, return the Account object, otherwise report an error.
-         */
-        if (accountManager.addAccountExplicitly(newAccount, null, null)) {
-            /*
-             * If you don't set android:syncable="true" in
-             * in your <provider> element in the manifest,
-             * then call context.setIsSyncable(account, AUTHORITY, 1)
-             * here.
-             */
-        } else {
-            /*
-             * The account exists or some other error occurred. Log this, report it,
-             * or handle it internally.
-             */
-        }
-        return newAccount;
-    }
-
-    public void setupContentResolver()  {
-        mAccount = createSyncAccount(getContext());
-
-        Bundle settingsBundle = new Bundle();
-        settingsBundle.putBoolean(
-                ContentResolver.SYNC_EXTRAS_MANUAL, true);
-        settingsBundle.putBoolean(
-                ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
-        /*
-         * Request the sync for the default account, authority, and
-         * manual sync settings
-         */
-        ContentResolver.requestSync(mAccount, AUTHORITY, settingsBundle);
-
-        ContentResolver.setSyncAutomatically(mAccount,AUTHORITY,true);
-        ContentResolver.addPeriodicSync(
-                mAccount,
-                AUTHORITY,
-                Bundle.EMPTY,
-                30);
-
-    }
-
 }
