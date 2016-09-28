@@ -170,3 +170,29 @@ public class GameActivity extends AppCompatActivity {
 //
 //    }
 }
+
+
+//TODO: add this notification to the appropriate place
+
+        //Put this in OnCreate
+//    //Dismiss the notification before creating a new one, so we don't make a duplicate.
+//    NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//notificationManager.cancel(MainActivity.NOTIFICATION);
+
+
+        //This is a method to create the notification
+//        private void showNewGameNotification() {
+//
+//            Intent intent = new Intent(this, SecondActivity.class);
+//            PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
+//            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
+//            mBuilder.setSmallIcon(R.drawable.icon);
+//            mBuilder.setContentTitle("New Games added to Ice Breakers!");
+//            mBuilder.setContentText("New games are available online! Take a look and give them a try at your next event!");
+//            mBuilder.setContentIntent(pIntent);
+//            mBuilder.setPriority(Notification.PRIORITY_MAX);
+
+//            NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//            mNotificationManager.notify(NOTIFICATION, mBuilder.build());
+//        }
+
