@@ -2,4 +2,9 @@
     <string name="app_name">IceIceBB</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="drawnCardValue">X</string>
+    <string name="ice_breakers">ICE BREAKERS</string>
+    <string name="title_activity_tab">TabActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_tab_main">TabMainActivity</string>
 </resources>

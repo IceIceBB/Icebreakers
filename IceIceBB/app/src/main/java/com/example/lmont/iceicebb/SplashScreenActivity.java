@@ -43,7 +43,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
 
 
-                Intent i = new Intent(SplashScreenActivity.this, GameActivity.class);
+                Intent i = new Intent(SplashScreenActivity.this, TabMainActivity.class);
                 startActivity(i);
 
 

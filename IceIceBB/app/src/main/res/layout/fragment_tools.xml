@@ -1,0 +1,77 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+                                             tools:context="com.example.lmont.iceicebb.Fragments.ToolsFragment">
+
+
+
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:background="@drawable/background_border"
+            android:padding="5dp">
+
+        </RelativeLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2">
+
+        </FrameLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:background="@drawable/background_border"
+            android:padding="5dp">
+
+        </RelativeLayout>
+
+
+
+    <ImageView
+        android:id="@+id/cardToolButton"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_weight="8"
+        android:background="@drawable/playing_cards_icon"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="144dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="24dp"
+        app:layout_constraintVertical_bias="0.0">
+
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/diceToolButton"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/dice_icon"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="40dp"
+        app:layout_constraintLeft_toRightOf="@+id/cardToolButton"
+        android:layout_marginLeft="40dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="24dp"
+        app:layout_constraintHorizontal_bias="1.0"
+        android:layout_marginTop="144dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp">
+
+    </ImageView>
+
+</android.support.constraint.ConstraintLayout>
