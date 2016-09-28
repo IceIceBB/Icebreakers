@@ -14,7 +14,7 @@ import java.util.Random;
 public class IcebreakerDBHelper extends SQLiteOpenHelper {
 
     public static final String DB_NAME = "icebreakerDB";
-    public static final int DB_VERSION = 1;
+    public static final int DB_VERSION = 6;
     public static final String ICEBREAKERS_TABLE_NAME = "icebreakers";
     public static final String QUESTIONS_TABLE_NAME = "questions";
 
@@ -35,13 +35,17 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
             "maxPlayers INTEGER," +
             "materials TEXT," +
             "url TEXT," +
-            "rating INTEGER" + ")";
+            "rating INTEGER" +
+            //", PRIMARY KEY (name)"+
+            ")";
 
     public static final String CREATE_QUESTIONS_TABLE =
             "CREATE TABLE " + QUESTIONS_TABLE_NAME + " (" +
             "name TEXT," +
             "text TEXT," +
-            "sfw BOOLEAN" + ")";
+            "sfw BOOLEAN"+
+            //", PRIMARY KEY (name)" +
+            ")";
 
     public static IcebreakerDBHelper instance;
 
@@ -83,8 +87,8 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
         game.comment = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[1]));
         game.rules = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[2]));
         game.isclean = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[3])) > 0;
-        game.hasCards = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[4])) > 0;
-        game.hasDice = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[5])) > 0;
+        game.hasDice = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[4])) > 0;
+        game.hasCards = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[5])) > 0;
         game.tags = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[6]));
         game.minPlayers = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[7]));
         game.maxPlayers = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[8]));
@@ -93,22 +97,6 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
         game.rating = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[11]));
 
         return game;
-
-//        Game game1 = new Game();
-//        game1.name = "Test 1";
-//        game1.comment = "TEST COMMENT";
-//        game1.rules = "TEST RULES";
-//        game1.isclean = true;
-//        game1.hasCards = true;
-//        game1.hasDice = true;
-//        game1.tags = "TEST TAGS";
-//        game1.minPlayers = 2;
-//        game1.maxPlayers = 6;
-//        game1.materials = "TEST MATERIALS";
-//        game1.url = "redtube.com";
-//        game1.rating = 69;
-//
-//        return game1;
     }
 
     public Game[] getGamesLike(String query) {
@@ -126,8 +114,8 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
             games[x].comment = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[1]));
             games[x].rules = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[2]));
             games[x].isclean = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[3])) > 0;
-            games[x].hasCards = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[4])) > 0;
-            games[x].hasDice = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[5])) > 0;
+            games[x].hasDice = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[4])) > 0;
+            games[x].hasCards = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[5])) > 0;
             games[x].tags = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[6]));
             games[x].minPlayers = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[7]));
             games[x].maxPlayers = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[8]));
@@ -137,39 +125,15 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
         }
 
         return games;
-
-//        Game game1 = new Game();
-//        game1.name = "Test 1";
-//        game1.comment = "TEST COMMENT";
-//        game1.rules = "TEST RULES";
-//        game1.isclean = true;
-//        game1.hasCards = true;
-//        game1.hasDice = true;
-//        game1.tags = "TEST TAGS";
-//        game1.minPlayers = 2;
-//        game1.maxPlayers = 6;
-//        game1.materials = "TEST MATERIALS";
-//        game1.url = "redtube.com";
-//        game1.rating = 69;
-//
-//        Game game2 = new Game();
-//        game2.name = "Test 2";
-//        game2.comment = "TEST COMMENT";
-//        game2.rules = "TEST RULES";
-//        game2.isclean = true;
-//        game2.hasCards = true;
-//        game2.hasDice = true;
-//        game2.tags = "TEST TAGS";
-//        game2.minPlayers = 2;
-//        game2.maxPlayers = 6;
-//        game2.materials = "TEST MATERIALS";
-//        game2.url = "redtube.com";
-//        game2.rating = 69;
-//
-//        return new Game[]{game1, game2};
     }
 
     public void addGame(ContentValues cv) {
+        Cursor c = null;
+        String query = "select * from " + ICEBREAKERS_TABLE_NAME + " where name = '" + cv.getAsString("name") + "'";
+        c = getReadableDatabase().rawQuery(query, null);
+        if (c.moveToFirst()) {
+            return;
+        }
         getWritableDatabase().insert(ICEBREAKERS_TABLE_NAME, null, cv);
     }
 
@@ -188,8 +152,8 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
             games[x].comment = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[1]));
             games[x].rules = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[2]));
             games[x].isclean = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[3])) > 0;
-            games[x].hasCards = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[4])) > 0;
-            games[x].hasDice = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[5])) > 0;
+            games[x].hasDice = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[4])) > 0;
+            games[x].hasCards = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[5])) > 0;
             games[x].tags = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[6]));
             games[x].minPlayers = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[7]));
             games[x].maxPlayers = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[8]));
@@ -206,7 +170,13 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
     }
 
     public void addQuestion(ContentValues cv) {
-        getWritableDatabase().insert(QUESTIONS_TABLE_NAME, null, cv);
+        Cursor c = null;
+        String query = "select * from " + ICEBREAKERS_TABLE_NAME + " where name = '" + cv.getAsString("name") + "'";
+        c = getReadableDatabase().rawQuery(query, null);
+        if (c.moveToFirst()) {
+            return;
+        }
+        getWritableDatabase().insertOrThrow(QUESTIONS_TABLE_NAME, null, cv);
     }
 
     public Game.Question getRandomQuestion(boolean isSFW) {
@@ -229,6 +199,10 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
 
     public void deleteAllQuestions() {
         getWritableDatabase().delete(QUESTIONS_TABLE_NAME,null,null);
+    }
+
+    public int getGamesTableSize() {
+        return getAllGames().length;
     }
 
     public void resetDB() {
