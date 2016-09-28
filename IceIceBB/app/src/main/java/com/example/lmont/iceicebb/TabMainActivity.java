@@ -19,7 +19,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.lmont.iceicebb.Fragments.FeelingLuckyFragment;
 import com.example.lmont.iceicebb.Fragments.GamesFragment;
@@ -47,6 +46,8 @@ public class TabMainActivity extends AppCompatActivity {
     public static final String ACCOUNT = "default_account";
     public static final String AUTHORITY = "com.example.lmont.iceicebb.IcebreakerContentProvider";
     Account mAccount;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
