@@ -209,7 +209,7 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
         getWritableDatabase().insert(QUESTIONS_TABLE_NAME, null, cv);
     }
 
-    public Question getRandomQuestion(boolean isSFW) {
+    public Game.Question getRandomQuestion(boolean isSFW) {
         Cursor cursor = getReadableDatabase().query(
                 QUESTIONS_TABLE_NAME,
                 QUESTIONS_COLUMNS,
@@ -218,7 +218,7 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
         int randomNum = (new Random()).nextInt(cursor.getCount());
         cursor.moveToPosition(randomNum);
 
-        Question question = new Question();
+        Game.Question question = new Game.Question();
 
         question.name = cursor.getString(cursor.getColumnIndex(QUESTIONS_COLUMNS[0]));
         question.text = cursor.getString(cursor.getColumnIndex(QUESTIONS_COLUMNS[1]));
