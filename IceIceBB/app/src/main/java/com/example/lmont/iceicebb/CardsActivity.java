@@ -14,6 +14,8 @@ import java.util.Random;
 public class CardsActivity extends AppCompatActivity {
     //TODO: make values left Array Lists into int[]s
     Random random = new Random();
+    int[] newCard;
+
     ArrayList<ArrayList<Integer>> playingCards = new ArrayList<>();
     ArrayList<Integer> spadesLeft = new ArrayList<>();
     ArrayList<Integer> heartsLeft = new ArrayList<>();
@@ -47,9 +49,9 @@ public class CardsActivity extends AppCompatActivity {
         nextCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int[] nextCard = drawCard();
-                topLeftValue.setText(nextCard[0]);
-                bottomRightValue.setText(nextCard[0]);
+                newCard = drawCard();
+                topLeftValue.setText(String.valueOf(newCard[0]));
+                bottomRightValue.setText(String.valueOf(newCard[0]));
                 //TODO: set suit image.
                 //TODO: set card image.
             }
@@ -62,24 +64,56 @@ public class CardsActivity extends AppCompatActivity {
             }
         });
 
-        if (playingCards == null) {
-            shuffleDeck();
-        }
+
+        shuffleDeck();
+
     }
 
     //Shuffle deck to replace all cards.
     private void shuffleDeck() {
         //Set each suit to 13 cards, with 1 at each index to represent 1 of each card. (Set index to 0 to represent drawn card)
         for (int i = 0; i < 13; i++) {
-            spadesLeft.add(1);
-            heartsLeft.add(1);
-            diamondsLeft.add(1);
-            clubsLeft.add(1);
+            if (spadesLeft.size() < 13) {
+                spadesLeft.add(i, 1);
+            } else {
+                spadesLeft.set(i, 1);
+            }
+            if (heartsLeft.size() < 13) {
+                heartsLeft.add(i, 1);
+            } else {
+                heartsLeft.set(i, 1);
+            }
+            if (diamondsLeft.size() < 13) {
+                diamondsLeft.add(i, 1);
+            } else {
+                diamondsLeft.set(i, 1);
+            }
+            if (clubsLeft.size() < 13) {
+                clubsLeft.add(i, 1);
+            } else {
+                clubsLeft.set(i, 1);
+            }
         }
-        playingCards.add(0, spadesLeft);
-        playingCards.add(1, heartsLeft);
-        playingCards.add(2, diamondsLeft);
-        playingCards.add(3, clubsLeft);
+        if (playingCards.size()<4){
+            playingCards.add(0, spadesLeft);
+        } else{
+            playingCards.set(0, spadesLeft);
+        }
+        if (playingCards.size()<4){
+            playingCards.add(1, heartsLeft);
+        } else{
+            playingCards.set(1, heartsLeft);
+        }
+        if (playingCards.size()<4){
+            playingCards.add(2, diamondsLeft);
+        } else{
+            playingCards.set(2, diamondsLeft);
+        }
+        if (playingCards.size()<4){
+            playingCards.add(3, clubsLeft);
+        } else{
+            playingCards.set(3, clubsLeft);
+        }
     }
 
     // A method to pick a card and receive both value and suit in a single Integer[]. [0] = Value 1-13, [1] = Suit 1-4
@@ -100,11 +134,10 @@ public class CardsActivity extends AppCompatActivity {
                 cardResult[0] = value;
                 cardResult[1] = suit;
                 cardInDeck = true;
+                //Remove card from deck
+                removeFromDeck(cardResult);
             }
         }
-
-        //Remove card from deck
-        removeFromDeck(cardResult);
 
         return cardResult;
     }
