@@ -18,9 +18,9 @@ import com.example.lmont.iceicebb.R;
  */
 public class FeelingLuckyFragment extends Fragment {
 
-//    IcebreakerDBHelper dbHelper = IcebreakerDBHelper.getInstance(getContext());
     Button feelingLucky;
     Game.Question question;
+    TextView questionView;
 
 
     @Override
@@ -30,32 +30,32 @@ public class FeelingLuckyFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_feeling_lucky, container, false);
 
         setup(view);
-
-
         return view;
 
     }
-    public void setup(View view){
 
-       IcebreakerDBHelper dbHelper = IcebreakerDBHelper.getInstance(getContext());
+
+    public void setup(View view) {
+
+        IcebreakerDBHelper dbHelper = IcebreakerDBHelper.getInstance(getContext());
         question = dbHelper.getRandomQuestion(true);
 
-        TextView questionView = (TextView) view.findViewById(R.id.questionView);
+        questionView = (TextView) view.findViewById(R.id.questionView);
         questionView.setText(question.text);
 
 
-//
-//        feelingLucky = (Button)view.findViewById(R.id.feeling_lucky_btn);
-//        feelingLucky.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                IcebreakerDBHelper.getInstance(getContext()).getRandomQuestion(true);
-//
-//            }
-//        });
+        feelingLucky = (Button) view.findViewById(R.id.feeling_lucky_btn);
+        feelingLucky.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                IcebreakerDBHelper dbHelper = IcebreakerDBHelper.getInstance(getContext());
+                question = dbHelper.getRandomQuestion(true);
+                questionView.setText(question.text);
+            }
+        });
 
     }
-
 
 
 }
