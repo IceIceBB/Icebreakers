@@ -108,7 +108,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 
         GamesArrayFromGson g = (new Gson()).fromJson(gamesData, GamesArrayFromGson.class);
 
-        if (g.games.length != TabMainActivity.gamesTableSize)
+        if (g.games.length < TabMainActivity.gamesTableSize)
             mContentResolver.delete(IcebreakerContentProvider.CONTENT_URI_ICEBREAKERS, null, null);
 //        mContentResolver.delete(IcebreakerContentProvider.CONTENT_URI_QUESTIONS, null, null);
 
