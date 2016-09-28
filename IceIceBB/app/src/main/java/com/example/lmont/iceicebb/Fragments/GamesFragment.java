@@ -1,10 +1,6 @@
 package com.example.lmont.iceicebb.Fragments;
 
 
-import android.accounts.Account;
-import android.accounts.AccountManager;
-import android.content.ContentResolver;
-import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,8 +15,6 @@ import com.example.lmont.iceicebb.GameListRecyclerAdapter;
 import com.example.lmont.iceicebb.IcebreakerDBHelper;
 import com.example.lmont.iceicebb.R;
 import com.example.lmont.iceicebb.TabMainActivity;
-
-import static android.content.Context.ACCOUNT_SERVICE;
 
 /**
  * A simple {@link Fragment} subclass.

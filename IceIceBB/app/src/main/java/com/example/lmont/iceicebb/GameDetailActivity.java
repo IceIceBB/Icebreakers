@@ -48,7 +48,7 @@ public class GameDetailActivity extends AppCompatActivity {
         gameRules.setText("Rules: \n"+game.rules);
         gameComments.setText("Comments\n"+game.comment);
         ratingBar.setRating(game.rating);
-        playerCount.setText(game.minPlayers);
+//        playerCount.setText(game.minPlayers);
 //        ratingBar.setRating(ratingFloat);
 
         if (!game.hasDice){

@@ -58,9 +58,9 @@ public class GameListRecyclerAdapter extends RecyclerView.Adapter<GameListRecycl
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(itemView.getContext(), GameDetailActivity.class);
+                    Intent intent = new Intent(view.getContext(), GameDetailActivity.class);
                     intent.putExtra("name", gameName.getText());
-                    itemView.getContext().startActivity(intent);
+                    view.getContext().startActivity(intent);
                 }
             });
         }
