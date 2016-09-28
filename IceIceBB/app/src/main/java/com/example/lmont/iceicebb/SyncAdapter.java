@@ -71,8 +71,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
      */
     @Override
     public void onPerformSync(Account account, Bundle extras, String authority, ContentProviderClient provider, SyncResult syncResult) {
-        mContentResolver.delete(IcebreakerContentProvider.CONTENT_URI_ICEBREAKERS, null, null);
-        mContentResolver.delete(IcebreakerContentProvider.CONTENT_URI_QUESTIONS, null, null);
+        Log.d("LEO", "onPerformSync: 1");
 
         //Do api call to our API to get new data
         String gamesAPI = "https://floating-island-55807.herokuapp.com/games";
@@ -90,9 +89,17 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
             InputStream questionsInStream = questionsConnection.getInputStream();
             gamesData = getInputData(gamesInStream);
             questionsData = getInputData(questionsInStream);
+
+            gamesConnection.disconnect();
+            questionsConnection.disconnect();
+
         } catch (Throwable e) {
             e.printStackTrace();
+            return;
         }
+
+        mContentResolver.delete(IcebreakerContentProvider.CONTENT_URI_ICEBREAKERS, null, null);
+        mContentResolver.delete(IcebreakerContentProvider.CONTENT_URI_QUESTIONS, null, null);
 
         GamesArrayFromGson g = (new Gson()).fromJson(gamesData, GamesArrayFromGson.class);
         //IcebreakerDBHelper.getInstance(getContext()).resetDB();
@@ -122,6 +129,8 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
             questionsContentValues.put("sfw", question.sfw);
             mContentResolver.insert(IcebreakerContentProvider.CONTENT_URI_QUESTIONS, questionsContentValues);
         }
+
+        Log.d("LEO", "onPerformSync: 2");
     }
 
     private class GamesArrayFromGson {

@@ -70,103 +70,103 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
     }
 
     public Game getGameWithName(String query) {
-//        Cursor cursor = getReadableDatabase().query(
-//                ICEBREAKERS_TABLE_NAME,
-//                ICEBREAKERS_COLUMNS,
-//                "name = '" + query + "'", null, null, null, null);
-//
-//        if (cursor.moveToFirst() == false)
-//            return null;
-//
-//        Game game = new Game();
-//        game.name = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[0]));
-//        game.comment = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[1]));
-//        game.rules = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[2]));
-//        game.isClean = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[3])) > 0;
-//        game.hasCards = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[4])) > 0;
-//        game.hasDice = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[5])) > 0;
-//        game.tags = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[6]));
-//        game.minPlayers = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[7]));
-//        game.maxPlayers = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[8]));
-//        game.materials = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[9]));
-//        game.url = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[10]));
-//        game.rating = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[11]));
-//
-//        return game;
+        Cursor cursor = getReadableDatabase().query(
+                ICEBREAKERS_TABLE_NAME,
+                ICEBREAKERS_COLUMNS,
+                "name = '" + query + "'", null, null, null, null);
 
-        Game game1 = new Game();
-        game1.name = "Test 1";
-        game1.comment = "TEST COMMENT";
-        game1.rules = "TEST RULES";
-        game1.isClean = true;
-        game1.hasCards = true;
-        game1.hasDice = true;
-        game1.tags = "TEST TAGS";
-        game1.minPlayers = 2;
-        game1.maxPlayers = 6;
-        game1.materials = "TEST MATERIALS";
-        game1.url = "redtube.com";
-        game1.rating = 69;
+        if (cursor.moveToFirst() == false)
+            return null;
 
-        return game1;
+        Game game = new Game();
+        game.name = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[0]));
+        game.comment = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[1]));
+        game.rules = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[2]));
+        game.isClean = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[3])) > 0;
+        game.hasCards = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[4])) > 0;
+        game.hasDice = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[5])) > 0;
+        game.tags = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[6]));
+        game.minPlayers = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[7]));
+        game.maxPlayers = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[8]));
+        game.materials = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[9]));
+        game.url = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[10]));
+        game.rating = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[11]));
+
+        return game;
+
+//        Game game1 = new Game();
+//        game1.name = "Test 1";
+//        game1.comment = "TEST COMMENT";
+//        game1.rules = "TEST RULES";
+//        game1.isClean = true;
+//        game1.hasCards = true;
+//        game1.hasDice = true;
+//        game1.tags = "TEST TAGS";
+//        game1.minPlayers = 2;
+//        game1.maxPlayers = 6;
+//        game1.materials = "TEST MATERIALS";
+//        game1.url = "redtube.com";
+//        game1.rating = 69;
+//
+//        return game1;
     }
 
     public Game[] getGamesLike(String query) {
-//        Cursor cursor = getReadableDatabase().query(
-//                ICEBREAKERS_TABLE_NAME,
-//                ICEBREAKERS_COLUMNS,
-//                "name LIKE '%" + query + "%'", null, null, null, null);
-//
-//        Game[] games = new Game[cursor.getCount()];
-//
-//        for (int x=0; x<games.length; x++) {
-//            cursor.moveToPosition(x);
-//            games[x] = new Game();
-//            games[x].name = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[0]));
-//            games[x].comment = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[1]));
-//            games[x].rules = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[2]));
-//            games[x].isClean = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[3])) > 0;
-//            games[x].hasCards = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[4])) > 0;
-//            games[x].hasDice = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[5])) > 0;
-//            games[x].tags = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[6]));
-//            games[x].minPlayers = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[7]));
-//            games[x].maxPlayers = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[8]));
-//            games[x].materials = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[9]));
-//            games[x].url = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[10]));
-//            games[x].rating = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[11]));
-//        }
-//
-//        return games;
+        Cursor cursor = getReadableDatabase().query(
+                ICEBREAKERS_TABLE_NAME,
+                ICEBREAKERS_COLUMNS,
+                "name LIKE '%" + query + "%'", null, null, null, null);
 
-        Game game1 = new Game();
-        game1.name = "Test 1";
-        game1.comment = "TEST COMMENT";
-        game1.rules = "TEST RULES";
-        game1.isClean = true;
-        game1.hasCards = true;
-        game1.hasDice = true;
-        game1.tags = "TEST TAGS";
-        game1.minPlayers = 2;
-        game1.maxPlayers = 6;
-        game1.materials = "TEST MATERIALS";
-        game1.url = "redtube.com";
-        game1.rating = 69;
+        Game[] games = new Game[cursor.getCount()];
 
-        Game game2 = new Game();
-        game2.name = "Test 2";
-        game2.comment = "TEST COMMENT";
-        game2.rules = "TEST RULES";
-        game2.isClean = true;
-        game2.hasCards = true;
-        game2.hasDice = true;
-        game2.tags = "TEST TAGS";
-        game2.minPlayers = 2;
-        game2.maxPlayers = 6;
-        game2.materials = "TEST MATERIALS";
-        game2.url = "redtube.com";
-        game2.rating = 69;
+        for (int x=0; x<games.length; x++) {
+            cursor.moveToPosition(x);
+            games[x] = new Game();
+            games[x].name = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[0]));
+            games[x].comment = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[1]));
+            games[x].rules = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[2]));
+            games[x].isClean = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[3])) > 0;
+            games[x].hasCards = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[4])) > 0;
+            games[x].hasDice = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[5])) > 0;
+            games[x].tags = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[6]));
+            games[x].minPlayers = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[7]));
+            games[x].maxPlayers = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[8]));
+            games[x].materials = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[9]));
+            games[x].url = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[10]));
+            games[x].rating = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[11]));
+        }
 
-        return new Game[]{game1, game2};
+        return games;
+
+//        Game game1 = new Game();
+//        game1.name = "Test 1";
+//        game1.comment = "TEST COMMENT";
+//        game1.rules = "TEST RULES";
+//        game1.isClean = true;
+//        game1.hasCards = true;
+//        game1.hasDice = true;
+//        game1.tags = "TEST TAGS";
+//        game1.minPlayers = 2;
+//        game1.maxPlayers = 6;
+//        game1.materials = "TEST MATERIALS";
+//        game1.url = "redtube.com";
+//        game1.rating = 69;
+//
+//        Game game2 = new Game();
+//        game2.name = "Test 2";
+//        game2.comment = "TEST COMMENT";
+//        game2.rules = "TEST RULES";
+//        game2.isClean = true;
+//        game2.hasCards = true;
+//        game2.hasDice = true;
+//        game2.tags = "TEST TAGS";
+//        game2.minPlayers = 2;
+//        game2.maxPlayers = 6;
+//        game2.materials = "TEST MATERIALS";
+//        game2.url = "redtube.com";
+//        game2.rating = 69;
+//
+//        return new Game[]{game1, game2};
     }
 
     public void addGame(ContentValues cv) {

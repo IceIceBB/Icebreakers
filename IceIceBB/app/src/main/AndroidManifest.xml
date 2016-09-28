@@ -72,7 +72,7 @@
         <provider
             android:name=".IcebreakerContentProvider"
             android:authorities="com.example.lmont.iceicebb.IcebreakerContentProvider"
-            android:exported="false"
+            android:exported="true"
             android:label="my provider"
             android:syncable="true"/>
 
