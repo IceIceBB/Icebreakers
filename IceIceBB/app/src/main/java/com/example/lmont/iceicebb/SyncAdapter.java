@@ -138,7 +138,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
      * @return String with the contents of the InputStream.
      * @throws IOException
      */
-    private String getInputData(InputStream inStream) throws IOException {
+    private static String getInputData(InputStream inStream) throws IOException {
         StringBuilder builder = new StringBuilder();
         BufferedReader reader = new BufferedReader(new InputStreamReader(inStream));
 
