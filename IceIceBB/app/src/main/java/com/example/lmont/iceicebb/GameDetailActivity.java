@@ -75,10 +75,10 @@ public class GameDetailActivity extends AppCompatActivity {
             }
         });
 //IF elses (there's probably a DRYer way) to set SFW icon + visibility of tags
-        if (game.isClean){
+        if (game.isclean){
             sfwIconAngel.setVisibility(View.VISIBLE);
         }
-        if (!game.isClean) {
+        if (!game.isclean) {
             sfwIconDevil.setVisibility(View.VISIBLE);
         }
 //TODOne: check what tags are present in GAME object and toggle visibility of appropriate tag icons
