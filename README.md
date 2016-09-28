@@ -43,7 +43,11 @@ Project 3 for GA
 - Beer Pong
 - King's Cup
 - Don't Drink and Drive
-- 
+ 
+##Motivation
+ A common scenario: A number of people are called to a function room for a meeting, since arrival no one’s made eye contact, there’s awkwardness and the silence is deafening. The meeting leader needs an effective way to get the disparate group to work comfortably and cohesively.
+
+
 
 
 
