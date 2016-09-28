@@ -8,7 +8,7 @@ public class Game {
     public String name;
     public String comment;
     public String rules;
-    public boolean isClean;
+    public boolean isclean;
     public boolean hasCards;
     public boolean hasDice;
     public String tags;
@@ -24,7 +24,7 @@ public class Game {
                 "name='" + name + '\'' +
                 ", comment='" + comment + '\'' +
                 ", rules='" + rules + '\'' +
-                ", isClean=" + isClean +
+                ", isclean=" + isclean +
                 ", hasCards=" + hasCards +
                 ", hasDice=" + hasDice +
                 ", tags='" + tags + '\'' +

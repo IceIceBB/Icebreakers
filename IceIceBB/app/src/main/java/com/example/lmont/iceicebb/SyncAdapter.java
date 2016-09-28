@@ -108,7 +108,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
             gamesContentValues.put("name", game.name);
             gamesContentValues.put("comment", game.comment);
             gamesContentValues.put("rules", game.rules);
-            gamesContentValues.put("isClean", game.isClean);
+            gamesContentValues.put("isclean", game.isclean);
             gamesContentValues.put("hasCards", game.hasCards);
             gamesContentValues.put("hasDice", game.hasDice);
             gamesContentValues.put("tags", game.tags);

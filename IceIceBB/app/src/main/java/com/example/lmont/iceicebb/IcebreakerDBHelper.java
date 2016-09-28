@@ -82,7 +82,7 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
         game.name = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[0]));
         game.comment = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[1]));
         game.rules = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[2]));
-        game.isClean = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[3])) > 0;
+        game.isclean = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[3])) > 0;
         game.hasCards = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[4])) > 0;
         game.hasDice = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[5])) > 0;
         game.tags = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[6]));
@@ -98,7 +98,7 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
 //        game1.name = "Test 1";
 //        game1.comment = "TEST COMMENT";
 //        game1.rules = "TEST RULES";
-//        game1.isClean = true;
+//        game1.isclean = true;
 //        game1.hasCards = true;
 //        game1.hasDice = true;
 //        game1.tags = "TEST TAGS";
@@ -125,7 +125,7 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
             games[x].name = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[0]));
             games[x].comment = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[1]));
             games[x].rules = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[2]));
-            games[x].isClean = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[3])) > 0;
+            games[x].isclean = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[3])) > 0;
             games[x].hasCards = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[4])) > 0;
             games[x].hasDice = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[5])) > 0;
             games[x].tags = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[6]));
@@ -142,7 +142,7 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
 //        game1.name = "Test 1";
 //        game1.comment = "TEST COMMENT";
 //        game1.rules = "TEST RULES";
-//        game1.isClean = true;
+//        game1.isclean = true;
 //        game1.hasCards = true;
 //        game1.hasDice = true;
 //        game1.tags = "TEST TAGS";
@@ -156,7 +156,7 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
 //        game2.name = "Test 2";
 //        game2.comment = "TEST COMMENT";
 //        game2.rules = "TEST RULES";
-//        game2.isClean = true;
+//        game2.isclean = true;
 //        game2.hasCards = true;
 //        game2.hasDice = true;
 //        game2.tags = "TEST TAGS";
@@ -187,7 +187,7 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
             games[x].name = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[0]));
             games[x].comment = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[1]));
             games[x].rules = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[2]));
-            games[x].isClean = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[3])) > 0;
+            games[x].isclean = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[3])) > 0;
             games[x].hasCards = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[4])) > 0;
             games[x].hasDice = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[5])) > 0;
             games[x].tags = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[6]));
