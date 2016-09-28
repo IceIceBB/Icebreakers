@@ -35,7 +35,7 @@ public class GameDetailActivity extends AppCompatActivity {
         Button diceRollerButton = (Button)findViewById(R.id.diceRollerButton);
         final Button cardDeckButton = (Button)findViewById(R.id.cardFlipperButton);
 
-        final LinearLayout tagHolder = (LinearLayout) findViewById(R.id.tagFrameDetail);
+        LinearLayout tagHolder = (LinearLayout) findViewById(R.id.tagFrameDetail);
         ImageView drinkIcon = (ImageView) findViewById(R.id.drinkIcon);
         ImageView movingIcon = (ImageView) findViewById(R.id.movingIcon);
         ImageView carIcon = (ImageView) findViewById(R.id.carIcon);
@@ -50,13 +50,13 @@ public class GameDetailActivity extends AppCompatActivity {
         gameComments.setText("Comments\n"+game.comment);
         ratingBar.setRating(rating);
 //        playerCount.setText(game.minPlayers);
-//        ratingBar.setRating(ratingFloat);
 
-        if (!game.hasDice){
-            diceRollerButton.setVisibility(View.GONE);
+
+        if (game.hasDice){
+            diceRollerButton.setVisibility(View.VISIBLE);
         }
-        if (!game.hasCards){
-            cardDeckButton.setVisibility(View.GONE);
+        if (game.hasCards){
+            cardDeckButton.setVisibility(View.VISIBLE);
         }
 //ONCLICKS to send user to appropriate tool activity
         diceRollerButton.setOnClickListener(new View.OnClickListener() {

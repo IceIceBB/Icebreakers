@@ -163,16 +163,18 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:background="@drawable/dice_icon_trans" />
+                android:background="@drawable/dice_icon_trans"
+                android:visibility="invisible"/>
 
             <Button
                 android:id="@+id/cardFlipperButton"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_alignParentBottom="true"
                 android:layout_toLeftOf="@+id/diceRollerButton"
                 android:layout_toStartOf="@+id/diceRollerButton"
-                android:background="@drawable/playing_cards_icon_trans" />
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/playing_cards_icon_trans"
+                android:visibility="gone"/>
 
         </RelativeLayout>
 
