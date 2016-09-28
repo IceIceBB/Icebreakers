@@ -93,6 +93,22 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
         game.rating = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[11]));
 
         return game;
+
+//        Game game1 = new Game();
+//        game1.name = "Test 1";
+//        game1.comment = "TEST COMMENT";
+//        game1.rules = "TEST RULES";
+//        game1.isClean = true;
+//        game1.hasCards = true;
+//        game1.hasDice = true;
+//        game1.tags = "TEST TAGS";
+//        game1.minPlayers = 2;
+//        game1.maxPlayers = 6;
+//        game1.materials = "TEST MATERIALS";
+//        game1.url = "redtube.com";
+//        game1.rating = 69;
+//
+//        return game1;
     }
 
     public Game[] getGamesLike(String query) {
@@ -121,6 +137,36 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
         }
 
         return games;
+
+//        Game game1 = new Game();
+//        game1.name = "Test 1";
+//        game1.comment = "TEST COMMENT";
+//        game1.rules = "TEST RULES";
+//        game1.isClean = true;
+//        game1.hasCards = true;
+//        game1.hasDice = true;
+//        game1.tags = "TEST TAGS";
+//        game1.minPlayers = 2;
+//        game1.maxPlayers = 6;
+//        game1.materials = "TEST MATERIALS";
+//        game1.url = "redtube.com";
+//        game1.rating = 69;
+//
+//        Game game2 = new Game();
+//        game2.name = "Test 2";
+//        game2.comment = "TEST COMMENT";
+//        game2.rules = "TEST RULES";
+//        game2.isClean = true;
+//        game2.hasCards = true;
+//        game2.hasDice = true;
+//        game2.tags = "TEST TAGS";
+//        game2.minPlayers = 2;
+//        game2.maxPlayers = 6;
+//        game2.materials = "TEST MATERIALS";
+//        game2.url = "redtube.com";
+//        game2.rating = 69;
+//
+//        return new Game[]{game1, game2};
     }
 
     public void addGame(ContentValues cv) {
