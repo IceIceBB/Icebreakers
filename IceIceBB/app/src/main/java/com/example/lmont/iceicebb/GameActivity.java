@@ -20,6 +20,8 @@ import android.support.v7.app.AppCompatActivity;
 
 //        Bonus:
 //   []   Integrate additional APIs
+//   []   Add multiple types of dice for dice roller
+//   []   Add ability to draw Jokers from deck
 
 
 public class GameActivity extends AppCompatActivity {
