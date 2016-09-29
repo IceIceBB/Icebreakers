@@ -35,6 +35,7 @@
                 android:textSize="36sp"
                 android:textStyle="bold"/>
 
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -176,6 +177,7 @@
 
         </ScrollView>
 
+
         <Button
             android:id="@+id/diceRollerButton"
             android:layout_width="50dp"
@@ -194,8 +196,9 @@
             android:layout_toLeftOf="@+id/diceRollerButton"
             android:layout_toStartOf="@+id/diceRollerButton"
             android:background="@drawable/playing_cards_icon_trans"
-            android:visibility="gone"/>
+            android:visibility="invisible"/>
 
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
+

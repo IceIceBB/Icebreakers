@@ -10,6 +10,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.ContentObserver;
+import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -54,6 +56,9 @@ public class TabMainActivity extends AppCompatActivity {
     public static final String ACCOUNT_TYPE = "example.com";
     public static final String ACCOUNT = "default_account";
     public static final String AUTHORITY = "com.example.lmont.iceicebb.IcebreakerContentProvider";
+    public static int gamesTableSize;
+    public static boolean first = true;
+    public static Context context;
     Account mAccount;
 
 
@@ -99,7 +104,7 @@ public class TabMainActivity extends AppCompatActivity {
     public void setupContentResolver()  {
         mAccount = createSyncAccount(this);
 
-        //getContentResolver().registerContentObserver(IcebreakerContentProvider.CONTENT_URI,true,new NewsContentObserver(new Handler()));
+        getContentResolver().registerContentObserver(IcebreakerContentProvider.CONTENT_URI,true,new NewsContentObserver(new Handler()));
 
         Bundle settingsBundle = new Bundle();
         settingsBundle.putBoolean(
@@ -130,24 +135,32 @@ public class TabMainActivity extends AppCompatActivity {
 
         @Override
         public void onChange(boolean selfChange, Uri uri) {
+            int newSize = IcebreakerDBHelper.getInstance(context).getGamesTableSize();
+
+            if (gamesTableSize == newSize) return;
+            gamesTableSize = newSize;
+
+            if (first) {
+                first = false;
+                return;
+            }
+
             //do stuff on UI thread
-            NotificationCompat.BigPictureStyle bigPictureStyle = new NotificationCompat.BigPictureStyle();
-            bigPictureStyle.bigPicture(BitmapFactory.decodeResource(getResources(), android.R.drawable.stat_sys_download_done)).build();
             Intent intent = new Intent(TabMainActivity.this, TabMainActivity.class);
             PendingIntent pIntent = PendingIntent.getActivity(TabMainActivity.this, 0, intent, 0);
             NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(TabMainActivity.this);
             mBuilder.setSmallIcon(R.drawable.cards);
-            mBuilder.setContentTitle("New game added!");
-            mBuilder.setContentText("DS:LFkj");
+            mBuilder.setContentTitle("Games Updated!");
+            mBuilder.setContentText("Click to refresh :D");
             mBuilder.setContentIntent(pIntent);
             mBuilder.setPriority(Notification.PRIORITY_MAX);
-            mBuilder.setStyle(bigPictureStyle);
             NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             mNotificationManager.notify(1, mBuilder.build());
         }
     }
 
     protected void setup() {
+        context = this;
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -158,6 +171,7 @@ public class TabMainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+        mViewPager.setCurrentItem(1);
     }
 
 
@@ -187,7 +201,16 @@ public class TabMainActivity extends AppCompatActivity {
         return true;
     }
 
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.reset:
+                query = "";
+                Intent i = new Intent(TabMainActivity.this, TabMainActivity.class);
+                startActivity(i);
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     /**
      * A placeholder fragment containing a simple view.
