@@ -10,8 +10,6 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.ContentObserver;
-import android.database.Cursor;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,7 +21,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -60,7 +57,6 @@ public class TabMainActivity extends AppCompatActivity {
     public static boolean first = true;
     public static Context context;
     Account mAccount;
-
 
 
     @Override
@@ -101,10 +97,10 @@ public class TabMainActivity extends AppCompatActivity {
         return newAccount;
     }
 
-    public void setupContentResolver()  {
+    public void setupContentResolver() {
         mAccount = createSyncAccount(this);
 
-        getContentResolver().registerContentObserver(IcebreakerContentProvider.CONTENT_URI,true,new NewsContentObserver(new Handler()));
+        getContentResolver().registerContentObserver(IcebreakerContentProvider.CONTENT_URI, true, new NewsContentObserver(new Handler()));
 
         Bundle settingsBundle = new Bundle();
         settingsBundle.putBoolean(
@@ -113,7 +109,7 @@ public class TabMainActivity extends AppCompatActivity {
                 ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
 
         ContentResolver.requestSync(mAccount, AUTHORITY, settingsBundle);
-        ContentResolver.setSyncAutomatically(mAccount,AUTHORITY,true);
+        ContentResolver.setSyncAutomatically(mAccount, AUTHORITY, true);
         ContentResolver.addPeriodicSync(
                 mAccount,
                 AUTHORITY,
@@ -237,9 +233,11 @@ public class TabMainActivity extends AppCompatActivity {
             return fragment;
         }
 
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+
 
             if (getArguments().getInt(ARG_SECTION_NUMBER) == 1) {
 
