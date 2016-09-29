@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -31,6 +32,22 @@ public class CardsActivity extends AppCompatActivity {
     TextView bottomRightValue;
     ImageView bottomRightSuit;
 
+    ImageView aSuitIcon;
+    ImageView bSuitIconOne;
+    ImageView bSuitIconTwo;
+    RelativeLayout cIconsOne;
+    ImageView cSuitIconOne;
+    ImageView cSuitIconTwo;
+    RelativeLayout cIconsTwo;
+    ImageView cSuitIconThree;
+    ImageView cSuitIconFour;
+    RelativeLayout dIcons;
+    ImageView dSuitIconOne;
+    ImageView dSuitIconTwo;
+    RelativeLayout eIcons;
+    ImageView eSuitIconOne;
+    ImageView eSuitIconTwo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,17 +62,41 @@ public class CardsActivity extends AppCompatActivity {
         bottomRightValue = (TextView) findViewById(R.id.bottomRightValue);
         bottomRightSuit = (ImageView) findViewById(R.id.bottomRightSuit);
 
+        //Find all 10 suits icons
+        aSuitIcon = (ImageView) findViewById(R.id.aSuitIcon);
+        bSuitIconOne = (ImageView) findViewById(R.id.bSuitIconOne);
+        bSuitIconTwo = (ImageView) findViewById(R.id.bSuitIconTwo);
+        cIconsOne = (RelativeLayout) findViewById(R.id.cIconsOne);
+        cSuitIconOne = (ImageView) findViewById(R.id.cSuitIconOne);
+        cSuitIconTwo = (ImageView) findViewById(R.id.cSuitIconTwo);
+        cIconsTwo = (RelativeLayout) findViewById(R.id.cIconsTwo);
+        cSuitIconThree = (ImageView) findViewById(R.id.cSuitIconThree);
+        cSuitIconFour = (ImageView) findViewById(R.id.cSuitIconFour);
+        dIcons = (RelativeLayout) findViewById(R.id.dIcons);
+        dSuitIconOne = (ImageView) findViewById(R.id.dSuitIconOne);
+        dSuitIconTwo = (ImageView) findViewById(R.id.dSuitIconTwo);
+        eIcons = (RelativeLayout) findViewById(R.id.eIcons);
+        eSuitIconOne = (ImageView) findViewById(R.id.eSuitIconOne);
+        eSuitIconTwo = (ImageView) findViewById(R.id.eSuitIconTwo);
+
 
         nextCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 newCard = drawCard();
-                topLeftValue.setText(String.valueOf(newCard[0]));
-                bottomRightValue.setText(String.valueOf(newCard[0]));
+                //TODOne: set card value
+                setCardValue(newCard);
 
-                //TODO: set suit image.
+
+                //TODOne: set suit image.
                 setSuitView(newCard);
-                //TODO: set card image.
+                //TODOne: set card image.
+                if (newCard[0] < 11) {
+                    //Call suitIconPopulater
+                    suitIconPopulater(newCard);
+                } else {
+                    //Call faceCardPopulator
+                }
             }
         });
 
@@ -68,6 +109,10 @@ public class CardsActivity extends AppCompatActivity {
 
 
         shuffleDeck();
+        newCard = drawCard();
+        setCardValue(newCard);
+        setSuitView(newCard);
+        suitIconPopulater(newCard);
 
     }
 
@@ -96,24 +141,24 @@ public class CardsActivity extends AppCompatActivity {
                 clubsLeft.set(i, 1);
             }
         }
-        if (playingCards.size()<4){
+        if (playingCards.size() < 4) {
             playingCards.add(0, spadesLeft);
-        } else{
+        } else {
             playingCards.set(0, spadesLeft);
         }
-        if (playingCards.size()<4){
+        if (playingCards.size() < 4) {
             playingCards.add(1, heartsLeft);
-        } else{
+        } else {
             playingCards.set(1, heartsLeft);
         }
-        if (playingCards.size()<4){
+        if (playingCards.size() < 4) {
             playingCards.add(2, diamondsLeft);
-        } else{
+        } else {
             playingCards.set(2, diamondsLeft);
         }
-        if (playingCards.size()<4){
+        if (playingCards.size() < 4) {
             playingCards.add(3, clubsLeft);
-        } else{
+        } else {
             playingCards.set(3, clubsLeft);
         }
     }
@@ -155,23 +200,200 @@ public class CardsActivity extends AppCompatActivity {
         playingCards.add(suit, suitLeft);
     }
 
-    private void setSuitView (int[] newCard){
+    private void setCardValue(int[] newCard) {
+        if (newCard[0] < 11) {
+            topLeftValue.setText(String.valueOf(newCard[0]));
+            bottomRightValue.setText(String.valueOf(newCard[0]));
+        }else{
+            if(newCard[0] == 11){
+                topLeftValue.setText("J");
+                bottomRightValue.setText("J");
+            }
+            if(newCard[0] == 12){
+                topLeftValue.setText("Q");
+                bottomRightValue.setText("Q");
+            }
+            if(newCard[0] == 13){
+                topLeftValue.setText("K");
+                bottomRightValue.setText("K");
+            }
+        }
+    }
+
+    private void setSuitView(int[] newCard) {
         int suit = newCard[1];
-        if(suit == 1){
+        if (suit == 1) {
             topLeftSuit.setBackgroundResource(R.drawable.spade_suit);
             bottomRightSuit.setBackgroundResource((R.drawable.spade_suit));
+
+            //Set all suit icons to spade
+            aSuitIcon.setBackgroundResource((R.drawable.spade_suit));
+            bSuitIconOne.setBackgroundResource((R.drawable.spade_suit));
+            bSuitIconTwo.setBackgroundResource((R.drawable.spade_suit));
+            cSuitIconOne.setBackgroundResource((R.drawable.spade_suit));
+            cSuitIconTwo.setBackgroundResource((R.drawable.spade_suit));
+            cSuitIconThree.setBackgroundResource((R.drawable.spade_suit));
+            cSuitIconFour.setBackgroundResource((R.drawable.spade_suit));
+            dSuitIconOne.setBackgroundResource((R.drawable.spade_suit));
+            dSuitIconTwo.setBackgroundResource((R.drawable.spade_suit));
+            eSuitIconOne.setBackgroundResource((R.drawable.spade_suit));
+            eSuitIconTwo.setBackgroundResource((R.drawable.spade_suit));
+
         }
-        if(suit == 2){
+        if (suit == 2) {
             topLeftSuit.setBackgroundResource(R.drawable.heart_suit);
             bottomRightSuit.setBackgroundResource((R.drawable.heart_suit));
+
+            //Set all suit icons to heart
+            aSuitIcon.setBackgroundResource((R.drawable.heart_suit));
+            bSuitIconOne.setBackgroundResource((R.drawable.heart_suit));
+            bSuitIconTwo.setBackgroundResource((R.drawable.heart_suit));
+            cSuitIconOne.setBackgroundResource((R.drawable.heart_suit));
+            cSuitIconTwo.setBackgroundResource((R.drawable.heart_suit));
+            cSuitIconThree.setBackgroundResource((R.drawable.heart_suit));
+            cSuitIconFour.setBackgroundResource((R.drawable.heart_suit));
+            dSuitIconOne.setBackgroundResource((R.drawable.heart_suit));
+            dSuitIconTwo.setBackgroundResource((R.drawable.heart_suit));
+            eSuitIconOne.setBackgroundResource((R.drawable.heart_suit));
+            eSuitIconTwo.setBackgroundResource((R.drawable.heart_suit));
         }
-        if(suit == 3){
+        if (suit == 3) {
             topLeftSuit.setBackgroundResource(R.drawable.diamond_suit);
             bottomRightSuit.setBackgroundResource((R.drawable.diamond_suit));
+
+            //Set all suit icons to diamond
+            aSuitIcon.setBackgroundResource((R.drawable.diamond_suit));
+            bSuitIconOne.setBackgroundResource((R.drawable.diamond_suit));
+            bSuitIconTwo.setBackgroundResource((R.drawable.diamond_suit));
+            cSuitIconOne.setBackgroundResource((R.drawable.diamond_suit));
+            cSuitIconTwo.setBackgroundResource((R.drawable.diamond_suit));
+            cSuitIconThree.setBackgroundResource((R.drawable.diamond_suit));
+            cSuitIconFour.setBackgroundResource((R.drawable.diamond_suit));
+            dSuitIconOne.setBackgroundResource((R.drawable.diamond_suit));
+            dSuitIconTwo.setBackgroundResource((R.drawable.diamond_suit));
+            eSuitIconOne.setBackgroundResource((R.drawable.diamond_suit));
+            eSuitIconTwo.setBackgroundResource((R.drawable.diamond_suit));
         }
-        if(suit == 4){
+        if (suit == 4) {
             topLeftSuit.setBackgroundResource(R.drawable.club_suit);
             bottomRightSuit.setBackgroundResource((R.drawable.club_suit));
+
+            //Set all suit icons to club
+            aSuitIcon.setBackgroundResource((R.drawable.club_suit));
+            bSuitIconOne.setBackgroundResource((R.drawable.club_suit));
+            bSuitIconTwo.setBackgroundResource((R.drawable.club_suit));
+            cSuitIconOne.setBackgroundResource((R.drawable.club_suit));
+            cSuitIconTwo.setBackgroundResource((R.drawable.club_suit));
+            cSuitIconThree.setBackgroundResource((R.drawable.club_suit));
+            cSuitIconFour.setBackgroundResource((R.drawable.club_suit));
+            dSuitIconOne.setBackgroundResource((R.drawable.club_suit));
+            dSuitIconTwo.setBackgroundResource((R.drawable.club_suit));
+            eSuitIconOne.setBackgroundResource((R.drawable.club_suit));
+            eSuitIconTwo.setBackgroundResource((R.drawable.club_suit));
+        }
+    }
+
+    private void suitIconPopulater(int[] newCard) {
+        if (newCard[0] == 1) {
+            aSuitIcon.setVisibility(View.VISIBLE);
+            bSuitIconOne.setVisibility(View.INVISIBLE);
+            bSuitIconTwo.setVisibility(View.INVISIBLE);
+            cIconsOne.setVisibility(View.INVISIBLE);
+            cIconsTwo.setVisibility(View.INVISIBLE);
+            dIcons.setVisibility(View.INVISIBLE);
+            eIcons.setVisibility(View.INVISIBLE);
+
+        }
+
+        if (newCard[0] == 2) {
+            aSuitIcon.setVisibility(View.INVISIBLE);
+            bSuitIconOne.setVisibility(View.VISIBLE);
+            bSuitIconTwo.setVisibility(View.VISIBLE);
+            cIconsOne.setVisibility(View.INVISIBLE);
+            cIconsTwo.setVisibility(View.INVISIBLE);
+            dIcons.setVisibility(View.INVISIBLE);
+            eIcons.setVisibility(View.INVISIBLE);
+        }
+
+        if (newCard[0] == 3) {
+            aSuitIcon.setVisibility(View.VISIBLE);
+            bSuitIconOne.setVisibility(View.VISIBLE);
+            bSuitIconTwo.setVisibility(View.VISIBLE);
+            cIconsOne.setVisibility(View.INVISIBLE);
+            cIconsTwo.setVisibility(View.INVISIBLE);
+            dIcons.setVisibility(View.INVISIBLE);
+            eIcons.setVisibility(View.INVISIBLE);
+        }
+
+        if (newCard[0] == 4) {
+            aSuitIcon.setVisibility(View.INVISIBLE);
+            bSuitIconOne.setVisibility(View.INVISIBLE);
+            bSuitIconTwo.setVisibility(View.INVISIBLE);
+            cIconsOne.setVisibility(View.VISIBLE);
+            cIconsTwo.setVisibility(View.VISIBLE);
+            dIcons.setVisibility(View.INVISIBLE);
+            eIcons.setVisibility(View.INVISIBLE);
+        }
+
+        if (newCard[0] == 5) {
+            aSuitIcon.setVisibility(View.VISIBLE);
+            bSuitIconOne.setVisibility(View.INVISIBLE);
+            bSuitIconTwo.setVisibility(View.INVISIBLE);
+            cIconsOne.setVisibility(View.VISIBLE);
+            cIconsTwo.setVisibility(View.VISIBLE);
+            dIcons.setVisibility(View.INVISIBLE);
+            eIcons.setVisibility(View.INVISIBLE);
+        }
+
+        if (newCard[0] == 6) {
+            aSuitIcon.setVisibility(View.INVISIBLE);
+            bSuitIconOne.setVisibility(View.INVISIBLE);
+            bSuitIconTwo.setVisibility(View.INVISIBLE);
+            cIconsOne.setVisibility(View.VISIBLE);
+            cIconsTwo.setVisibility(View.VISIBLE);
+            dIcons.setVisibility(View.VISIBLE);
+            eIcons.setVisibility(View.INVISIBLE);
+        }
+
+        if (newCard[0] == 7) {
+            aSuitIcon.setVisibility(View.VISIBLE);
+            bSuitIconOne.setVisibility(View.INVISIBLE);
+            bSuitIconTwo.setVisibility(View.INVISIBLE);
+            cIconsOne.setVisibility(View.VISIBLE);
+            cIconsTwo.setVisibility(View.VISIBLE);
+            dIcons.setVisibility(View.VISIBLE);
+            eIcons.setVisibility(View.INVISIBLE);
+        }
+
+        if (newCard[0] == 8) {
+            aSuitIcon.setVisibility(View.INVISIBLE);
+            bSuitIconOne.setVisibility(View.VISIBLE);
+            bSuitIconTwo.setVisibility(View.VISIBLE);
+            cIconsOne.setVisibility(View.VISIBLE);
+            cIconsTwo.setVisibility(View.VISIBLE);
+            dIcons.setVisibility(View.VISIBLE);
+            eIcons.setVisibility(View.INVISIBLE);
+        }
+
+        if (newCard[0] == 9) {
+            aSuitIcon.setVisibility(View.VISIBLE);
+            bSuitIconOne.setVisibility(View.INVISIBLE);
+            bSuitIconTwo.setVisibility(View.INVISIBLE);
+            cIconsOne.setVisibility(View.VISIBLE);
+            cIconsTwo.setVisibility(View.VISIBLE);
+            dIcons.setVisibility(View.VISIBLE);
+            eIcons.setVisibility(View.VISIBLE);
+        }
+
+        if (newCard[0] == 10) {
+            aSuitIcon.setVisibility(View.INVISIBLE);
+            bSuitIconOne.setVisibility(View.VISIBLE);
+            bSuitIconTwo.setVisibility(View.VISIBLE);
+            cIconsOne.setVisibility(View.VISIBLE);
+            cIconsTwo.setVisibility(View.VISIBLE);
+            dIcons.setVisibility(View.VISIBLE);
+            eIcons.setVisibility(View.VISIBLE);
         }
     }
 }
+

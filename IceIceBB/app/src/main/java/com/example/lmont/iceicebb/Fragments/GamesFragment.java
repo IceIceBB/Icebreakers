@@ -36,7 +36,13 @@ public class GamesFragment extends Fragment {
     return view;
     }
     public void setup(View view) {
-        gameArray = dbHelper.getGamesLike(TabMainActivity.query);
+        gameArray = dbHelper.getGamesLike(
+                TabMainActivity.query,
+                TabMainActivity.tagsQuery,
+                TabMainActivity.isCleanQuery,
+                TabMainActivity.isByRatingQuery,
+                TabMainActivity.isByAlphabetQuery);
+
         //gameArray = dbHelper.getAllGames();
         RecyclerView gameList = (RecyclerView)view.findViewById(R.id.gameList);
         gameList.setHasFixedSize(true);

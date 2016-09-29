@@ -19,12 +19,14 @@ public class IcebreakerContentProvider extends ContentProvider {
     public static final Uri CONTENT_URI = Uri.parse(("content://") + AUTHORITY);
     public static final Uri CONTENT_URI_ICEBREAKERS = Uri.parse(("content://") + AUTHORITY + "/" + IcebreakerDBHelper.ICEBREAKERS_TABLE_NAME);
     public static final Uri CONTENT_URI_QUESTIONS = Uri.parse(("content://") + AUTHORITY + "/" + IcebreakerDBHelper.QUESTIONS_TABLE_NAME);
-    public static final int ICEBREAKERS = 1, QUESTIONS = 2;
+    public static final Uri CONTENT_URI_COMMENTS = Uri.parse(("content://") + AUTHORITY + "/" + IcebreakerDBHelper.ICEBREAKERS_TABLE_NAME + "/" + IcebreakerDBHelper.COMMENTS_TABLE_NAME);
+    public static final int ICEBREAKERS = 1, QUESTIONS = 2, COMMENTS = 3;
     public static final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
     static {
         uriMatcher.addURI(AUTHORITY, IcebreakerDBHelper.ICEBREAKERS_TABLE_NAME, ICEBREAKERS);
         uriMatcher.addURI(AUTHORITY, IcebreakerDBHelper.QUESTIONS_TABLE_NAME, QUESTIONS);
+        uriMatcher.addURI(AUTHORITY, IcebreakerDBHelper.ICEBREAKERS_TABLE_NAME + "/" + IcebreakerDBHelper.COMMENTS_TABLE_NAME, COMMENTS);
     }
 
     @Override

@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -38,11 +40,16 @@ public class FeelingLuckyFragment extends Fragment {
 
     public void setup(View view) {
 
+        final Animation bounce = AnimationUtils.loadAnimation(getContext(),R.anim.bounce);
+
+
+
         IcebreakerDBHelper dbHelper = IcebreakerDBHelper.getInstance(getContext());
         question = dbHelper.getRandomQuestion(true);
 
         questionView = (TextView) view.findViewById(R.id.questionView);
         questionView.setText(question.text);
+        questionView.setAnimation(bounce);
 
 
         feelingLucky = (Button) view.findViewById(R.id.feeling_lucky_btn);
@@ -53,6 +60,7 @@ public class FeelingLuckyFragment extends Fragment {
                 IcebreakerDBHelper dbHelper = IcebreakerDBHelper.getInstance(getContext());
                 question = dbHelper.getRandomQuestion(true);
                 questionView.setText(question.text);
+                questionView.startAnimation(bounce);
             }
         });
 

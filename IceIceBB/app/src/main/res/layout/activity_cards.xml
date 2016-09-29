@@ -4,24 +4,25 @@
     android:id="@+id/activity_cards"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#587e7c"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#587e7c"
     tools:context="com.example.lmont.iceicebb.CardsActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
+
         <Button
             android:id="@+id/reshuffleButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Reshuffle Deck"
-            android:layout_centerInParent="true"/>
+            android:layout_centerInParent="true"
+            android:text="Reshuffle Deck" />
     </RelativeLayout>
 
     <LinearLayout
@@ -34,7 +35,7 @@
             android:id="@+id/deckBack"
             android:layout_width="140dp"
             android:layout_height="200dp"
-            android:background="@drawable/playing_card_back"/>
+            android:background="@drawable/playing_card_back" />
 
         <FrameLayout
             android:layout_width="0dp"
@@ -46,31 +47,35 @@
             android:layout_width="180dp"
             android:layout_height="match_parent"
             android:background="@drawable/background_border">
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/blank_card_face"/>
+                android:background="@drawable/blank_card_face" />
 
             <LinearLayout
                 android:id="@+id/cardIdTop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
                 android:layout_marginTop="@dimen/cardBoarderTopBottom"
+
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/topLeftValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
                     android:text="@string/drawnCardValue"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/topLeftSuit"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"/>
+                    android:layout_width="29dp"
+                    android:layout_height="29dp"
+                    android:layout_gravity="left"
+                    android:background="@drawable/spade_suit" />
             </LinearLayout>
 
             <ImageView
@@ -79,24 +84,151 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true" />
 
+            <ImageView
+                android:id="@+id/aSuitIcon"
+                android:layout_width="29dp"
+                android:layout_height="29dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/spade_suit"
+                />
+
+            <ImageView
+                android:id="@+id/bSuitIconOne"
+                android:layout_width="29dp"
+                android:layout_height="29dp"
+                android:layout_above="@+id/aSuitIcon"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/spade_suit"
+                android:visibility="invisible"/>
+
+            <ImageView
+                android:id="@+id/bSuitIconTwo"
+                android:layout_width="29dp"
+                android:layout_height="29dp"
+                android:layout_below="@+id/aSuitIcon"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/spade_suit"
+                android:visibility="invisible"/>
+
+            <RelativeLayout
+                android:id="@+id/cIconsOne"
+                android:layout_above="@+id/bSuitIconOne"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="26dp"
+                android:visibility="invisible">
+
+                <ImageView
+                    android:id="@+id/cSuitIconOne"
+                    android:layout_width="29dp"
+                    android:layout_height="29dp"
+                    android:layout_above="@+id/bSuitIconOne"
+                    android:background="@drawable/spade_suit" />
+                <ImageView
+                    android:id="@+id/cSuitIconTwo"
+                    android:layout_width="29dp"
+                    android:layout_height="29dp"
+                    android:layout_above="@+id/bSuitIconOne"
+                    android:background="@drawable/spade_suit"
+                    android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/cIconsTwo"
+                android:layout_below="@+id/bSuitIconTwo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="26dp"
+                android:visibility="invisible">
+
+                <ImageView
+                    android:id="@+id/cSuitIconThree"
+                    android:layout_width="29dp"
+                    android:layout_height="29dp"
+                    android:layout_above="@+id/bSuitIconOne"
+                    android:background="@drawable/spade_suit" />
+                <ImageView
+                    android:id="@+id/cSuitIconFour"
+                    android:layout_width="29dp"
+                    android:layout_height="29dp"
+                    android:layout_above="@+id/bSuitIconOne"
+                    android:background="@drawable/spade_suit"
+                    android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/dIcons"
+                android:layout_centerInParent="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="26dp"
+                android:visibility="invisible">
+
+                <ImageView
+                    android:id="@+id/dSuitIconOne"
+                    android:layout_width="29dp"
+                    android:layout_height="29dp"
+                    android:layout_above="@+id/bSuitIconOne"
+                    android:background="@drawable/spade_suit"
+                    android:layout_marginBottom="35dp"/>
+                <ImageView
+                    android:id="@+id/dSuitIconTwo"
+                    android:layout_width="29dp"
+                    android:layout_height="29dp"
+                    android:layout_above="@+id/bSuitIconOne"
+                    android:background="@drawable/spade_suit"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="35dp"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/eIcons"
+                android:layout_centerInParent="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="26dp"
+                android:visibility="invisible">
+
+                <ImageView
+                    android:id="@+id/eSuitIconOne"
+                    android:layout_width="29dp"
+                    android:layout_height="29dp"
+                    android:layout_above="@+id/bSuitIconOne"
+                    android:background="@drawable/spade_suit"
+                    android:layout_marginTop="40dp"/>
+                <ImageView
+                    android:id="@+id/eSuitIconTwo"
+                    android:layout_width="29dp"
+                    android:layout_height="29dp"
+                    android:layout_above="@+id/bSuitIconOne"
+                    android:background="@drawable/spade_suit"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="40dp" />
+            </RelativeLayout>
+
             <LinearLayout
                 android:id="@+id/cardIdBottom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
-                android:orientation="vertical"
+                android:layout_alignParentRight="true"
                 android:layout_marginBottom="@dimen/cardBoarderTopBottom"
-                android:layout_alignParentRight="true">
+                android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/bottomRightSuit"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"/>
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@drawable/spade_suit" />
+
                 <TextView
                     android:id="@+id/bottomRightValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="@string/drawnCardValue"
                     android:textSize="25sp"
                     android:textStyle="bold" />
@@ -107,6 +239,5 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
-    </RelativeLayout>
+        android:layout_weight="1"></RelativeLayout>
 </LinearLayout>
