@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/small_spacing"
-        android:background="#deb1f4ed"
+        android:background="@drawable/layout_bg_game_detail"
         android:padding="@dimen/small_spacing">
 
         <RelativeLayout

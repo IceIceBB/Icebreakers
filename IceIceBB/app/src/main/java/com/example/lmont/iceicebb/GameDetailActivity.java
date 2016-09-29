@@ -12,6 +12,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static com.example.lmont.iceicebb.TabMainActivity.isByAlphabetQuery;
+import static com.example.lmont.iceicebb.TabMainActivity.isByRatingQuery;
+import static com.example.lmont.iceicebb.TabMainActivity.isCleanQuery;
+import static com.example.lmont.iceicebb.TabMainActivity.query;
+import static com.example.lmont.iceicebb.TabMainActivity.tagsQuery;
+
 public class GameDetailActivity extends AppCompatActivity {
 
     IcebreakerDBHelper dbHelper = IcebreakerDBHelper.getInstance(this);
@@ -24,6 +30,7 @@ public class GameDetailActivity extends AppCompatActivity {
 
         String name = getIntent().getStringExtra("name");
         game = dbHelper.getGameWithName(name);
+
 
         RelativeLayout titleBar = (RelativeLayout) findViewById(R.id.gameNameLayout);
         TextView gameName = (TextView)findViewById(R.id.gameNameDetail);
@@ -94,6 +101,11 @@ public class GameDetailActivity extends AppCompatActivity {
             sfwIconDevil.setVisibility(View.VISIBLE);
         }
 //TODOne: check what tags are present in GAME object and toggle visibility of appropriate tag icons
+        drinkIcon.setVisibility(View.GONE);
+        movingIcon.setVisibility(View.GONE);
+        carIcon.setVisibility(View.GONE);
+        paperIcon.setVisibility(View.GONE);
+
         if (game.tags.contains("drinking")){
             drinkIcon.setVisibility(View.VISIBLE);
         }
@@ -135,5 +147,16 @@ public class GameDetailActivity extends AppCompatActivity {
             }
         });
 
+    }
+    public void onBackPressed() {
+        query = "";
+        tagsQuery = "";
+        isCleanQuery = false;
+        isByRatingQuery = false;
+        isByAlphabetQuery = false;
+
+        Intent intent = new Intent(this,TabMainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

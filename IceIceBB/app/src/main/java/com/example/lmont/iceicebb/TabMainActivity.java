@@ -35,14 +35,10 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.lmont.iceicebb.Fragments.FeelingLuckyFragment;
 import com.example.lmont.iceicebb.Fragments.GamesFragment;
 import com.example.lmont.iceicebb.Fragments.ToolsFragment;
-
-import java.util.ArrayList;
 
 public class TabMainActivity extends AppCompatActivity {
 
