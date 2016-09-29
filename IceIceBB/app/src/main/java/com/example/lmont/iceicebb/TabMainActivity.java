@@ -87,7 +87,6 @@ Bonus:
     public static boolean isByRatingQuery = false;
     public static boolean isByAlphabetQuery = false;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
