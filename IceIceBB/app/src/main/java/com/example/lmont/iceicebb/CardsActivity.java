@@ -32,6 +32,8 @@ public class CardsActivity extends AppCompatActivity {
     TextView bottomRightValue;
     ImageView bottomRightSuit;
 
+    ImageView cardFaceImage;
+
     ImageView aSuitIcon;
     ImageView bSuitIconOne;
     ImageView bSuitIconTwo;
@@ -62,6 +64,8 @@ public class CardsActivity extends AppCompatActivity {
         bottomRightValue = (TextView) findViewById(R.id.bottomRightValue);
         bottomRightSuit = (ImageView) findViewById(R.id.bottomRightSuit);
 
+        cardFaceImage = (ImageView) findViewById(R.id.cardFaceImage);
+
         //Find all 10 suits icons
         aSuitIcon = (ImageView) findViewById(R.id.aSuitIcon);
         bSuitIconOne = (ImageView) findViewById(R.id.bSuitIconOne);
@@ -83,20 +87,7 @@ public class CardsActivity extends AppCompatActivity {
         nextCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                newCard = drawCard();
-                //TODOne: set card value
-                setCardValue(newCard);
-
-
-                //TODOne: set suit image.
-                setSuitView(newCard);
-                //TODOne: set card image.
-                if (newCard[0] < 11) {
-                    //Call suitIconPopulater
-                    suitIconPopulater(newCard);
-                } else {
-                    //Call faceCardPopulator
-                }
+                setNewCard();
             }
         });
 
@@ -109,11 +100,15 @@ public class CardsActivity extends AppCompatActivity {
 
 
         shuffleDeck();
+        setNewCard();
+
+    }
+
+    private void setNewCard() {
         newCard = drawCard();
         setCardValue(newCard);
         setSuitView(newCard);
-        suitIconPopulater(newCard);
-
+        cardIconPopulater(newCard);
     }
 
     //Shuffle deck to replace all cards.
@@ -204,16 +199,16 @@ public class CardsActivity extends AppCompatActivity {
         if (newCard[0] < 11) {
             topLeftValue.setText(String.valueOf(newCard[0]));
             bottomRightValue.setText(String.valueOf(newCard[0]));
-        }else{
-            if(newCard[0] == 11){
+        } else {
+            if (newCard[0] == 11) {
                 topLeftValue.setText("J");
                 bottomRightValue.setText("J");
             }
-            if(newCard[0] == 12){
+            if (newCard[0] == 12) {
                 topLeftValue.setText("Q");
                 bottomRightValue.setText("Q");
             }
-            if(newCard[0] == 13){
+            if (newCard[0] == 13) {
                 topLeftValue.setText("K");
                 bottomRightValue.setText("K");
             }
@@ -293,7 +288,7 @@ public class CardsActivity extends AppCompatActivity {
         }
     }
 
-    private void suitIconPopulater(int[] newCard) {
+    private void cardIconPopulater(int[] newCard) {
         if (newCard[0] == 1) {
             aSuitIcon.setVisibility(View.VISIBLE);
             bSuitIconOne.setVisibility(View.INVISIBLE);
@@ -302,7 +297,7 @@ public class CardsActivity extends AppCompatActivity {
             cIconsTwo.setVisibility(View.INVISIBLE);
             dIcons.setVisibility(View.INVISIBLE);
             eIcons.setVisibility(View.INVISIBLE);
-
+            cardFaceImage.setVisibility(View.INVISIBLE);
         }
 
         if (newCard[0] == 2) {
@@ -313,6 +308,7 @@ public class CardsActivity extends AppCompatActivity {
             cIconsTwo.setVisibility(View.INVISIBLE);
             dIcons.setVisibility(View.INVISIBLE);
             eIcons.setVisibility(View.INVISIBLE);
+            cardFaceImage.setVisibility(View.INVISIBLE);
         }
 
         if (newCard[0] == 3) {
@@ -323,6 +319,7 @@ public class CardsActivity extends AppCompatActivity {
             cIconsTwo.setVisibility(View.INVISIBLE);
             dIcons.setVisibility(View.INVISIBLE);
             eIcons.setVisibility(View.INVISIBLE);
+            cardFaceImage.setVisibility(View.INVISIBLE);
         }
 
         if (newCard[0] == 4) {
@@ -333,6 +330,7 @@ public class CardsActivity extends AppCompatActivity {
             cIconsTwo.setVisibility(View.VISIBLE);
             dIcons.setVisibility(View.INVISIBLE);
             eIcons.setVisibility(View.INVISIBLE);
+            cardFaceImage.setVisibility(View.INVISIBLE);
         }
 
         if (newCard[0] == 5) {
@@ -343,6 +341,7 @@ public class CardsActivity extends AppCompatActivity {
             cIconsTwo.setVisibility(View.VISIBLE);
             dIcons.setVisibility(View.INVISIBLE);
             eIcons.setVisibility(View.INVISIBLE);
+            cardFaceImage.setVisibility(View.INVISIBLE);
         }
 
         if (newCard[0] == 6) {
@@ -353,6 +352,7 @@ public class CardsActivity extends AppCompatActivity {
             cIconsTwo.setVisibility(View.VISIBLE);
             dIcons.setVisibility(View.VISIBLE);
             eIcons.setVisibility(View.INVISIBLE);
+            cardFaceImage.setVisibility(View.INVISIBLE);
         }
 
         if (newCard[0] == 7) {
@@ -363,6 +363,7 @@ public class CardsActivity extends AppCompatActivity {
             cIconsTwo.setVisibility(View.VISIBLE);
             dIcons.setVisibility(View.VISIBLE);
             eIcons.setVisibility(View.INVISIBLE);
+            cardFaceImage.setVisibility(View.INVISIBLE);
         }
 
         if (newCard[0] == 8) {
@@ -373,6 +374,7 @@ public class CardsActivity extends AppCompatActivity {
             cIconsTwo.setVisibility(View.VISIBLE);
             dIcons.setVisibility(View.VISIBLE);
             eIcons.setVisibility(View.INVISIBLE);
+            cardFaceImage.setVisibility(View.INVISIBLE);
         }
 
         if (newCard[0] == 9) {
@@ -383,6 +385,7 @@ public class CardsActivity extends AppCompatActivity {
             cIconsTwo.setVisibility(View.VISIBLE);
             dIcons.setVisibility(View.VISIBLE);
             eIcons.setVisibility(View.VISIBLE);
+            cardFaceImage.setVisibility(View.INVISIBLE);
         }
 
         if (newCard[0] == 10) {
@@ -393,6 +396,42 @@ public class CardsActivity extends AppCompatActivity {
             cIconsTwo.setVisibility(View.VISIBLE);
             dIcons.setVisibility(View.VISIBLE);
             eIcons.setVisibility(View.VISIBLE);
+            cardFaceImage.setVisibility(View.INVISIBLE);
+        }
+
+        if (newCard[0] == 11) {
+            aSuitIcon.setVisibility(View.INVISIBLE);
+            bSuitIconOne.setVisibility(View.INVISIBLE);
+            bSuitIconTwo.setVisibility(View.INVISIBLE);
+            cIconsOne.setVisibility(View.INVISIBLE);
+            cIconsTwo.setVisibility(View.INVISIBLE);
+            dIcons.setVisibility(View.INVISIBLE);
+            eIcons.setVisibility(View.INVISIBLE);
+            cardFaceImage.setVisibility(View.VISIBLE);
+            cardFaceImage.setBackgroundResource(R.drawable.jack_face);
+        }
+
+        if (newCard[0] == 12) {
+            aSuitIcon.setVisibility(View.INVISIBLE);
+            bSuitIconOne.setVisibility(View.INVISIBLE);
+            bSuitIconTwo.setVisibility(View.INVISIBLE);
+            cIconsOne.setVisibility(View.INVISIBLE);
+            cIconsTwo.setVisibility(View.INVISIBLE);
+            dIcons.setVisibility(View.INVISIBLE);
+            eIcons.setVisibility(View.INVISIBLE);
+            cardFaceImage.setVisibility(View.VISIBLE);
+            cardFaceImage.setBackgroundResource(R.drawable.queen_face);
+        }
+        if (newCard[0] == 13) {
+            aSuitIcon.setVisibility(View.INVISIBLE);
+            bSuitIconOne.setVisibility(View.INVISIBLE);
+            bSuitIconTwo.setVisibility(View.INVISIBLE);
+            cIconsOne.setVisibility(View.INVISIBLE);
+            cIconsTwo.setVisibility(View.INVISIBLE);
+            dIcons.setVisibility(View.INVISIBLE);
+            eIcons.setVisibility(View.INVISIBLE);
+            cardFaceImage.setVisibility(View.VISIBLE);
+            cardFaceImage.setBackgroundResource(R.drawable.king_face);
         }
     }
 }
