@@ -149,6 +149,10 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
         public Game.Question[] questions;
     }
 
+    private class CommentsArrayFromGson {
+        public Game.Comment[] comments;
+    }
+
     /**
      * Helper method for turning an InputStream into a String.
      * @param inStream
