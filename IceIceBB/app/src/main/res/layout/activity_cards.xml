@@ -9,6 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#587e7c"
     tools:context="com.example.lmont.iceicebb.CardsActivity">
 
     <RelativeLayout
@@ -31,9 +32,8 @@
 
         <Button
             android:id="@+id/deckBack"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
+            android:layout_width="140dp"
+            android:layout_height="200dp"
             android:background="@drawable/playing_card_back"/>
 
         <FrameLayout
@@ -43,9 +43,8 @@
 
         <RelativeLayout
             android:id="@+id/cardFace"
-            android:layout_width="0dp"
+            android:layout_width="180dp"
             android:layout_height="match_parent"
-            android:layout_weight="4"
             android:background="@drawable/background_border">
             <ImageView
                 android:layout_width="match_parent"
