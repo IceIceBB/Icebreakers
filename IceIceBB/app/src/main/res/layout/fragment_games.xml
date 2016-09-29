@@ -8,7 +8,9 @@
         android:id="@+id/gameList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"/>
+        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
+        android:background="#587e7c"/>
 
     <TextView
         android:id="@+id/games"
