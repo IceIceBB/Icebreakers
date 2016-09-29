@@ -49,15 +49,16 @@ public class GameDetailActivity extends AppCompatActivity {
         gameRules.setText("Rules: \n"+game.rules);
         gameComments.setText("Comments\n"+game.comment);
         ratingBar.setRating(rating);
-//        playerCount.setText(game.minPlayers);
+        playerCount.setText(game.minPlayers+"-"+game.maxPlayers);
 
 
-        if (game.hasDice){
-            diceRollerButton.setVisibility(View.VISIBLE);
-        }
         if (game.hasCards){
             cardDeckButton.setVisibility(View.VISIBLE);
         }
+        if (game.hasDice){
+            diceRollerButton.setVisibility(View.VISIBLE);
+        }
+
 //ONCLICKS to send user to appropriate tool activity
         diceRollerButton.setOnClickListener(new View.OnClickListener() {
             @Override
