@@ -61,7 +61,6 @@ public class TabMainActivity extends AppCompatActivity {
     Account mAccount;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,10 +107,10 @@ public class TabMainActivity extends AppCompatActivity {
         return newAccount;
     }
 
-    public void setupContentResolver()  {
+    public void setupContentResolver() {
         mAccount = createSyncAccount(this);
 
-        getContentResolver().registerContentObserver(IcebreakerContentProvider.CONTENT_URI,true,new NewsContentObserver(new Handler()));
+        getContentResolver().registerContentObserver(IcebreakerContentProvider.CONTENT_URI, true, new NewsContentObserver(new Handler()));
 
         Bundle settingsBundle = new Bundle();
         settingsBundle.putBoolean(
@@ -120,7 +119,7 @@ public class TabMainActivity extends AppCompatActivity {
                 ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
 
         ContentResolver.requestSync(mAccount, AUTHORITY, settingsBundle);
-        ContentResolver.setSyncAutomatically(mAccount,AUTHORITY,true);
+        ContentResolver.setSyncAutomatically(mAccount, AUTHORITY, true);
         ContentResolver.addPeriodicSync(
                 mAccount,
                 AUTHORITY,
@@ -244,9 +243,11 @@ public class TabMainActivity extends AppCompatActivity {
             return fragment;
         }
 
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+
 
             if (getArguments().getInt(ARG_SECTION_NUMBER) == 1) {
 
