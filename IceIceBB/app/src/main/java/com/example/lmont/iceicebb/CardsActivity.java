@@ -52,7 +52,9 @@ public class CardsActivity extends AppCompatActivity {
                 newCard = drawCard();
                 topLeftValue.setText(String.valueOf(newCard[0]));
                 bottomRightValue.setText(String.valueOf(newCard[0]));
+
                 //TODO: set suit image.
+                setSuitView(newCard);
                 //TODO: set card image.
             }
         });
@@ -151,5 +153,25 @@ public class CardsActivity extends AppCompatActivity {
         //Remove card value, replace suit
         suitLeft.add(val, 0);
         playingCards.add(suit, suitLeft);
+    }
+
+    private void setSuitView (int[] newCard){
+        int suit = newCard[1];
+        if(suit == 1){
+            topLeftSuit.setBackgroundResource(R.drawable.spade_suit);
+            bottomRightSuit.setBackgroundResource((R.drawable.spade_suit));
+        }
+        if(suit == 2){
+            topLeftSuit.setBackgroundResource(R.drawable.heart_suit);
+            bottomRightSuit.setBackgroundResource((R.drawable.heart_suit));
+        }
+        if(suit == 3){
+            topLeftSuit.setBackgroundResource(R.drawable.diamond_suit);
+            bottomRightSuit.setBackgroundResource((R.drawable.diamond_suit));
+        }
+        if(suit == 4){
+            topLeftSuit.setBackgroundResource(R.drawable.club_suit);
+            bottomRightSuit.setBackgroundResource((R.drawable.club_suit));
+        }
     }
 }
