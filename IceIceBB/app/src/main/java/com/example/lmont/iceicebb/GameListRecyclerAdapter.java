@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -31,9 +32,25 @@ public class GameListRecyclerAdapter extends RecyclerView.Adapter<GameListRecycl
         RatingBar ratingBar = holder.ratingBar;
         float rating = (float) (gameArray[position].rating)/2;
         nameTextView.setText(gameArray[position].name);
-        String gameRules = gameArray[position].rules;
+
+
 //        ratingTextView.setText(gameArray[position].materials);
         ratingBar.setRating(rating);
+
+
+
+        if (gameArray[position].tags.contains("drinking")){
+           holder.drinkIcon.setVisibility(View.VISIBLE);
+        }
+        if (gameArray[position].tags.contains("movement")){
+            holder.movingIcon.setVisibility(View.VISIBLE);
+        }
+        if (gameArray[position].tags.contains("car")){
+            holder.carIcon.setVisibility(View.VISIBLE);
+        }
+        if (gameArray[position].tags.contains("writing")){
+            holder.paperIcon.setVisibility(View.VISIBLE);
+        }
     }
 
 
@@ -46,6 +63,10 @@ public class GameListRecyclerAdapter extends RecyclerView.Adapter<GameListRecycl
         CardView cv;
         TextView gameName;
         RatingBar ratingBar;
+        ImageView drinkIcon;
+        ImageView movingIcon;
+        ImageView carIcon;
+        ImageView paperIcon;
 
 
 
@@ -54,6 +75,11 @@ public class GameListRecyclerAdapter extends RecyclerView.Adapter<GameListRecycl
             cv = (CardView)itemView.findViewById(R.id.gameView);
             gameName = (TextView)itemView.findViewById(R.id.gameName);
             ratingBar = (RatingBar)itemView.findViewById(R.id.ratingBar);
+
+            drinkIcon = (ImageView) itemView.findViewById(R.id.drinkIconList);
+            movingIcon = (ImageView) itemView.findViewById(R.id.movingIconList);
+            carIcon = (ImageView) itemView.findViewById(R.id.carIconList);
+            paperIcon = (ImageView) itemView.findViewById(R.id.paperIconList);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
