@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ public class GameDetailActivity extends AppCompatActivity {
         String name = getIntent().getStringExtra("name");
         game = dbHelper.getGameWithName(name);
 
+        RelativeLayout titleBar = (RelativeLayout) findViewById(R.id.gameNameLayout);
         TextView gameName = (TextView)findViewById(R.id.gameNameDetail);
         TextView playerCount = (TextView)findViewById(R.id.playerCount);
         ImageView sfwIconAngel = (ImageView)findViewById(R.id.sfwIconAngel);
@@ -45,6 +47,14 @@ public class GameDetailActivity extends AppCompatActivity {
 
 
         gameName.setText(game.name);
+        gameName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(GameDetailActivity.this, WebViewActivity.class);
+                intent.putExtra("VIDEO", game.url);
+                startActivity(intent);
+            }
+        });
         gameMaterials.setText("Required Materials: "+game.materials);
         gameRules.setText("Rules: \n"+game.rules);
         gameComments.setText("Comments\n"+game.comment);
