@@ -34,6 +34,7 @@ public class FeelingLuckyFragment extends Fragment {
 
     }
 
+    //TODO try to make the switch for
 
     public void setup(View view) {
 
