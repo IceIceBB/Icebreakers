@@ -23,7 +23,8 @@
             android:textStyle="bold"
             android:gravity="center"
             android:textSize="14sp"
-            android:padding="@dimen/small_spacing"/>
+            android:padding="@dimen/small_spacing"
+            android:transitionName="titleTransition"/>
 
         <RatingBar
             android:id="@+id/ratingBar"
@@ -34,7 +35,8 @@
             android:stepSize=".5"
             android:layout_below="@+id/gameName"
             style="@style/Widget.AppCompat.RatingBar.Small"
-            android:layout_margin="@dimen/small_spacing"/>
+            android:layout_margin="@dimen/small_spacing"
+            android:transitionName="ratingBarTransition"/>
 
         <LinearLayout
             android:id="@+id/tagFrame"
@@ -50,7 +52,8 @@
                 android:layout_height="25dp"
                 android:layout_margin="@dimen/small_spacing"
                 android:src="@drawable/drink"
-                android:visibility="gone"/>
+                android:visibility="gone"
+                android:transitionName="drinkIconTransition"/>
 
             <ImageView
                 android:id="@+id/movingIconList"
@@ -58,7 +61,8 @@
                 android:layout_height= "25dp"
                 android:layout_margin="@dimen/small_spacing"
                 android:src="@drawable/moving"
-                android:visibility="gone"/>
+                android:visibility="gone"
+                android:transitionName="movementIconTransition"/>
 
             <ImageView
                 android:id="@+id/carIconList"
@@ -66,7 +70,8 @@
                 android:layout_height= "25dp"
                 android:layout_margin="@dimen/small_spacing"
                 android:src="@drawable/car"
-                android:visibility="gone"/>
+                android:visibility="gone"
+                android:transitionName="carIconTransition"/>
 
             <ImageView
                 android:id="@+id/paperIconList"
@@ -74,7 +79,8 @@
                 android:layout_height= "25dp"
                 android:layout_margin="@dimen/small_spacing"
                 android:src="@drawable/paper"
-                android:visibility="gone"/>
+                android:visibility="gone"
+                android:transitionName="writingIconTransition"/>
 
         </LinearLayout>
 
