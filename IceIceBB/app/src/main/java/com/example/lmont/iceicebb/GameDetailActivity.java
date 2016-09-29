@@ -52,6 +52,7 @@ public class GameDetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(GameDetailActivity.this, WebViewActivity.class);
                 intent.putExtra("VIDEO", game.url);
+                intent.putExtra("NAME", game.name);
                 startActivity(intent);
             }
         });
