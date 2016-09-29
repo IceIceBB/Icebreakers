@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#587e7c"
     tools:context="com.example.lmont.iceicebb.WebViewActivity">
 
     <WebView
@@ -17,9 +18,11 @@
 
     <Button
         android:id="@+id/leaveWebView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Back to Game Description"
-        android:layout_alignParentBottom="true"/>
+        android:padding="40dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:text="Come back and break some more ice!"
+        android:layout_centerInParent="true"
+        android:background="#deb1f4ed"/>
 
 </RelativeLayout>

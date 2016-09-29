@@ -112,18 +112,22 @@ public class GameDetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 switch (view.getId()){
                     case R.id.drinkIcon:
+                        System.out.println("AAAAAAAA TAG ICON WAS CLICKED AAAAAAAAA");
                         Toast drinkToast = Toast.makeText(getApplicationContext(), "This game works well with booze", Toast.LENGTH_SHORT);
                         drinkToast.show();
                         break;
                     case R.id.movingIcon:
+                        System.out.println("AAAAAAAA TAG ICON WAS CLICKED AAAAAAAAA");
                         Toast movingToast = Toast.makeText(getApplicationContext(), "This game requires a bit of physical activity", Toast.LENGTH_SHORT);
                         movingToast.show();
                         break;
                     case R.id.carIcon:
+                        System.out.println("AAAAAAAA TAG ICON WAS CLICKED AAAAAAAAA");
                         Toast carToast = Toast.makeText(getApplicationContext(), "This is an ideal game to play in a car", Toast.LENGTH_SHORT);
                         carToast.show();
                         break;
                     case R.id.paperIcon:
+                        System.out.println("AAAAAAAA TAG ICON WAS CLICKED AAAAAAAAA");
                         Toast paperToast = Toast.makeText(getApplicationContext(), "This game requires a pen and paper", Toast.LENGTH_SHORT);
                         paperToast.show();
                         break;
