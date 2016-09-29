@@ -99,11 +99,18 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
         return game;
     }
 
-    public Game[] getGamesLike(String query) {
+    public Game[] getGamesLike(String query, String tagsQuery, boolean isCleanQuery, boolean isByRatingQuery, boolean isByAlphabetQuery) {
+
+        String selection = "name LIKE '%"+query+"%' AND tags LIKE '%"+tagsQuery+"%'";
+        selection = isCleanQuery ? selection + " AND isclean = 1" : selection;
+        String[] selectionArgs = new String[]{};
+        String orderBy = null;
+        orderBy = isByRatingQuery ? "rating DESC" : isByAlphabetQuery ? "name" : null;
+
         Cursor cursor = getReadableDatabase().query(
                 ICEBREAKERS_TABLE_NAME,
                 ICEBREAKERS_COLUMNS,
-                "name LIKE '%" + query + "%'", null, null, null, null);
+                selection, selectionArgs, null, null, orderBy);
 
         Game[] games = new Game[cursor.getCount()];
 
