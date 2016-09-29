@@ -12,8 +12,6 @@
                                              android:background="#587e7c"
                                              tools:context="com.example.lmont.iceicebb.GameDetailActivity">
 
-
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,7 +23,8 @@
             android:id="@+id/gameNameLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true">
+            android:layout_alignParentTop="true"
+            android:clickable="true">
 
             <TextView
                 android:id="@+id/gameNameDetail"
@@ -33,8 +32,9 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/large_spacing"
                 android:textSize="36sp"
-                android:textStyle="bold"/>
-
+                android:textStyle="bold"
+                android:clickable="true"
+                android:transitionName="titleTransition"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -93,7 +93,8 @@
             android:layout_centerHorizontal="true"
             android:layout_margin="@dimen/small_spacing"
             android:isIndicator="true"
-            android:stepSize=".5"/>
+            android:stepSize=".5"
+            android:transitionName="ratingBarTransition"/>
 
         <LinearLayout
             android:id="@+id/tagFrameDetail"
@@ -109,7 +110,9 @@
                 android:layout_height="25dp"
                 android:layout_margin="@dimen/small_spacing"
                 android:src="@drawable/drink"
-                android:visibility="gone"/>
+                android:visibility="gone"
+                android:clickable="true"
+                android:transitionName="drinkIconTransition"/>
 
             <ImageView
                 android:id="@+id/movingIcon"
@@ -117,7 +120,9 @@
                 android:layout_height="25dp"
                 android:layout_margin="@dimen/small_spacing"
                 android:src="@drawable/moving"
-                android:visibility="gone"/>
+                android:visibility="gone"
+                android:clickable="true"
+                android:transitionName="movementIconTransition"/>
 
             <ImageView
                 android:id="@+id/carIcon"
@@ -125,7 +130,9 @@
                 android:layout_height="25dp"
                 android:layout_margin="@dimen/small_spacing"
                 android:src="@drawable/car"
-                android:visibility="gone"/>
+                android:visibility="gone"
+                android:clickable="true"
+                android:transitionName="carIconTransition"/>
 
             <ImageView
                 android:id="@+id/paperIcon"
@@ -133,7 +140,9 @@
                 android:layout_height="25dp"
                 android:layout_margin="@dimen/small_spacing"
                 android:src="@drawable/paper"
-                android:visibility="gone"/>
+                android:visibility="gone"
+                android:clickable="true"
+                android:transitionName="writingIconTransition"/>
 
         </LinearLayout>
 

@@ -11,8 +11,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.ContentObserver;
-import android.database.Cursor;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,7 +23,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
+import android.transition.ChangeTransform;
+import android.transition.TransitionSet;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -89,10 +88,17 @@ Bonus:
     public static boolean isByAlphabetQuery = false;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP){
+            TransitionSet transition = new TransitionSet();
+            transition.addTransition(new ChangeTransform());
+            getWindow().setSharedElementEnterTransition(transition);
+            getWindow().setSharedElementReturnTransition(transition);
+        }
+
         setContentView(R.layout.activity_tab_main);
 
         handleIntent(getIntent());
@@ -185,9 +191,11 @@ Bonus:
             return fragment;
         }
 
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+
 
             if (getArguments().getInt(ARG_SECTION_NUMBER) == 1) {
 

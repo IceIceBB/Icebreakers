@@ -5,8 +5,8 @@ Project 3 for GA
 
 ##Features
 
-- 10 Games 
-- rating 
+- Multiple Games 
+- Ratings for the Games
 - comment / house rules
 - of-the-day / random
 - popular
