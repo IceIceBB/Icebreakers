@@ -6,4 +6,8 @@
         android:icon="@android:drawable/ic_menu_search"
         app:showAsAction="collapseActionView|ifRoom"
         app:actionViewClass="android.support.v7.widget.SearchView" />
+    <item android:id="@+id/reset"
+        android:title="Reset"
+        android:icon="@android:drawable/stat_notify_sync_noanim"
+        app:showAsAction="collapseActionView|ifRoom"/>
 </menu>

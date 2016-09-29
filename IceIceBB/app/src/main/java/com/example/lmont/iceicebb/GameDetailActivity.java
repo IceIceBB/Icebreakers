@@ -26,7 +26,8 @@ public class GameDetailActivity extends AppCompatActivity {
 
         TextView gameName = (TextView)findViewById(R.id.gameNameDetail);
         TextView playerCount = (TextView)findViewById(R.id.playerCount);
-        ImageView sfwIcon = (ImageView)findViewById(R.id.sfwIcon);
+        ImageView sfwIconAngel = (ImageView)findViewById(R.id.sfwIconAngel);
+        ImageView sfwIconDevil = (ImageView)findViewById(R.id.sfwIconDevil);
         RatingBar ratingBar = (RatingBar)findViewById(R.id.ratingBarDetail);
         TextView gameMaterials = (TextView)findViewById(R.id.gameMaterials);
         TextView gameRules = (TextView)findViewById(R.id.gameRules);
@@ -34,29 +35,30 @@ public class GameDetailActivity extends AppCompatActivity {
         Button diceRollerButton = (Button)findViewById(R.id.diceRollerButton);
         final Button cardDeckButton = (Button)findViewById(R.id.cardFlipperButton);
 
-        final LinearLayout tagHolder = (LinearLayout) findViewById(R.id.tagFrameDetail);
+        LinearLayout tagHolder = (LinearLayout) findViewById(R.id.tagFrameDetail);
         ImageView drinkIcon = (ImageView) findViewById(R.id.drinkIcon);
         ImageView movingIcon = (ImageView) findViewById(R.id.movingIcon);
         ImageView carIcon = (ImageView) findViewById(R.id.carIcon);
         final ImageView paperIcon = (ImageView) findViewById(R.id.paperIcon);
 
+        float rating = (float) (game.rating)/2;
 
-//        Float ratingFloat = Float.valueOf(getIntent().getStringExtra("rating"));
 
         gameName.setText(game.name);
         gameMaterials.setText("Required Materials: "+game.materials);
         gameRules.setText("Rules: \n"+game.rules);
         gameComments.setText("Comments\n"+game.comment);
-        ratingBar.setRating(game.rating);
-//        playerCount.setText(game.minPlayers);
-//        ratingBar.setRating(ratingFloat);
+        ratingBar.setRating(rating);
+        playerCount.setText(game.minPlayers+"-"+game.maxPlayers);
 
-        if (!game.hasDice){
-            diceRollerButton.setVisibility(View.GONE);
+
+        if (game.hasCards){
+            cardDeckButton.setVisibility(View.VISIBLE);
         }
-        if (!game.hasCards){
-            cardDeckButton.setVisibility(View.GONE);
+        if (game.hasDice){
+            diceRollerButton.setVisibility(View.VISIBLE);
         }
+
 //ONCLICKS to send user to appropriate tool activity
         diceRollerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,13 +76,13 @@ public class GameDetailActivity extends AppCompatActivity {
             }
         });
 //IF elses (there's probably a DRYer way) to set SFW icon + visibility of tags
-        if (game.isClean){
-            sfwIcon.setImageDrawable(getResources().getDrawable(R.drawable.angel));
+        if (game.isclean){
+            sfwIconAngel.setVisibility(View.VISIBLE);
         }
-        else {
-            sfwIcon.setImageDrawable(getResources().getDrawable(R.drawable.devil));
+        if (!game.isclean) {
+            sfwIconDevil.setVisibility(View.VISIBLE);
         }
-//TODO: check what tags are present in GAME object and toggle visibility of appropriate tag icons
+//TODOne: check what tags are present in GAME object and toggle visibility of appropriate tag icons
         if (game.tags.contains("drinking")){
             drinkIcon.setVisibility(View.VISIBLE);
         }

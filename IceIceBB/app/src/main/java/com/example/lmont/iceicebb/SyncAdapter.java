@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,6 +18,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.Time;
+import java.util.Calendar;
 
 /**
  * Created by lmont on 9/25/2016.
@@ -71,18 +72,22 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
      */
     @Override
     public void onPerformSync(Account account, Bundle extras, String authority, ContentProviderClient provider, SyncResult syncResult) {
-        Log.d("LEO", "onPerformSync: 1");
+        Log.d("LEO", "onPerformSync: " + Calendar.getInstance().toString());
 
         //Do api call to our API to get new data
         String gamesAPI = "https://floating-island-55807.herokuapp.com/games";
         String questionsAPI = "https://floating-island-55807.herokuapp.com/questions";
         String gamesData = "";
         String questionsData = "";
+
+        HttpURLConnection gamesConnection = null;
+        HttpURLConnection questionsConnection = null;
+
         try {
             URL gamesURL = new URL(gamesAPI);
             URL questionsURL = new URL(questionsAPI);
-            HttpURLConnection gamesConnection = (HttpURLConnection) gamesURL.openConnection();
-            HttpURLConnection questionsConnection = (HttpURLConnection) questionsURL.openConnection();
+            gamesConnection = (HttpURLConnection) gamesURL.openConnection();
+            questionsConnection = (HttpURLConnection) questionsURL.openConnection();
             gamesConnection.connect();
             questionsConnection.connect();
             InputStream gamesInStream = gamesConnection.getInputStream();
@@ -96,12 +101,17 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
         } catch (Throwable e) {
             e.printStackTrace();
             return;
+        } finally {
+            gamesConnection.disconnect();
+            questionsConnection.disconnect();
         }
 
-        mContentResolver.delete(IcebreakerContentProvider.CONTENT_URI_ICEBREAKERS, null, null);
-        mContentResolver.delete(IcebreakerContentProvider.CONTENT_URI_QUESTIONS, null, null);
-
         GamesArrayFromGson g = (new Gson()).fromJson(gamesData, GamesArrayFromGson.class);
+
+        if (g.games.length < TabMainActivity.gamesTableSize)
+            mContentResolver.delete(IcebreakerContentProvider.CONTENT_URI_ICEBREAKERS, null, null);
+//        mContentResolver.delete(IcebreakerContentProvider.CONTENT_URI_QUESTIONS, null, null);
+
         //IcebreakerDBHelper.getInstance(getContext()).resetDB();
 
         for (Game game: g.games) {
@@ -109,7 +119,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
             gamesContentValues.put("name", game.name);
             gamesContentValues.put("comment", game.comment);
             gamesContentValues.put("rules", game.rules);
-            gamesContentValues.put("isClean", game.isClean);
+            gamesContentValues.put("isclean", game.isclean);
             gamesContentValues.put("hasCards", game.hasCards);
             gamesContentValues.put("hasDice", game.hasDice);
             gamesContentValues.put("tags", game.tags);
@@ -122,15 +132,13 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
         }
 
         QuestionsArrayFromGson q = (new Gson()).fromJson(questionsData, QuestionsArrayFromGson.class);
-        for (Question question : q.questions) {
+        for (Game.Question question : q.questions) {
             ContentValues questionsContentValues = new ContentValues();
             questionsContentValues.put("name", question.name);
             questionsContentValues.put("text", question.text);
             questionsContentValues.put("sfw", question.sfw);
             mContentResolver.insert(IcebreakerContentProvider.CONTENT_URI_QUESTIONS, questionsContentValues);
         }
-
-        Log.d("LEO", "onPerformSync: 2");
     }
 
     private class GamesArrayFromGson {
@@ -138,7 +146,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
     }
 
     private class QuestionsArrayFromGson {
-        public Question[] questions;
+        public Game.Question[] questions;
     }
 
     /**
