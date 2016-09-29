@@ -31,6 +31,18 @@ public class CardsActivity extends AppCompatActivity {
     TextView bottomRightValue;
     ImageView bottomRightSuit;
 
+    ImageView aSuitIcon;
+    ImageView bSuitIconOne;
+    ImageView bSuitIconTwo;
+    ImageView cSuitIconOne;
+    ImageView cSuitIconTwo;
+    ImageView cSuitIconThree;
+    ImageView cSuitIconFour;
+    ImageView dSuitIconOne;
+    ImageView dSuitIconTwo;
+    ImageView eSuitIconOne;
+    ImageView eSuitIconTwo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +57,19 @@ public class CardsActivity extends AppCompatActivity {
         bottomRightValue = (TextView) findViewById(R.id.bottomRightValue);
         bottomRightSuit = (ImageView) findViewById(R.id.bottomRightSuit);
 
+        //Find all 10 suits icons
+        aSuitIcon = (ImageView) findViewById(R.id.aSuitIcon);
+        bSuitIconOne = (ImageView) findViewById(R.id.bSuitIconOne);
+        bSuitIconTwo = (ImageView) findViewById(R.id.bSuitIconTwo);
+        cSuitIconOne = (ImageView) findViewById(R.id.cSuitIconOne);
+        cSuitIconTwo = (ImageView) findViewById(R.id.cSuitIconTwo);
+        cSuitIconThree = (ImageView) findViewById(R.id.cSuitIconThree);
+        cSuitIconFour = (ImageView) findViewById(R.id.cSuitIconFour);
+        dSuitIconOne = (ImageView) findViewById(R.id.dSuitIconOne);
+        dSuitIconTwo = (ImageView) findViewById(R.id.dSuitIconTwo);
+        eSuitIconOne = (ImageView) findViewById(R.id.eSuitIconOne);
+        eSuitIconTwo = (ImageView) findViewById(R.id.eSuitIconTwo);
+
 
         nextCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +81,11 @@ public class CardsActivity extends AppCompatActivity {
                 //TODO: set suit image.
                 setSuitView(newCard);
                 //TODO: set card image.
+                if(newCard[0] < 11){
+                    //Call suitIconPopulater
+                }else{
+                    //Call faceCardPopulator
+                }
             }
         });
 
@@ -160,18 +190,71 @@ public class CardsActivity extends AppCompatActivity {
         if(suit == 1){
             topLeftSuit.setBackgroundResource(R.drawable.spade_suit);
             bottomRightSuit.setBackgroundResource((R.drawable.spade_suit));
+
+            //Set all suit icons to spade
+            aSuitIcon.setBackgroundResource((R.drawable.spade_suit));
+            bSuitIconOne.setBackgroundResource((R.drawable.spade_suit));
+            bSuitIconTwo.setBackgroundResource((R.drawable.spade_suit));
+            cSuitIconOne.setBackgroundResource((R.drawable.spade_suit));
+            cSuitIconTwo.setBackgroundResource((R.drawable.spade_suit));
+            cSuitIconThree.setBackgroundResource((R.drawable.spade_suit));
+            cSuitIconFour.setBackgroundResource((R.drawable.spade_suit));
+            dSuitIconOne.setBackgroundResource((R.drawable.spade_suit));
+            dSuitIconTwo.setBackgroundResource((R.drawable.spade_suit));
+            eSuitIconOne.setBackgroundResource((R.drawable.spade_suit));
+            eSuitIconTwo.setBackgroundResource((R.drawable.spade_suit));
+
         }
         if(suit == 2){
             topLeftSuit.setBackgroundResource(R.drawable.heart_suit);
             bottomRightSuit.setBackgroundResource((R.drawable.heart_suit));
+
+            //Set all suit icons to heart
+            aSuitIcon.setBackgroundResource((R.drawable.heart_suit));
+            bSuitIconOne.setBackgroundResource((R.drawable.heart_suit));
+            bSuitIconTwo.setBackgroundResource((R.drawable.heart_suit));
+            cSuitIconOne.setBackgroundResource((R.drawable.heart_suit));
+            cSuitIconTwo.setBackgroundResource((R.drawable.heart_suit));
+            cSuitIconThree.setBackgroundResource((R.drawable.heart_suit));
+            cSuitIconFour.setBackgroundResource((R.drawable.heart_suit));
+            dSuitIconOne.setBackgroundResource((R.drawable.heart_suit));
+            dSuitIconTwo.setBackgroundResource((R.drawable.heart_suit));
+            eSuitIconOne.setBackgroundResource((R.drawable.heart_suit));
+            eSuitIconTwo.setBackgroundResource((R.drawable.heart_suit));
         }
         if(suit == 3){
             topLeftSuit.setBackgroundResource(R.drawable.diamond_suit);
             bottomRightSuit.setBackgroundResource((R.drawable.diamond_suit));
+
+            //Set all suit icons to diamond
+            aSuitIcon.setBackgroundResource((R.drawable.diamond_suit));
+            bSuitIconOne.setBackgroundResource((R.drawable.diamond_suit));
+            bSuitIconTwo.setBackgroundResource((R.drawable.diamond_suit));
+            cSuitIconOne.setBackgroundResource((R.drawable.diamond_suit));
+            cSuitIconTwo.setBackgroundResource((R.drawable.diamond_suit));
+            cSuitIconThree.setBackgroundResource((R.drawable.diamond_suit));
+            cSuitIconFour.setBackgroundResource((R.drawable.diamond_suit));
+            dSuitIconOne.setBackgroundResource((R.drawable.diamond_suit));
+            dSuitIconTwo.setBackgroundResource((R.drawable.diamond_suit));
+            eSuitIconOne.setBackgroundResource((R.drawable.diamond_suit));
+            eSuitIconTwo.setBackgroundResource((R.drawable.diamond_suit));
         }
         if(suit == 4){
             topLeftSuit.setBackgroundResource(R.drawable.club_suit);
             bottomRightSuit.setBackgroundResource((R.drawable.club_suit));
+
+            //Set all suit icons to club
+            aSuitIcon.setBackgroundResource((R.drawable.club_suit));
+            bSuitIconOne.setBackgroundResource((R.drawable.club_suit));
+            bSuitIconTwo.setBackgroundResource((R.drawable.club_suit));
+            cSuitIconOne.setBackgroundResource((R.drawable.club_suit));
+            cSuitIconTwo.setBackgroundResource((R.drawable.club_suit));
+            cSuitIconThree.setBackgroundResource((R.drawable.club_suit));
+            cSuitIconFour.setBackgroundResource((R.drawable.club_suit));
+            dSuitIconOne.setBackgroundResource((R.drawable.club_suit));
+            dSuitIconTwo.setBackgroundResource((R.drawable.club_suit));
+            eSuitIconOne.setBackgroundResource((R.drawable.club_suit));
+            eSuitIconTwo.setBackgroundResource((R.drawable.club_suit));
         }
     }
 }
