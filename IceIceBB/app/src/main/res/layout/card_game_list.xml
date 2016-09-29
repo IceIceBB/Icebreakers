@@ -1,50 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/gameView"
-    android:layout_width="140dp"
-    android:layout_height="100dp"
-    android:layout_margin="5dp"
-    card_view:cardCornerRadius="@dimen/small_spacing"
+    android:layout_width="190dp"
+    android:layout_height="150dp"
     android:layout_centerHorizontal="true"
-    android:layout_gravity="center">
+    android:layout_gravity="center"
+    android:layout_margin="5dp"
+    card_view:cardCornerRadius="@dimen/small_spacing">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#deb1f4ed">
+        android:background="@color/colorPrimary">
 
-        <TextView
-            android:id="@+id/gameName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#82d3ff"
-            android:textColor="#8b000000"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textSize="14sp"
-            android:padding="@dimen/small_spacing"
-            android:transitionName="titleTransition"/>
-
-        <RatingBar
-            android:id="@+id/ratingBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:isIndicator="true"
-            android:stepSize=".5"
-            android:layout_below="@+id/gameName"
-            style="@style/Widget.AppCompat.RatingBar.Small"
-            android:layout_margin="@dimen/small_spacing"
-            android:transitionName="ratingBarTransition"/>
 
         <LinearLayout
             android:id="@+id/tagFrame"
+            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ratingBar"
             android:layout_centerHorizontal="true"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
 
             <ImageView
                 android:id="@+id/drinkIconList"
@@ -58,7 +38,7 @@
             <ImageView
                 android:id="@+id/movingIconList"
                 android:layout_width="25dp"
-                android:layout_height= "25dp"
+                android:layout_height="25dp"
                 android:layout_margin="@dimen/small_spacing"
                 android:src="@drawable/moving"
                 android:visibility="gone"
@@ -67,7 +47,7 @@
             <ImageView
                 android:id="@+id/carIconList"
                 android:layout_width="25dp"
-                android:layout_height= "25dp"
+                android:layout_height="25dp"
                 android:layout_margin="@dimen/small_spacing"
                 android:src="@drawable/car"
                 android:visibility="gone"
@@ -76,13 +56,38 @@
             <ImageView
                 android:id="@+id/paperIconList"
                 android:layout_width="25dp"
-                android:layout_height= "25dp"
+                android:layout_height="25dp"
                 android:layout_margin="@dimen/small_spacing"
                 android:src="@drawable/paper"
                 android:visibility="gone"
                 android:transitionName="writingIconTransition"/>
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/gameName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@color/colorPrimaryDark"
+            android:gravity="center"
+            android:padding="@dimen/small_spacing"
+            android:textColor="#8b000000"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/gameName"
+            android:layout_centerHorizontal="true"
+            android:isIndicator="true"
+            android:paddingTop="5dp"
+            android:stepSize=".5"/>
 
     </RelativeLayout>
 </android.support.v7.widget.CardView>
