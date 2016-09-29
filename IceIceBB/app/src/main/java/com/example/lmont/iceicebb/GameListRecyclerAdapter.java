@@ -1,8 +1,11 @@
 package com.example.lmont.iceicebb;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,9 +87,28 @@ public class GameListRecyclerAdapter extends RecyclerView.Adapter<GameListRecycl
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    View title = view.findViewById(R.id.gameName);
+                    View rating = view.findViewById(R.id.ratingBar);
+                    View drinkingIcon = view.findViewById(R.id.drinkIconList);
+                    View movingIcon = view.findViewById(R.id.movingIconList);
+                    View carIcon = view.findViewById(R.id.carIconList);
+                    View paperIcon = view.findViewById(R.id.paperIconList);
+
+                    Pair<View, String> pair1 = Pair.create(title, "titleTransition");
+                    Pair<View, String> pair2 = Pair.create(rating, "ratingBarTransition");
+                    Pair<View, String> pair3 = Pair.create(drinkingIcon, "drinkIconTransition");
+                    Pair<View, String> pair4 = Pair.create(movingIcon, "movementIconTransition");
+                    Pair<View, String> pair5 = Pair.create(carIcon, "carIconTransition");
+                    Pair<View, String> pair6 = Pair.create(paperIcon, "writingIconTransition");
+
                     Intent intent = new Intent(view.getContext(), GameDetailActivity.class);
                     intent.putExtra("name", gameName.getText());
-                    view.getContext().startActivity(intent);
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) view.getContext(), pair1, pair2, pair3, pair4, pair5, pair6);
+                        view.getContext().startActivity(intent, options.toBundle());
+                    }else {
+                        view.getContext().startActivity(intent);
+                    }
                 }
             });
         }
