@@ -35,14 +35,10 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.lmont.iceicebb.Fragments.FeelingLuckyFragment;
 import com.example.lmont.iceicebb.Fragments.GamesFragment;
 import com.example.lmont.iceicebb.Fragments.ToolsFragment;
-
-import java.util.ArrayList;
 
 public class TabMainActivity extends AppCompatActivity {
 
@@ -65,6 +61,8 @@ Bonus:
 []   Add multiple types of dice for dice roller
 []   Add ability to draw Jokers from deck
 */
+
+
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
@@ -90,6 +88,7 @@ Bonus:
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP){
             TransitionSet transition = new TransitionSet();
