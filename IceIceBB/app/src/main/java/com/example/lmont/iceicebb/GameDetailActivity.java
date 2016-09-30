@@ -8,9 +8,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import static com.example.lmont.iceicebb.TabMainActivity.isByAlphabetQuery;
+import static com.example.lmont.iceicebb.TabMainActivity.isByRatingQuery;
+import static com.example.lmont.iceicebb.TabMainActivity.isCleanQuery;
+import static com.example.lmont.iceicebb.TabMainActivity.query;
+import static com.example.lmont.iceicebb.TabMainActivity.tagsQuery;
 
 public class GameDetailActivity extends AppCompatActivity {
 
@@ -25,7 +30,8 @@ public class GameDetailActivity extends AppCompatActivity {
         String name = getIntent().getStringExtra("name");
         game = dbHelper.getGameWithName(name);
 
-        RelativeLayout titleBar = (RelativeLayout) findViewById(R.id.gameNameLayout);
+
+        LinearLayout titleBar = (LinearLayout) findViewById(R.id.gameNameLayout);
         TextView gameName = (TextView)findViewById(R.id.gameNameDetail);
         TextView playerCount = (TextView)findViewById(R.id.playerCount);
         ImageView sfwIconAngel = (ImageView)findViewById(R.id.sfwIconAngel);
@@ -94,6 +100,11 @@ public class GameDetailActivity extends AppCompatActivity {
             sfwIconDevil.setVisibility(View.VISIBLE);
         }
 //TODOne: check what tags are present in GAME object and toggle visibility of appropriate tag icons
+        drinkIcon.setVisibility(View.GONE);
+        movingIcon.setVisibility(View.GONE);
+        carIcon.setVisibility(View.GONE);
+        paperIcon.setVisibility(View.GONE);
+
         if (game.tags.contains("drinking")){
             drinkIcon.setVisibility(View.VISIBLE);
         }
@@ -107,33 +118,45 @@ public class GameDetailActivity extends AppCompatActivity {
             paperIcon.setVisibility(View.VISIBLE);
         }
 
-        tagHolder.setOnClickListener(new View.OnClickListener() {
+        carIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switch (view.getId()){
-                    case R.id.drinkIcon:
-                        System.out.println("AAAAAAAA TAG ICON WAS CLICKED AAAAAAAAA");
-                        Toast drinkToast = Toast.makeText(getApplicationContext(), "This game works well with booze", Toast.LENGTH_SHORT);
-                        drinkToast.show();
-                        break;
-                    case R.id.movingIcon:
-                        System.out.println("AAAAAAAA TAG ICON WAS CLICKED AAAAAAAAA");
-                        Toast movingToast = Toast.makeText(getApplicationContext(), "This game requires a bit of physical activity", Toast.LENGTH_SHORT);
-                        movingToast.show();
-                        break;
-                    case R.id.carIcon:
-                        System.out.println("AAAAAAAA TAG ICON WAS CLICKED AAAAAAAAA");
-                        Toast carToast = Toast.makeText(getApplicationContext(), "This is an ideal game to play in a car", Toast.LENGTH_SHORT);
+                Toast carToast = Toast.makeText(getApplicationContext(), "Car: This is an ideal game to play while (someone else is) driving", Toast.LENGTH_SHORT);
                         carToast.show();
-                        break;
-                    case R.id.paperIcon:
-                        System.out.println("AAAAAAAA TAG ICON WAS CLICKED AAAAAAAAA");
-                        Toast paperToast = Toast.makeText(getApplicationContext(), "This game requires a pen and paper", Toast.LENGTH_SHORT);
-                        paperToast.show();
-                        break;
-                }
+            }
+        });
+        drinkIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast drinkToast = Toast.makeText(getApplicationContext(), "Drinking: This game is best played while drinking. Cheers!", Toast.LENGTH_SHORT);
+                drinkToast.show();
+            }
+        });
+        movingIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast movingToast = Toast.makeText(getApplicationContext(), "Movement: This game requires a bit of physical activity.", Toast.LENGTH_SHORT);
+                movingToast.show();
+            }
+        });
+        paperIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast writingToast = Toast.makeText(getApplicationContext(), "Writing: This game requires you to write something down", Toast.LENGTH_SHORT);
+                writingToast.show();
             }
         });
 
+    }
+    public void onBackPressed() {
+        query = "";
+        tagsQuery = "";
+        isCleanQuery = false;
+        isByRatingQuery = false;
+        isByAlphabetQuery = false;
+
+        Intent intent = new Intent(this,TabMainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

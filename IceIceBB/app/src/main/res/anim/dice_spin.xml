@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rotate xmlns:android="http://schemas.android.com/apk/res/android"
-    android:interpolator="@android:anim/accelerate_decelerate_interpolator"
 
-    android:duration="300"
-    android:fillAfter="true"
-    android:fromDegrees="0"
-    android:toDegrees="720"
-    android:pivotX="50%"
-    android:pivotY="50%" />
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+     android:shareInterpolator="false"
+     android:fillAfter="true"
+     android:duration="300">
+    <translate xmlns:android="http://schemas.android.com/apk/res/android"
+               android:duration="300"
+               android:fromXDelta="0"
+               android:fromYDelta="0"
+               android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+               android:toXDelta="0"
+               android:toYDelta="0" />
+    <rotate xmlns:android="http://schemas.android.com/apk/res/android"
+            android:duration="300"
+            android:fromDegrees="0"
+            android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+            android:pivotX="50%"
+            android:pivotY="50%"
+            android:toDegrees="720" />
+
+</set>
