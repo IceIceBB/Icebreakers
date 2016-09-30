@@ -169,21 +169,17 @@
         </ScrollView>
 
 
-        <ScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:paddingBottom="10dp"
-            android:layout_alignParentBottom="true">
+        <!--<TextView-->
+                <!--android:id="@+id/gameComments"-->
+                <!--android:background="@color/colorPrimaryDark"-->
+                <!--android:elevation="2dp"-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:paddingBottom="20dp"-->
+                <!--android:paddingRight="100dp"-->
+                <!--android:layout_margin="@dimen/large_spacing"/>-->
 
-            <TextView
-                android:id="@+id/gameComments"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="20dp"
-                android:paddingRight="100dp"
-                android:layout_margin="@dimen/large_spacing"/>
-
-        </ScrollView>
 
 
         <Button
@@ -205,6 +201,19 @@
             android:layout_toStartOf="@+id/diceRollerButton"
             android:background="@drawable/playing_cards_icon_trans"
             android:visibility="invisible"/>
+
+        <Button
+            android:id="@+id/rate"
+            android:text="Rate This Game"
+            android:background="@color/colorAccent"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:fontFamily="sans-serif"
+            android:textSize="12sp"
+            android:textStyle="normal|italic"
+            android:layout_alignTop="@+id/cardFlipperButton"
+            android:layout_alignLeft="@+id/gameMaterials"
+            android:layout_alignStart="@+id/gameMaterials"/>
 
     </RelativeLayout>
 

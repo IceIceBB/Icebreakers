@@ -4,26 +4,19 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.ListViewCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,12 +35,9 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
+
 import org.json.JSONObject;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.sql.Connection;
-import java.util.ArrayList;
+
 import static com.example.lmont.iceicebb.TabMainActivity.isByAlphabetQuery;
 import static com.example.lmont.iceicebb.TabMainActivity.isByRatingQuery;
 import static com.example.lmont.iceicebb.TabMainActivity.isCleanQuery;
@@ -76,16 +66,16 @@ public class GameDetailActivity extends AppCompatActivity {
         context = this;
 
         LinearLayout titleBar = (LinearLayout) findViewById(R.id.gameNameLayout);
-        TextView gameName = (TextView)findViewById(R.id.gameNameDetail);
-        TextView playerCount = (TextView)findViewById(R.id.playerCount);
-        ImageView sfwIconAngel = (ImageView)findViewById(R.id.sfwIconAngel);
-        ImageView sfwIconDevil = (ImageView)findViewById(R.id.sfwIconDevil);
-        RatingBar ratingBar = (RatingBar)findViewById(R.id.ratingBarDetail);
-        TextView gameMaterials = (TextView)findViewById(R.id.gameMaterials);
-        TextView gameRules = (TextView)findViewById(R.id.gameRules);
-        TextView gameComments = (TextView)findViewById(R.id.gameComments);
-        Button diceRollerButton = (Button)findViewById(R.id.diceRollerButton);
-        final Button cardDeckButton = (Button)findViewById(R.id.cardFlipperButton);
+        TextView gameName = (TextView) findViewById(R.id.gameNameDetail);
+        TextView playerCount = (TextView) findViewById(R.id.playerCount);
+        ImageView sfwIconAngel = (ImageView) findViewById(R.id.sfwIconAngel);
+        ImageView sfwIconDevil = (ImageView) findViewById(R.id.sfwIconDevil);
+        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBarDetail);
+        TextView gameMaterials = (TextView) findViewById(R.id.gameMaterials);
+        TextView gameRules = (TextView) findViewById(R.id.gameRules);
+        Button diceRollerButton = (Button) findViewById(R.id.diceRollerButton);
+        final Button cardDeckButton = (Button) findViewById(R.id.cardFlipperButton);
+        Button rateThis = (Button) findViewById(R.id.rate);
 
         LinearLayout tagHolder = (LinearLayout) findViewById(R.id.tagFrameDetail);
         final ImageView drinkIcon = (ImageView) findViewById(R.id.drinkIcon);
@@ -108,7 +98,6 @@ public class GameDetailActivity extends AppCompatActivity {
         });
         gameMaterials.setText("Required Materials: " + game.materials);
         gameRules.setText("Rules: \n" + game.rules);
-        gameComments.setText("Comments\n" + game.comment);
         ratingBar.setRating(rating);
         playerCount.setText(game.minPlayers + "-" + game.maxPlayers);
 
@@ -120,7 +109,7 @@ public class GameDetailActivity extends AppCompatActivity {
             diceRollerButton.setVisibility(View.VISIBLE);
         }
 
-        gameComments.setOnClickListener(new View.OnClickListener() {
+        rateThis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openComments();
@@ -151,6 +140,7 @@ public class GameDetailActivity extends AppCompatActivity {
             sfwIconDevil.setVisibility(View.VISIBLE);
         }
 //TODOne: check what tags are present in GAME object and toggle visibility of appropriate tag icons
+
         if (game.tags.contains("drinking")) {
             drinkIcon.setVisibility(View.VISIBLE);
         }
@@ -249,8 +239,7 @@ public class GameDetailActivity extends AppCompatActivity {
 
                             final String mRequestBody = jsonBody.toString();
 
-                            StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>()
-                            {
+                            StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
                                     Log.i("VOLLEY", response);
@@ -352,7 +341,7 @@ public class GameDetailActivity extends AppCompatActivity {
         isByRatingQuery = false;
         isByAlphabetQuery = false;
 
-        Intent intent = new Intent(this,TabMainActivity.class);
+        Intent intent = new Intent(this, TabMainActivity.class);
         startActivity(intent);
         finish();
     }
