@@ -85,6 +85,36 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
         this.onCreate(sqLiteDatabase);
     }
 
+    public void deleteAllComments() {
+        getWritableDatabase().delete(COMMENTS_TABLE_NAME,null,null);
+    }
+
+    public void addComment(ContentValues cv) {
+        getWritableDatabase().insert(COMMENTS_TABLE_NAME, null, cv);
+    }
+
+    public Game.Comment[] getCommentsForGame(String gameName) {
+        String selection = "gameName = '"+gameName+"'";
+
+        Cursor cursor = getReadableDatabase().query(
+                COMMENTS_TABLE_NAME,
+                COMMENTS_COLUMNS,
+                selection, null, null, null, null);;
+
+        Game.Comment[] comments = new Game.Comment[cursor.getCount()];
+
+        for (int x=0; x<comments.length; x++) {
+            cursor.moveToPosition(x);
+            comments[x] = new Game.Comment();
+            comments[x].gameName = cursor.getString(cursor.getColumnIndex("gameName"));
+            comments[x].userName = cursor.getString(cursor.getColumnIndex("userName"));
+            comments[x].text = cursor.getString(cursor.getColumnIndex("text"));
+            comments[x].rating = cursor.getInt(cursor.getColumnIndex("rating"));
+        }
+
+        return comments;
+    }
+
     public Game getGameWithName(String query) {
         Cursor cursor = getReadableDatabase().query(
                 ICEBREAKERS_TABLE_NAME,
