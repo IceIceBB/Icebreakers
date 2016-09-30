@@ -2,6 +2,7 @@ package com.example.lmont.iceicebb.Fragments;
 
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.lmont.iceicebb.Game;
@@ -23,6 +25,9 @@ import com.facebook.FacebookSdk;
 import com.facebook.Profile;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.model.ShareMediaContent;
+import com.facebook.share.widget.ShareButton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,8 +35,10 @@ import com.facebook.login.widget.LoginButton;
 public class FeelingLuckyFragment extends Fragment {
 
     Button feelingLucky;
+    ImageButton devilButton, angelButton;
     Game.Question question;
     TextView questionView;
+    static String currentQuestionText;
 
     private TextView mTextDetails;
 
@@ -60,8 +67,8 @@ public class FeelingLuckyFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FacebookSdk.sdkInitialize(getActivity().getApplicationContext());
-        mCallbackManger = CallbackManager.Factory.create();
+//        FacebookSdk.sdkInitialize(getActivity().getApplicationContext());
+//        mCallbackManger = CallbackManager.Factory.create();
     }
 
     @Override
@@ -81,47 +88,79 @@ public class FeelingLuckyFragment extends Fragment {
 
         final Animation bounce = AnimationUtils.loadAnimation(getContext(), R.anim.bounce);
 
-
         IcebreakerDBHelper dbHelper = IcebreakerDBHelper.getInstance(getContext());
-        question = dbHelper.getRandomQuestion(true);
+        question = dbHelper.getRandomQuestion(1);
 
         questionView = (TextView) view.findViewById(R.id.questionView);
         questionView.setText(question.text);
         questionView.setAnimation(bounce);
 
 
+        angelButton = (ImageButton) view.findViewById(R.id.angel_btn);
+        devilButton = (ImageButton) view.findViewById(R.id.devil_btn);
         feelingLucky = (Button) view.findViewById(R.id.feeling_lucky_btn);
         feelingLucky.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 IcebreakerDBHelper dbHelper = IcebreakerDBHelper.getInstance(getContext());
-                question = dbHelper.getRandomQuestion(true);
+                question = dbHelper.getRandomQuestion(-1);
                 questionView.setText(question.text);
                 questionView.startAnimation(bounce);
+                currentQuestionText = question.text;
+            }
+        });
+        devilButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                IcebreakerDBHelper dbHelper = IcebreakerDBHelper.getInstance(getContext());
+                question = dbHelper.getRandomQuestion(0);
+                questionView.setText(question.text);
+                questionView.startAnimation(bounce);
+                currentQuestionText = question.text;
+            }
+        });
+        angelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                IcebreakerDBHelper dbHelper = IcebreakerDBHelper.getInstance(getContext());
+                question = dbHelper.getRandomQuestion(1);
+                questionView.setText(question.text);
+                questionView.startAnimation(bounce);
+                currentQuestionText = question.text;
             }
         });
 
+        ShareButton shareButton = (ShareButton) view.findViewById(R.id.feeling_lucky_share_button);
+        ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                .setContentUrl(Uri.parse("https://github.com/IceIceBB/Icebreakers"))
+                .setContentTitle("Question of the Day")
+                .setContentDescription(currentQuestionText)
+                .build();
+
+        shareButton.setShareContent(linkContent);
     }
 
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+//    @Override
+//    public void onViewCreated(View view, Bundle savedInstanceState) {
+//        super.onViewCreated(view, savedInstanceState);
+//
+//        LoginButton loginButton = (LoginButton) view.findViewById(R.id.login_button);
+//
+//        loginButton.setReadPermissions("email");
+//
+//        loginButton.setFragment(this);
+//
+//        loginButton.registerCallback(mCallbackManger, mCallback);
+//    }
 
-        LoginButton loginButton = (LoginButton) view.findViewById(R.id.login_button);
-
-        loginButton.setReadPermissions("email");
-
-        loginButton.setFragment(this);
-
-        loginButton.registerCallback(mCallbackManger, mCallback);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        mCallbackManger.onActivityResult(requestCode, resultCode, data);
-    }
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        mCallbackManger.onActivityResult(requestCode, resultCode, data);
+//    }
 
 }
 

@@ -1,10 +1,16 @@
 package com.example.lmont.iceicebb;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Paint;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -55,6 +61,7 @@ public class GameDetailActivity extends AppCompatActivity {
      */
     private GoogleApiClient client;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,19 +93,25 @@ public class GameDetailActivity extends AppCompatActivity {
 
 
         gameName.setText(game.name);
-        gameName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(GameDetailActivity.this, WebViewActivity.class);
-                intent.putExtra("VIDEO", game.url);
-                intent.putExtra("NAME", game.name);
-                startActivity(intent);
-            }
-        });
+        if(game.url != null && !game.url.toLowerCase().equals("none")) {
+            gameName.setPaintFlags(gameName.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
+            gameName.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(GameDetailActivity.this, WebViewActivity.class);
+                    intent.putExtra("VIDEO", game.url);
+                    intent.putExtra("NAME", game.name);
+                    startActivity(intent);
+                }
+            });
+        }
         gameMaterials.setText("Required Materials: " + game.materials);
         gameRules.setText("Rules: \n" + game.rules);
         ratingBar.setRating(rating);
-        playerCount.setText(game.minPlayers + "-" + game.maxPlayers);
+        String numPlayers = (game.maxPlayers >= 1000) ?
+                "Min: " + game.minPlayers :
+                game.minPlayers + "-" + String.valueOf(game.maxPlayers);
+        playerCount.setText(numPlayers);
 
 
         if (game.hasCards) {
@@ -199,7 +212,7 @@ public class GameDetailActivity extends AppCompatActivity {
         ListView listView = (ListView) dialogView.findViewById(R.id.comments_dialog_userreviews_listview);
 
         Game.Comment[] comments = dbHelper.getCommentsForGame(name);
-        ArrayAdapter<Game.Comment> adapter = new ArrayAdapter(context, android.R.layout.simple_list_item_1);
+        ArrayAdapter<Game.Comment> adapter = new ArrayAdapter(context, R.layout.comment_listitem);
 
         for (Game.Comment comment : comments) {
             adapter.add(comment);
@@ -207,7 +220,7 @@ public class GameDetailActivity extends AppCompatActivity {
 
         listView.setAdapter(adapter);
 
-        builder.setMessage("Add New Card Game")
+        final AlertDialog dialog = builder.setMessage("Add Your Rating")
                 .setPositiveButton("Comment", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -224,7 +237,17 @@ public class GameDetailActivity extends AppCompatActivity {
                             jsonBody.put("gameName", name);
                             jsonBody.put("userName", nameEditText.getText().toString());
                             jsonBody.put("text", reviewEditText.getText().toString());
-                            jsonBody.put("rating", ratingBar.getNumStars() * 2);
+                            jsonBody.put("rating", ratingBar.getRating()*2);
+
+                            ContentValues cv = new ContentValues();
+                            cv.put("gameName", name);
+                            cv.put("userName", nameEditText.getText().toString());
+                            cv.put("text", reviewEditText.getText().toString());
+                            cv.put("rating", ratingBar.getRating()*2);
+
+                            updateRating();
+
+                            dbHelper.addComment(cv);
 
                             final String mRequestBody = jsonBody.toString();
 
@@ -238,7 +261,8 @@ public class GameDetailActivity extends AppCompatActivity {
                                 public void onErrorResponse(VolleyError error) {
                                     Log.e("VOLLEY", error.toString());
                                 }
-                            }) {
+                            })
+                            {
                                 @Override
                                 public String getBodyContentType() {
                                     return "application/json; charset=utf-8";
@@ -266,6 +290,7 @@ public class GameDetailActivity extends AppCompatActivity {
                             };
                             requestQueue.add(stringRequest);
                         } catch (Exception e) {
+                            dbHelper.deleteAllComments();
                             e.printStackTrace();
                         }
 
@@ -276,10 +301,24 @@ public class GameDetailActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         // Cancel
                     }
-                });
-        builder.show();
+                }).create();
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#03a9f4"));
+                dialog.getWindow().setBackgroundDrawable(colorDrawable);
+            }
+        });
+        dialog.show();
+        TextView msgTxt = (TextView) dialog.findViewById(android.R.id.message);
+        msgTxt.setTextSize(20);
+        msgTxt.setTextColor(Color.parseColor("#9b000000"));
     }
 
+    protected void updateRating() {
+        RatingBar ratingBar = (RatingBar)findViewById(R.id.ratingBarDetail);
+        ratingBar.setRating(dbHelper.getGameWithName(name).rating / 2);
+    }
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.

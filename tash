@@ -1,0 +1,24 @@
+[1mdiff --git a/IceIceBB/app/src/main/java/com/example/lmont/iceicebb/GameDetailActivity.java b/IceIceBB/app/src/main/java/com/example/lmont/iceicebb/GameDetailActivity.java[m
+[1mindex daad190..bba484e 100644[m
+[1m--- a/IceIceBB/app/src/main/java/com/example/lmont/iceicebb/GameDetailActivity.java[m
+[1m+++ b/IceIceBB/app/src/main/java/com/example/lmont/iceicebb/GameDetailActivity.java[m
+[36m@@ -122,7 +122,7 @@[m [mpublic class GameDetailActivity extends AppCompatActivity {[m
+             @Override[m
+             public void onClick(View view) {[m
+                 Toast carToast = Toast.makeText(getApplicationContext(), "Car: This is an ideal game to play while (someone else is) driving", Toast.LENGTH_SHORT);[m
+[31m-                        carToast.show();[m
+[32m+[m[32m                carToast.show();[m
+             }[m
+         });[m
+         drinkIcon.setOnClickListener(new View.OnClickListener() {[m
+[1mdiff --git a/IceIceBB/app/src/main/res/anim/dice_spin.xml b/IceIceBB/app/src/main/res/anim/dice_spin.xml[m
+[1mindex 77d689c..d027836 100644[m
+[1m--- a/IceIceBB/app/src/main/res/anim/dice_spin.xml[m
+[1m+++ b/IceIceBB/app/src/main/res/anim/dice_spin.xml[m
+[36m@@ -1,6 +1,4 @@[m
+ <?xml version="1.0" encoding="utf-8"?>[m
+[31m-[m
+[31m-<?xml version="1.0" encoding="utf-8"?>[m
+ <set xmlns:android="http://schemas.android.com/apk/res/android"[m
+      android:shareInterpolator="false"[m
+      android:fillAfter="true"[m
