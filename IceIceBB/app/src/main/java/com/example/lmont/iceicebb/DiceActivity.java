@@ -63,7 +63,12 @@ public class DiceActivity extends AppCompatActivity {
         int dOneResult = rollResults[0];
         int dTwoResult = rollResults[1];
 
+//        Animation bounce = AnimationUtils.loadAnimation(DiceActivity.this,R.anim.bounce);
         Animation spinAnimation = AnimationUtils.loadAnimation(DiceActivity.this, R.anim.dice_spin);
+//        diceOne.startAnimation(bounce);
+//        diceTwo.startAnimation(bounce);
+//        diceResultOne.startAnimation(bounce);
+//        diceResultTwo.startAnimation(bounce);
         diceOne.startAnimation(spinAnimation);
         diceTwo.startAnimation(spinAnimation);
         diceResultOne.startAnimation(spinAnimation);

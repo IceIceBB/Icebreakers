@@ -55,4 +55,11 @@ public class Game {
                     '}';
         }
     }
+
+    public static class Comment {
+        public String gameName;
+        public String userName;
+        public String text;
+        public int rating;
+    }
 }

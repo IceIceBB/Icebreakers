@@ -45,7 +45,7 @@
         <RelativeLayout
             android:id="@+id/cardFace"
             android:layout_width="180dp"
-            android:layout_height="match_parent"
+            android:layout_height="250dp"
             android:background="@drawable/background_border">
 
             <ImageView
@@ -68,7 +68,8 @@
                     android:layout_marginLeft="6dp"
                     android:text="@string/drawnCardValue"
                     android:textSize="25sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="#000000"/>
 
                 <ImageView
                     android:id="@+id/topLeftSuit"
@@ -89,8 +90,7 @@
                 android:layout_width="29dp"
                 android:layout_height="29dp"
                 android:layout_centerInParent="true"
-                android:background="@drawable/spade_suit"
-                />
+                android:background="@drawable/spade_suit" />
 
             <ImageView
                 android:id="@+id/bSuitIconOne"
@@ -115,17 +115,17 @@
             <RelativeLayout
                 android:id="@+id/cIconsOne"
                 android:layout_above="@+id/bSuitIconOne"
-                android:layout_width="match_parent"
+                android:layout_width="125dp"
                 android:layout_height="wrap_content"
-                android:padding="26dp"
-                android:visibility="invisible">
+                android:visibility="visible"
+                android:layout_centerHorizontal="true">
 
                 <ImageView
                     android:id="@+id/cSuitIconOne"
                     android:layout_width="29dp"
                     android:layout_height="29dp"
                     android:layout_above="@+id/bSuitIconOne"
-                    android:background="@drawable/spade_suit" />
+                    android:background="@drawable/spade_suit"/>
                 <ImageView
                     android:id="@+id/cSuitIconTwo"
                     android:layout_width="29dp"
@@ -137,10 +137,10 @@
             <RelativeLayout
                 android:id="@+id/cIconsTwo"
                 android:layout_below="@+id/bSuitIconTwo"
-                android:layout_width="match_parent"
+                android:layout_width="125dp"
+                android:layout_centerHorizontal="true"
                 android:layout_height="wrap_content"
-                android:padding="26dp"
-                android:visibility="invisible">
+                android:visibility="visible">
 
                 <ImageView
                     android:id="@+id/cSuitIconThree"
@@ -231,7 +231,8 @@
                     android:layout_marginLeft="5dp"
                     android:text="@string/drawnCardValue"
                     android:textSize="25sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="#000000"/>
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>

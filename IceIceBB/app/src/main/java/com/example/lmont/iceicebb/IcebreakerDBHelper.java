@@ -14,16 +14,18 @@ import java.util.Random;
 public class IcebreakerDBHelper extends SQLiteOpenHelper {
 
     public static final String DB_NAME = "icebreakerDB";
-    public static final int DB_VERSION = 6;
+    public static final int DB_VERSION = 12;
     public static final String ICEBREAKERS_TABLE_NAME = "icebreakers";
     public static final String QUESTIONS_TABLE_NAME = "questions";
+    public static final String COMMENTS_TABLE_NAME = "comments";
 
     public static final String[] ICEBREAKERS_COLUMNS = new String[]{"name", "comment", "rules", "isclean", "hasDice", "hasCards", "tags", "minPlayers", "maxPlayers", "materials", "url", "rating"};
     public static final String[] QUESTIONS_COLUMNS = new String[]{"name", "text", "sfw"};
+    public static final String[] COMMENTS_COLUMNS = new String[]{"gameName", "userName", "text", "rating"};
 
     // CREATE TABLE [TABLE NAME] ([ATTRIBUTE NAME] [ATTRIBUTE TYPE], ...)
     public static final String CREATE_ICEBREAKERS_TABLE =
-            "CREATE TABLE " + ICEBREAKERS_TABLE_NAME + " (" +
+            "CREATE TABLE IF NOT EXISTS " + ICEBREAKERS_TABLE_NAME + " (" +
             "name INTEGER," +
             "comment TEXT," +
             "rules TEXT," +
@@ -40,11 +42,19 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
             ")";
 
     public static final String CREATE_QUESTIONS_TABLE =
-            "CREATE TABLE " + QUESTIONS_TABLE_NAME + " (" +
+            "CREATE TABLE IF NOT EXISTS " + QUESTIONS_TABLE_NAME + " (" +
             "name TEXT," +
             "text TEXT," +
             "sfw BOOLEAN"+
             //", PRIMARY KEY (name)" +
+            ")";
+
+    public static final String CREATE_COMMENTS_TABLE =
+            "CREATE TABLE IF NOT EXISTS " + COMMENTS_TABLE_NAME + " (" +
+            "gameName TEXT," +
+            "userName TEXT," +
+            "text TEXT," +
+            "rating INTEGER"+
             ")";
 
     public static IcebreakerDBHelper instance;
@@ -64,12 +74,14 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(CREATE_ICEBREAKERS_TABLE);
         sqLiteDatabase.execSQL(CREATE_QUESTIONS_TABLE);
+        sqLiteDatabase.execSQL(CREATE_COMMENTS_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + ICEBREAKERS_TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + QUESTIONS_TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + COMMENTS_TABLE_NAME);
         this.onCreate(sqLiteDatabase);
     }
 
@@ -99,11 +111,18 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
         return game;
     }
 
-    public Game[] getGamesLike(String query) {
+    public Game[] getGamesLike(String query, String tagsQuery, boolean isCleanQuery, boolean isByRatingQuery, boolean isByAlphabetQuery) {
+
+        String selection = "name LIKE '%"+query+"%' AND tags LIKE '%"+tagsQuery+"%'";
+        selection = isCleanQuery ? selection + " AND isclean = 1" : selection;
+        String[] selectionArgs = new String[]{};
+        String orderBy = null;
+        orderBy = isByRatingQuery ? "rating DESC" : isByAlphabetQuery ? "name" : null;
+
         Cursor cursor = getReadableDatabase().query(
                 ICEBREAKERS_TABLE_NAME,
                 ICEBREAKERS_COLUMNS,
-                "name LIKE '%" + query + "%'", null, null, null, null);
+                selection, selectionArgs, null, null, orderBy);
 
         Game[] games = new Game[cursor.getCount()];
 
