@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/blank_dice_icon"
             android:layout_marginLeft="17dp"
-            android:layout_centerVertical="true">
+android:layout_alignParentBottom="true">
 
             <ImageView
                 android:id="@+id/diceResultOne"
@@ -39,7 +39,7 @@
             android:layout_alignParentRight="true"
             android:background="@drawable/blank_dice_icon"
             android:layout_marginRight="17dp"
-            android:layout_centerVertical="true">
+            android:layout_alignParentBottom="true">
 
             <ImageView
                 android:id="@+id/diceResultTwo"

@@ -1,31 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<?xml version="1.0" encoding="utf-8"?>
 <set xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shareInterpolator="false"
-    android:fillAfter="true">
-    <!--<translate xmlns:android="http://schemas.android.com/apk/res/android"-->
-        <!--android:duration="300"-->
-        <!--android:fromXDelta="0"-->
-        <!--android:fromYDelta="-2000"-->
-        <!--android:interpolator="@android:anim/anticipate_overshoot_interpolator"-->
-        <!--android:toXDelta="0"-->
-        <!--android:toYDelta="0" />-->
-    <rotate xmlns:android="http://schemas.android.com/apk/res/android"
-        android:duration="900"
-        android:fromDegrees="0"
-        android:interpolator="@android:anim/accelerate_decelerate_interpolator"
-        android:pivotX="50%"
-        android:pivotY="50%"
-        android:toDegrees="720" />
-    <set xmlns:android="http://schemas.android.com/apk/res/android">
-        <translate xmlns:android="http://schemas.android.com/apk/res/android"
-            android:duration="800"
-            android:fromXDelta="0"
-            android:fromYDelta="-2000"
-            android:interpolator="@android:anim/anticipate_overshoot_interpolator"
-            android:toXDelta="0"
-            android:toYDelta="0" />
-        </set>
-
+    android:fillAfter="true"
+    android:shareInterpolator="false">
+    <translate
+        android:duration="1000"
+        android:fromXDelta="0"
+        android:fromYDelta="-100%p"
+        android:interpolator="@android:anim/bounce_interpolator"
+        android:toXDelta="0"
+        android:toYDelta="0"/>
+    <!--<set>-->
+        <!--<rotate-->
+            <!--android:duration="500"-->
+            <!--android:fromDegrees="0"-->
+            <!--android:interpolator="@android:anim/accelerate_decelerate_interpolator"-->
+            <!--android:pivotX="50%"-->
+            <!--android:pivotY="50%"-->
+            <!--android:toDegrees="360" />-->
+    <!--</set>-->
 </set>
