@@ -75,16 +75,16 @@ public class GameDetailActivity extends AppCompatActivity {
         context = this;
 
         LinearLayout titleBar = (LinearLayout) findViewById(R.id.gameNameLayout);
-        TextView gameName = (TextView)findViewById(R.id.gameNameDetail);
-        TextView playerCount = (TextView)findViewById(R.id.playerCount);
-        ImageView sfwIconAngel = (ImageView)findViewById(R.id.sfwIconAngel);
-        ImageView sfwIconDevil = (ImageView)findViewById(R.id.sfwIconDevil);
-        RatingBar ratingBar = (RatingBar)findViewById(R.id.ratingBarDetail);
-        TextView gameMaterials = (TextView)findViewById(R.id.gameMaterials);
-        TextView gameRules = (TextView)findViewById(R.id.gameRules);
-        TextView gameComments = (TextView)findViewById(R.id.gameComments);
-        Button diceRollerButton = (Button)findViewById(R.id.diceRollerButton);
-        final Button cardDeckButton = (Button)findViewById(R.id.cardFlipperButton);
+        TextView gameName = (TextView) findViewById(R.id.gameNameDetail);
+        TextView playerCount = (TextView) findViewById(R.id.playerCount);
+        ImageView sfwIconAngel = (ImageView) findViewById(R.id.sfwIconAngel);
+        ImageView sfwIconDevil = (ImageView) findViewById(R.id.sfwIconDevil);
+        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBarDetail);
+        TextView gameMaterials = (TextView) findViewById(R.id.gameMaterials);
+        TextView gameRules = (TextView) findViewById(R.id.gameRules);
+        TextView gameComments = (TextView) findViewById(R.id.gameComments);
+        Button diceRollerButton = (Button) findViewById(R.id.diceRollerButton);
+        final Button cardDeckButton = (Button) findViewById(R.id.cardFlipperButton);
 
         LinearLayout tagHolder = (LinearLayout) findViewById(R.id.tagFrameDetail);
         final ImageView drinkIcon = (ImageView) findViewById(R.id.drinkIcon);
@@ -150,6 +150,7 @@ public class GameDetailActivity extends AppCompatActivity {
             sfwIconDevil.setVisibility(View.VISIBLE);
         }
 //TODOne: check what tags are present in GAME object and toggle visibility of appropriate tag icons
+
         if (game.tags.contains("drinking")) {
             drinkIcon.setVisibility(View.VISIBLE);
         }
@@ -327,6 +328,7 @@ public class GameDetailActivity extends AppCompatActivity {
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
     }
+
     public void onBackPressed() {
         query = "";
         tagsQuery = "";
@@ -334,7 +336,7 @@ public class GameDetailActivity extends AppCompatActivity {
         isByRatingQuery = false;
         isByAlphabetQuery = false;
 
-        Intent intent = new Intent(this,TabMainActivity.class);
+        Intent intent = new Intent(this, TabMainActivity.class);
         startActivity(intent);
         finish();
     }
