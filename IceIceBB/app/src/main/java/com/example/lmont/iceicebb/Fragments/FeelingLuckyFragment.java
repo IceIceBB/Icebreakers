@@ -36,12 +36,12 @@ public class FeelingLuckyFragment extends Fragment {
     private TextView mTextDetails;
 
     private CallbackManager mCallbackManger;
-    private FacebookCallback<LoginResult> mCallback=new FacebookCallback<LoginResult>() {
+    private FacebookCallback<LoginResult> mCallback = new FacebookCallback<LoginResult>() {
         @Override
         public void onSuccess(LoginResult loginResult) {
             AccessToken accessToken = loginResult.getAccessToken();
             Profile profile = Profile.getCurrentProfile();
-            if (profile != null){
+            if (profile != null) {
                 mTextDetails.setText("Welcome " + profile.getName());
             }
         }
@@ -61,7 +61,7 @@ public class FeelingLuckyFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getActivity().getApplicationContext());
-        mCallbackManger= CallbackManager.Factory.create();
+        mCallbackManger = CallbackManager.Factory.create();
     }
 
     @Override
@@ -79,8 +79,7 @@ public class FeelingLuckyFragment extends Fragment {
 
     public void setup(View view) {
 
-        final Animation bounce = AnimationUtils.loadAnimation(getContext(),R.anim.bounce);
-
+        final Animation bounce = AnimationUtils.loadAnimation(getContext(), R.anim.bounce);
 
 
         IcebreakerDBHelper dbHelper = IcebreakerDBHelper.getInstance(getContext());
@@ -109,42 +108,22 @@ public class FeelingLuckyFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        LoginButton loginButton = (LoginButton)view.findViewById(R.id.login_button);
+        LoginButton loginButton = (LoginButton) view.findViewById(R.id.login_button);
 
         loginButton.setReadPermissions("email");
 
         loginButton.setFragment(this);
 
-        loginButton.registerCallback(mCallbackManger,mCallback);
+        loginButton.registerCallback(mCallbackManger, mCallback);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        mCallbackManger.onActivityResult(requestCode,resultCode,data);
+        mCallbackManger.onActivityResult(requestCode, resultCode, data);
     }
 
 }
-/*
-        FacebookSdk.sdkInitialize(getApplicationContext());
-        AppEventsLogger.activateApp(TabMainActivity.this);
-        mCallbackManger = CallbackManager.Factory.create();
-        LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
-        loginButton.registerCallback(mCallbackManger, new FacebookCallback<LoginResult>() {
-@Override
-public void onSuccess(LoginResult loginResult) {
 
-        }
 
-@Override
-public void onCancel() {
-
-        }
-
-@Override
-public void onError(FacebookException error) {
-
-        }
-        });
-*/
 

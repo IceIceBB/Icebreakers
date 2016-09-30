@@ -33,8 +33,9 @@ public class GamesFragment extends Fragment {
 
         setup(view);
 
-    return view;
+        return view;
     }
+
     public void setup(View view) {
         gameArray = dbHelper.getGamesLike(
                 TabMainActivity.query,
@@ -44,13 +45,12 @@ public class GamesFragment extends Fragment {
                 TabMainActivity.isByAlphabetQuery);
 
         //gameArray = dbHelper.getAllGames();
-        RecyclerView gameList = (RecyclerView)view.findViewById(R.id.gameList);
+        RecyclerView gameList = (RecyclerView) view.findViewById(R.id.gameList);
         gameList.setHasFixedSize(true);
 
-        if(this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             gameList.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        }
-        else{
+        } else {
             gameList.setLayoutManager(new GridLayoutManager(getContext(), 4));
         }
 
