@@ -84,7 +84,7 @@ public class FeelingLuckyFragment extends Fragment {
 
 
         IcebreakerDBHelper dbHelper = IcebreakerDBHelper.getInstance(getContext());
-        question = dbHelper.getRandomQuestion(true);
+        question = dbHelper.getRandomQuestion(-1);
 
         questionView = (TextView) view.findViewById(R.id.questionView);
         questionView.setText(question.text);
@@ -97,7 +97,7 @@ public class FeelingLuckyFragment extends Fragment {
             public void onClick(View view) {
 
                 IcebreakerDBHelper dbHelper = IcebreakerDBHelper.getInstance(getContext());
-                question = dbHelper.getRandomQuestion(true);
+                question = dbHelper.getRandomQuestion(-1);
                 questionView.setText(question.text);
                 questionView.startAnimation(bounce);
             }
