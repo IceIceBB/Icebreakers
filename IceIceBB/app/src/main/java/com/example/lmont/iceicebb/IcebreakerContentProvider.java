@@ -46,6 +46,9 @@ public class IcebreakerContentProvider extends ContentProvider {
             case QUESTIONS:
                 dbHelper.addQuestion(values);
                 break;
+            case COMMENTS:
+                dbHelper.addComment(values);
+                break;
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
         }
@@ -62,6 +65,9 @@ public class IcebreakerContentProvider extends ContentProvider {
                 break;
             case QUESTIONS:
                 dbHelper.deleteAllQuestions();
+                break;
+            case COMMENTS:
+                dbHelper.deleteAllComments();
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);

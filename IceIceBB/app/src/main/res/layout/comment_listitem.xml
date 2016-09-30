@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/comment_listitem_name_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="User"/>
+
+        <RatingBar
+            android:id="@+id/comment_listitem_ratingbar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Rating"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/comment_listitem_review"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Review"/>
+
+    </ScrollView>
+
+</LinearLayout>

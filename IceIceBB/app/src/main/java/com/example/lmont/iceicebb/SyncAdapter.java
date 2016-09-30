@@ -77,33 +77,48 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
         //Do api call to our API to get new data
         String gamesAPI = "https://floating-island-55807.herokuapp.com/games";
         String questionsAPI = "https://floating-island-55807.herokuapp.com/questions";
+        String commentsAPI = "https://floating-island-55807.herokuapp.com/games/comments";
         String gamesData = "";
         String questionsData = "";
+        String commentsData = "";
 
         HttpURLConnection gamesConnection = null;
         HttpURLConnection questionsConnection = null;
+        HttpURLConnection commentsConnection = null;
 
         try {
             URL gamesURL = new URL(gamesAPI);
             URL questionsURL = new URL(questionsAPI);
+            URL commentsURL = new URL(commentsAPI);
+
             gamesConnection = (HttpURLConnection) gamesURL.openConnection();
             questionsConnection = (HttpURLConnection) questionsURL.openConnection();
+            commentsConnection = (HttpURLConnection) commentsURL.openConnection();
+
             gamesConnection.connect();
             questionsConnection.connect();
+            commentsConnection.connect();
+
             InputStream gamesInStream = gamesConnection.getInputStream();
             InputStream questionsInStream = questionsConnection.getInputStream();
+            InputStream commentsInStream = commentsConnection.getInputStream();
+
             gamesData = getInputData(gamesInStream);
             questionsData = getInputData(questionsInStream);
+            commentsData = getInputData(commentsInStream);
 
             gamesConnection.disconnect();
             questionsConnection.disconnect();
+            commentsConnection.disconnect();
 
-        } catch (Throwable e) {
+        } catch (Exception e) {
+
             e.printStackTrace();
-            return;
-        } finally {
             gamesConnection.disconnect();
             questionsConnection.disconnect();
+            commentsConnection.disconnect();
+            return;
+
         }
 
         GamesArrayFromGson g = (new Gson()).fromJson(gamesData, GamesArrayFromGson.class);
@@ -111,8 +126,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
         if (g.games.length < TabMainActivity.gamesTableSize)
             mContentResolver.delete(IcebreakerContentProvider.CONTENT_URI_ICEBREAKERS, null, null);
 //        mContentResolver.delete(IcebreakerContentProvider.CONTENT_URI_QUESTIONS, null, null);
-
-        //IcebreakerDBHelper.getInstance(getContext()).resetDB();
+        mContentResolver.delete(IcebreakerContentProvider.CONTENT_URI_COMMENTS, null, null);
 
         for (Game game: g.games) {
             ContentValues gamesContentValues = new ContentValues();
@@ -138,6 +152,16 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
             questionsContentValues.put("text", question.text);
             questionsContentValues.put("sfw", question.sfw);
             mContentResolver.insert(IcebreakerContentProvider.CONTENT_URI_QUESTIONS, questionsContentValues);
+        }
+
+        CommentsArrayFromGson c = (new Gson()).fromJson(commentsData, CommentsArrayFromGson.class);
+        for (Game.Comment comment : c.comments) {
+            ContentValues commentsContentValues = new ContentValues();
+            commentsContentValues.put("gameName", comment.gameName);
+            commentsContentValues.put("userName", comment.userName);
+            commentsContentValues.put("text", comment.text);
+            commentsContentValues.put("rating", comment.rating);
+            mContentResolver.insert(IcebreakerContentProvider.CONTENT_URI_COMMENTS, commentsContentValues);
         }
     }
 

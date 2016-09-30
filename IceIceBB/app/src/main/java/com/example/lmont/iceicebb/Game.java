@@ -61,5 +61,13 @@ public class Game {
         public String userName;
         public String text;
         public int rating;
+
+        @Override
+        public String toString() {
+            return "" +
+                    "'" + userName + "'\n" +
+                    "'" + text + "'\n" +
+                    "rating = " + rating;
+        }
     }
 }
