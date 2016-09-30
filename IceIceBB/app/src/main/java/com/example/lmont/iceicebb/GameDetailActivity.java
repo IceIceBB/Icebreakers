@@ -1,5 +1,6 @@
 package com.example.lmont.iceicebb;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -234,7 +235,17 @@ public class GameDetailActivity extends AppCompatActivity {
                             jsonBody.put("gameName", name);
                             jsonBody.put("userName", nameEditText.getText().toString());
                             jsonBody.put("text", reviewEditText.getText().toString());
-                            jsonBody.put("rating", ratingBar.getNumStars()*2);
+                            jsonBody.put("rating", ratingBar.getRating()*2);
+
+                            ContentValues cv = new ContentValues();
+                            cv.put("gameName", name);
+                            cv.put("userName", nameEditText.getText().toString());
+                            cv.put("text", reviewEditText.getText().toString());
+                            cv.put("rating", ratingBar.getRating()*2);
+
+                            updateRating();
+
+                            dbHelper.addComment(cv);
 
                             final String mRequestBody = jsonBody.toString();
 
@@ -249,7 +260,8 @@ public class GameDetailActivity extends AppCompatActivity {
                                 public void onErrorResponse(VolleyError error) {
                                     Log.e("VOLLEY", error.toString());
                                 }
-                            }) {
+                            })
+                            {
                                 @Override
                                 public String getBodyContentType() {
                                     return "application/json; charset=utf-8";
@@ -277,6 +289,7 @@ public class GameDetailActivity extends AppCompatActivity {
                             };
                             requestQueue.add(stringRequest);
                         } catch (Exception e) {
+                            dbHelper.deleteAllComments();
                             e.printStackTrace();
                         }
 
@@ -291,6 +304,10 @@ public class GameDetailActivity extends AppCompatActivity {
         builder.show();
     }
 
+    protected void updateRating() {
+        RatingBar ratingBar = (RatingBar)findViewById(R.id.ratingBarDetail);
+        ratingBar.setRating(dbHelper.getGameWithName(name).rating / 2);
+    }
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -327,6 +344,7 @@ public class GameDetailActivity extends AppCompatActivity {
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
     }
+
     public void onBackPressed() {
         query = "";
         tagsQuery = "";

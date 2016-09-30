@@ -125,8 +125,8 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 
         if (g.games.length < TabMainActivity.gamesTableSize)
             mContentResolver.delete(IcebreakerContentProvider.CONTENT_URI_ICEBREAKERS, null, null);
-//        mContentResolver.delete(IcebreakerContentProvider.CONTENT_URI_QUESTIONS, null, null);
-        mContentResolver.delete(IcebreakerContentProvider.CONTENT_URI_COMMENTS, null, null);
+        //mContentResolver.delete(IcebreakerContentProvider.CONTENT_URI_QUESTIONS, null, null);
+        //mContentResolver.delete(IcebreakerContentProvider.CONTENT_URI_COMMENTS, null, null);
 
         for (Game game: g.games) {
             ContentValues gamesContentValues = new ContentValues();

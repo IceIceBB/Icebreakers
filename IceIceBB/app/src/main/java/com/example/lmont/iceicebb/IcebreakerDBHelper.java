@@ -90,6 +90,15 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
     }
 
     public void addComment(ContentValues cv) {
+        Cursor c = null;
+        String query = "select * from " + COMMENTS_TABLE_NAME +
+                " where userName = '" + cv.getAsString("userName") + "' " +
+                " AND gameName = '" + cv.getAsString("gameName") + "' " +
+                " AND text = '" + cv.getAsString("text") + "' ";
+        c = getReadableDatabase().rawQuery(query, null);
+        if (c.moveToFirst()) {
+            return;
+        }
         getWritableDatabase().insert(COMMENTS_TABLE_NAME, null, cv);
     }
 
@@ -138,6 +147,14 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
         game.url = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[10]));
         game.rating = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[11]));
 
+        int ratingAvg = game.rating;
+        Game.Comment[] comments = getCommentsForGame(game.name);
+        for(Game.Comment comment : comments) {
+            ratingAvg += comment.rating;
+        }
+
+        game.rating = ratingAvg / (comments.length + 1);
+
         return game;
     }
 
@@ -171,6 +188,14 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
             games[x].materials = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[9]));
             games[x].url = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[10]));
             games[x].rating = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[11]));
+
+            int ratingAvg = games[x].rating;
+            Game.Comment[] comments = getCommentsForGame(games[x].name);
+            for(Game.Comment comment : comments) {
+                ratingAvg += comment.rating;
+            }
+
+            games[x].rating = ratingAvg / (comments.length + 1);
         }
 
         return games;
