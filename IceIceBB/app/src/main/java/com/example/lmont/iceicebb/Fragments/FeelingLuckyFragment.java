@@ -36,12 +36,12 @@ public class FeelingLuckyFragment extends Fragment {
     private TextView mTextDetails;
 
     private CallbackManager mCallbackManger;
-    private FacebookCallback<LoginResult> mCallback=new FacebookCallback<LoginResult>() {
+    private FacebookCallback<LoginResult> mCallback = new FacebookCallback<LoginResult>() {
         @Override
         public void onSuccess(LoginResult loginResult) {
             AccessToken accessToken = loginResult.getAccessToken();
             Profile profile = Profile.getCurrentProfile();
-            if (profile != null){
+            if (profile != null) {
                 mTextDetails.setText("Welcome " + profile.getName());
             }
         }
@@ -61,7 +61,7 @@ public class FeelingLuckyFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getActivity().getApplicationContext());
-        mCallbackManger= CallbackManager.Factory.create();
+        mCallbackManger = CallbackManager.Factory.create();
     }
 
     @Override
@@ -79,8 +79,7 @@ public class FeelingLuckyFragment extends Fragment {
 
     public void setup(View view) {
 
-        final Animation bounce = AnimationUtils.loadAnimation(getContext(),R.anim.bounce);
-
+        final Animation bounce = AnimationUtils.loadAnimation(getContext(), R.anim.bounce);
 
 
         IcebreakerDBHelper dbHelper = IcebreakerDBHelper.getInstance(getContext());
@@ -109,19 +108,26 @@ public class FeelingLuckyFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        LoginButton loginButton = (LoginButton)view.findViewById(R.id.login_button);
+        LoginButton button = (LoginButton) view.findViewById(R.id.login_button);
 
-        loginButton.setReadPermissions("email");
+        button.setReadPermissions("email");
 
-        loginButton.setFragment(this);
+        button.setFragment(this);
 
-        loginButton.registerCallback(mCallbackManger,mCallback);
+        button.registerCallback(mCallbackManger, mCallback);
+//        LoginButton loginButton = (LoginButton)view.findViewById(R.id.login_button);
+//
+//        loginButton.setReadPermissions("email");
+//
+//        loginButton.setFragment(this);
+//
+//        loginButton.registerCallback(mCallbackManger,mCallback);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        mCallbackManger.onActivityResult(requestCode,resultCode,data);
+        mCallbackManger.onActivityResult(requestCode, resultCode, data);
     }
 
 }
