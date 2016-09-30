@@ -11,8 +11,10 @@
 
     <FrameLayout
         android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="2">
+        android:layout_height="1dp"
+        android:layout_weight="2"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp">
 
     </FrameLayout>
 
@@ -22,7 +24,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="30dp"
         android:layout_marginLeft="24dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="144dp"
@@ -31,7 +33,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="1.0"
         android:elevation="2dp"/>
 
 
@@ -40,7 +42,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="30dp"
         android:layout_marginEnd="24dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="24dp"
@@ -52,7 +54,7 @@
         app:layout_constraintLeft_toRightOf="@+id/cardToolButton"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="1.0"
         android:elevation="2dp">
 
     </Button>
