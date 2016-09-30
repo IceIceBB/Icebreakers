@@ -32,16 +32,16 @@ public class GameDetailActivity extends AppCompatActivity {
 
 
         LinearLayout titleBar = (LinearLayout) findViewById(R.id.gameNameLayout);
-        TextView gameName = (TextView)findViewById(R.id.gameNameDetail);
-        TextView playerCount = (TextView)findViewById(R.id.playerCount);
-        ImageView sfwIconAngel = (ImageView)findViewById(R.id.sfwIconAngel);
-        ImageView sfwIconDevil = (ImageView)findViewById(R.id.sfwIconDevil);
-        RatingBar ratingBar = (RatingBar)findViewById(R.id.ratingBarDetail);
-        TextView gameMaterials = (TextView)findViewById(R.id.gameMaterials);
-        TextView gameRules = (TextView)findViewById(R.id.gameRules);
-        TextView gameComments = (TextView)findViewById(R.id.gameComments);
-        Button diceRollerButton = (Button)findViewById(R.id.diceRollerButton);
-        final Button cardDeckButton = (Button)findViewById(R.id.cardFlipperButton);
+        TextView gameName = (TextView) findViewById(R.id.gameNameDetail);
+        TextView playerCount = (TextView) findViewById(R.id.playerCount);
+        ImageView sfwIconAngel = (ImageView) findViewById(R.id.sfwIconAngel);
+        ImageView sfwIconDevil = (ImageView) findViewById(R.id.sfwIconDevil);
+        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBarDetail);
+        TextView gameMaterials = (TextView) findViewById(R.id.gameMaterials);
+        TextView gameRules = (TextView) findViewById(R.id.gameRules);
+        TextView gameComments = (TextView) findViewById(R.id.gameComments);
+        Button diceRollerButton = (Button) findViewById(R.id.diceRollerButton);
+        final Button cardDeckButton = (Button) findViewById(R.id.cardFlipperButton);
 
         LinearLayout tagHolder = (LinearLayout) findViewById(R.id.tagFrameDetail);
         ImageView drinkIcon = (ImageView) findViewById(R.id.drinkIcon);
@@ -49,7 +49,7 @@ public class GameDetailActivity extends AppCompatActivity {
         ImageView carIcon = (ImageView) findViewById(R.id.carIcon);
         final ImageView paperIcon = (ImageView) findViewById(R.id.paperIcon);
 
-        float rating = (float) (game.rating)/2;
+        float rating = (float) (game.rating) / 2;
 
 
         gameName.setText(game.name);
@@ -62,17 +62,17 @@ public class GameDetailActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        gameMaterials.setText("Required Materials: "+game.materials);
-        gameRules.setText("Rules: \n"+game.rules);
-        gameComments.setText("Comments\n"+game.comment);
+        gameMaterials.setText("Required Materials: " + game.materials);
+        gameRules.setText("Rules: \n" + game.rules);
+        gameComments.setText("Comments\n" + game.comment);
         ratingBar.setRating(rating);
-        playerCount.setText(game.minPlayers+"-"+game.maxPlayers);
+        playerCount.setText(game.minPlayers + "-" + game.maxPlayers);
 
 
-        if (game.hasCards){
+        if (game.hasCards) {
             cardDeckButton.setVisibility(View.VISIBLE);
         }
-        if (game.hasDice){
+        if (game.hasDice) {
             diceRollerButton.setVisibility(View.VISIBLE);
         }
 
@@ -93,7 +93,7 @@ public class GameDetailActivity extends AppCompatActivity {
             }
         });
 //IF elses (there's probably a DRYer way) to set SFW icon + visibility of tags
-        if (game.isclean){
+        if (game.isclean) {
             sfwIconAngel.setVisibility(View.VISIBLE);
         }
         if (!game.isclean) {
@@ -105,16 +105,16 @@ public class GameDetailActivity extends AppCompatActivity {
         carIcon.setVisibility(View.GONE);
         paperIcon.setVisibility(View.GONE);
 
-        if (game.tags.contains("drinking")){
+        if (game.tags.contains("drinking")) {
             drinkIcon.setVisibility(View.VISIBLE);
         }
-        if (game.tags.contains("movement")){
+        if (game.tags.contains("movement")) {
             movingIcon.setVisibility(View.VISIBLE);
         }
-        if (game.tags.contains("car")){
+        if (game.tags.contains("car")) {
             carIcon.setVisibility(View.VISIBLE);
         }
-        if (game.tags.contains("writing")){
+        if (game.tags.contains("writing")) {
             paperIcon.setVisibility(View.VISIBLE);
         }
 
@@ -122,7 +122,7 @@ public class GameDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast carToast = Toast.makeText(getApplicationContext(), "Car: This is an ideal game to play while (someone else is) driving", Toast.LENGTH_SHORT);
-                        carToast.show();
+                carToast.show();
             }
         });
         drinkIcon.setOnClickListener(new View.OnClickListener() {
@@ -148,6 +148,7 @@ public class GameDetailActivity extends AppCompatActivity {
         });
 
     }
+
     public void onBackPressed() {
         query = "";
         tagsQuery = "";
@@ -155,7 +156,7 @@ public class GameDetailActivity extends AppCompatActivity {
         isByRatingQuery = false;
         isByAlphabetQuery = false;
 
-        Intent intent = new Intent(this,TabMainActivity.class);
+        Intent intent = new Intent(this, TabMainActivity.class);
         startActivity(intent);
         finish();
     }

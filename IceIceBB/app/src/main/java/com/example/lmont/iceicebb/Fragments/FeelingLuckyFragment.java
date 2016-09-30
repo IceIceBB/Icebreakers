@@ -108,20 +108,13 @@ public class FeelingLuckyFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        LoginButton button = (LoginButton) view.findViewById(R.id.login_button);
+        LoginButton loginButton = (LoginButton) view.findViewById(R.id.login_button);
 
-        button.setReadPermissions("email");
+        loginButton.setReadPermissions("email");
 
-        button.setFragment(this);
+        loginButton.setFragment(this);
 
-        button.registerCallback(mCallbackManger, mCallback);
-//        LoginButton loginButton = (LoginButton)view.findViewById(R.id.login_button);
-//
-//        loginButton.setReadPermissions("email");
-//
-//        loginButton.setFragment(this);
-//
-//        loginButton.registerCallback(mCallbackManger,mCallback);
+        loginButton.registerCallback(mCallbackManger, mCallback);
     }
 
     @Override
@@ -131,26 +124,6 @@ public class FeelingLuckyFragment extends Fragment {
     }
 
 }
-/*
-        FacebookSdk.sdkInitialize(getApplicationContext());
-        AppEventsLogger.activateApp(TabMainActivity.this);
-        mCallbackManger = CallbackManager.Factory.create();
-        LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
-        loginButton.registerCallback(mCallbackManger, new FacebookCallback<LoginResult>() {
-@Override
-public void onSuccess(LoginResult loginResult) {
 
-        }
 
-@Override
-public void onCancel() {
-
-        }
-
-@Override
-public void onError(FacebookException error) {
-
-        }
-        });
-*/
 
