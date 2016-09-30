@@ -33,7 +33,7 @@
         <activity
             android:name=".TabMainActivity"
             android:configChanges=
-                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+                "keyboard|keyboardHidden|screenLayout|screenSize"
             android:label="@string/title_activity_tab_main">
 
 
