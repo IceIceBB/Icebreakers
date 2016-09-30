@@ -90,11 +90,20 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
     }
 
     public void addComment(ContentValues cv) {
+        Cursor c = null;
+        String query = "select * from " + COMMENTS_TABLE_NAME +
+                " where userName = \"" + cv.getAsString("userName") + "\" " +
+                " AND gameName = \"" + cv.getAsString("gameName") + "\" " +
+                " AND text = \"" + cv.getAsString("text") + "\" ";
+        c = getReadableDatabase().rawQuery(query, null);
+        if (c.moveToFirst()) {
+            return;
+        }
         getWritableDatabase().insert(COMMENTS_TABLE_NAME, null, cv);
     }
 
     public Game.Comment[] getCommentsForGame(String gameName) {
-        String selection = "gameName = '"+gameName+"'";
+        String selection = "gameName = \""+gameName+"\"";
 
         Cursor cursor = getReadableDatabase().query(
                 COMMENTS_TABLE_NAME,
@@ -119,7 +128,7 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
         Cursor cursor = getReadableDatabase().query(
                 ICEBREAKERS_TABLE_NAME,
                 ICEBREAKERS_COLUMNS,
-                "name = '" + query + "'", null, null, null, null);
+                "name = \"" + query + "\"", null, null, null, null);
 
         if (cursor.moveToFirst() == false)
             return null;
@@ -138,12 +147,20 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
         game.url = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[10]));
         game.rating = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[11]));
 
+        int ratingAvg = game.rating;
+        Game.Comment[] comments = getCommentsForGame(game.name);
+        for(Game.Comment comment : comments) {
+            ratingAvg += comment.rating;
+        }
+
+        game.rating = ratingAvg / (comments.length + 1);
+
         return game;
     }
 
     public Game[] getGamesLike(String query, String tagsQuery, boolean isCleanQuery, boolean isByRatingQuery, boolean isByAlphabetQuery) {
 
-        String selection = "name LIKE '%"+query+"%' AND tags LIKE '%"+tagsQuery+"%'";
+        String selection = "name LIKE \"%"+query+"%\" AND tags LIKE \"%"+tagsQuery+"%\"";
         selection = isCleanQuery ? selection + " AND isclean = 1" : selection;
         String[] selectionArgs = new String[]{};
         String orderBy = null;
@@ -171,6 +188,14 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
             games[x].materials = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[9]));
             games[x].url = cursor.getString(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[10]));
             games[x].rating = cursor.getInt(cursor.getColumnIndex(ICEBREAKERS_COLUMNS[11]));
+
+            int ratingAvg = games[x].rating;
+            Game.Comment[] comments = getCommentsForGame(games[x].name);
+            for(Game.Comment comment : comments) {
+                ratingAvg += comment.rating;
+            }
+
+            games[x].rating = ratingAvg / (comments.length + 1);
         }
 
         return games;
@@ -178,7 +203,7 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
 
     public void addGame(ContentValues cv) {
         Cursor c = null;
-        String query = "select * from " + ICEBREAKERS_TABLE_NAME + " where name = '" + cv.getAsString("name") + "'";
+        String query = "select * from " + ICEBREAKERS_TABLE_NAME + " where name = \"" + cv.getAsString("name") + "\"";
         c = getReadableDatabase().rawQuery(query, null);
         if (c.moveToFirst()) {
             return;
@@ -220,7 +245,7 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
 
     public void addQuestion(ContentValues cv) {
         Cursor c = null;
-        String query = "select * from " + ICEBREAKERS_TABLE_NAME + " where name = '" + cv.getAsString("name") + "'";
+        String query = "select * from " + QUESTIONS_TABLE_NAME + " where name = \"" + cv.getAsString("name") + "\"";
         c = getReadableDatabase().rawQuery(query, null);
         if (c.moveToFirst()) {
             return;
@@ -228,11 +253,27 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
         getWritableDatabase().insertOrThrow(QUESTIONS_TABLE_NAME, null, cv);
     }
 
-    public Game.Question getRandomQuestion(boolean isSFW) {
+    /**
+     * isSFW : 1=true, 0=false, -1=false
+     * @param isSFW
+     * @return
+     */
+    public Game.Question getRandomQuestion(int isSFW) {
+
+        String selection = null;
+
+        if (isSFW == 1) {
+            selection = "sfw = 1";
+        }
+
+        if (isSFW == 0) {
+            selection = "sfw = 0";
+        }
+
         Cursor cursor = getReadableDatabase().query(
                 QUESTIONS_TABLE_NAME,
                 QUESTIONS_COLUMNS,
-                null, null, null, null, null);
+                selection, null, null, null, null);
 
         int randomNum = (new Random()).nextInt(cursor.getCount());
         cursor.moveToPosition(randomNum);

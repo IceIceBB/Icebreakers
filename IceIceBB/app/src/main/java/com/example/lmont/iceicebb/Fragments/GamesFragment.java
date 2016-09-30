@@ -35,8 +35,6 @@ public class GamesFragment extends Fragment {
         return view;
     }
 
-
-
     public void setup(View view) {
         gameArray = dbHelper.getGamesLike(
                 TabMainActivity.query,

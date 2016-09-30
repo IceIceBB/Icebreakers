@@ -64,9 +64,7 @@ public class Game {
 
         @Override
         public String toString() {
-            return "" +
-                    "'" + userName + "'\n" +
-                    "'" + text + "'\n" +
+            return userName + ": \"" + text + "\"\n" +
                     "rating = " + rating;
         }
     }

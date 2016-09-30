@@ -2,6 +2,7 @@ package com.example.lmont.iceicebb.Fragments;
 
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.lmont.iceicebb.Game;
@@ -30,6 +32,7 @@ import com.facebook.login.widget.LoginButton;
 public class FeelingLuckyFragment extends Fragment {
 
     Button feelingLucky;
+    ImageButton devilButon, angelButton;
     Game.Question question;
     TextView questionView;
 
@@ -83,25 +86,46 @@ public class FeelingLuckyFragment extends Fragment {
 
 
         IcebreakerDBHelper dbHelper = IcebreakerDBHelper.getInstance(getContext());
-        question = dbHelper.getRandomQuestion(true);
+        question = dbHelper.getRandomQuestion(1);
 
         questionView = (TextView) view.findViewById(R.id.questionView);
         questionView.setText(question.text);
         questionView.setAnimation(bounce);
 
 
+        angelButton = (ImageButton) view.findViewById(R.id.angel_btn);
+        devilButon = (ImageButton) view.findViewById(R.id.devil_btn);
         feelingLucky = (Button) view.findViewById(R.id.feeling_lucky_btn);
         feelingLucky.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 IcebreakerDBHelper dbHelper = IcebreakerDBHelper.getInstance(getContext());
-                question = dbHelper.getRandomQuestion(true);
+                question = dbHelper.getRandomQuestion(-1);
                 questionView.setText(question.text);
                 questionView.startAnimation(bounce);
             }
         });
+        devilButon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                IcebreakerDBHelper dbHelper = IcebreakerDBHelper.getInstance(getContext());
+                question = dbHelper.getRandomQuestion(0);
+                questionView.setText(question.text);
+                questionView.startAnimation(bounce);
+            }
+        });
+        angelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                IcebreakerDBHelper dbHelper = IcebreakerDBHelper.getInstance(getContext());
+                question = dbHelper.getRandomQuestion(1);
+                questionView.setText(question.text);
+                questionView.startAnimation(bounce);
+            }
+        });
     }
 
     @Override
