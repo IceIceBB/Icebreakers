@@ -62,10 +62,12 @@ public class Game {
         public String text;
         public int rating;
 
+
+
         @Override
         public String toString() {
             return userName + ": \"" + text + "\"\n" +
-                    "rating = " + rating;
+                    "Rating: " + (float)rating/2 + " stars";
         }
     }
 }
