@@ -27,9 +27,6 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
         <activity
             android:name=".TabMainActivity"
             android:configChanges=
@@ -44,14 +41,13 @@
                 <action android:name="android.intent.action.SEARCH"/>
             </intent-filter>
 
-            <meta-data
-                android:name="android.app.searchable"
+            <meta-data android:name="android.app.searchable"
                 android:resource="@xml/searchable"/>
-
         </activity>
         <activity android:name=".GameDetailActivity"/>
         <activity android:name=".CardsActivity"/>
         <activity android:name=".DiceActivity"/>
+        <activity android:name=".WebViewActivity"/>
 
         <service android:name=".PlaceholderAuthenticatorService">
             <intent-filter>
@@ -79,11 +75,11 @@
             android:label="my provider"
             android:syncable="true"/>
 
-        <activity android:name=".WebViewActivity"></activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+        <meta-data android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id"/>
     </application>
 
 </manifest>
