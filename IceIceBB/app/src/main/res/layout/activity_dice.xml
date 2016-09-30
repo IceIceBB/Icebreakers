@@ -14,7 +14,7 @@
     <RelativeLayout
         android:layout_alignParentBottom="false"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="match_parent"
         android:layout_centerInParent="true">
 
         <FrameLayout
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/blank_dice_icon"
             android:layout_marginLeft="17dp"
-            android:layout_centerVertical="true">
+android:layout_alignParentBottom="true">
 
             <ImageView
                 android:id="@+id/diceResultOne"
@@ -39,7 +39,7 @@
             android:layout_alignParentRight="true"
             android:background="@drawable/blank_dice_icon"
             android:layout_marginRight="17dp"
-            android:layout_centerVertical="true">
+            android:layout_alignParentBottom="true">
 
             <ImageView
                 android:id="@+id/diceResultTwo"
