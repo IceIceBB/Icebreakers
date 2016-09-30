@@ -4,8 +4,12 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Paint;
+import android.icu.text.DecimalFormatSymbols;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -56,6 +60,7 @@ public class GameDetailActivity extends AppCompatActivity {
      */
     private GoogleApiClient client;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,19 +92,25 @@ public class GameDetailActivity extends AppCompatActivity {
 
 
         gameName.setText(game.name);
-        gameName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(GameDetailActivity.this, WebViewActivity.class);
-                intent.putExtra("VIDEO", game.url);
-                intent.putExtra("NAME", game.name);
-                startActivity(intent);
-            }
-        });
+        if(game.url != null && !game.url.toLowerCase().equals("none")) {
+            gameName.setPaintFlags(gameName.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
+            gameName.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(GameDetailActivity.this, WebViewActivity.class);
+                    intent.putExtra("VIDEO", game.url);
+                    intent.putExtra("NAME", game.name);
+                    startActivity(intent);
+                }
+            });
+        }
         gameMaterials.setText("Required Materials: " + game.materials);
         gameRules.setText("Rules: \n" + game.rules);
         ratingBar.setRating(rating);
-        playerCount.setText(game.minPlayers + "-" + game.maxPlayers);
+        String numPlayers = (game.maxPlayers >= 1000) ?
+                "Min: " + game.minPlayers :
+                game.minPlayers + "-" + String.valueOf(game.maxPlayers);
+        playerCount.setText(numPlayers);
 
 
         if (game.hasCards) {
@@ -208,7 +219,7 @@ public class GameDetailActivity extends AppCompatActivity {
 
         listView.setAdapter(adapter);
 
-        builder.setMessage("Add New Card Game")
+        builder.setMessage("Leave a rating!")
                 .setPositiveButton("Comment", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
