@@ -62,6 +62,8 @@ Bonus:
 []   Add ability to draw Jokers from deck
 */
 
+
+
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     /**
@@ -86,6 +88,7 @@ Bonus:
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP){
             TransitionSet transition = new TransitionSet();
