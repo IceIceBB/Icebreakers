@@ -1,7 +1,6 @@
 package com.example.lmont.iceicebb.Fragments;
 
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -36,6 +35,8 @@ public class GamesFragment extends Fragment {
         return view;
     }
 
+
+
     public void setup(View view) {
         gameArray = dbHelper.getGamesLike(
                 TabMainActivity.query,
@@ -48,11 +49,12 @@ public class GamesFragment extends Fragment {
         RecyclerView gameList = (RecyclerView) view.findViewById(R.id.gameList);
         gameList.setHasFixedSize(true);
 
-        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            gameList.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        } else {
-            gameList.setLayoutManager(new GridLayoutManager(getContext(), 4));
-        }
+        gameList.setLayoutManager(new GridLayoutManager(getContext(), 2));
+//        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+//            gameList.setLayoutManager(new GridLayoutManager(getContext(), 2));
+//        } else {
+//            gameList.setLayoutManager(new GridLayoutManager(getContext(), 4));
+//        }
 
         GameListRecyclerAdapter adapter = new GameListRecyclerAdapter(gameArray);
         gameList.setAdapter(adapter);
