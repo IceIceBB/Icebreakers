@@ -2,6 +2,7 @@ package com.example.lmont.iceicebb.Fragments;
 
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -24,6 +25,9 @@ import com.facebook.FacebookSdk;
 import com.facebook.Profile;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.model.ShareMediaContent;
+import com.facebook.share.widget.ShareButton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,6 +38,7 @@ public class FeelingLuckyFragment extends Fragment {
     ImageButton devilButton, angelButton;
     Game.Question question;
     TextView questionView;
+    static String currentQuestionText;
 
     private TextView mTextDetails;
 
@@ -62,8 +67,8 @@ public class FeelingLuckyFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FacebookSdk.sdkInitialize(getActivity().getApplicationContext());
-        mCallbackManger = CallbackManager.Factory.create();
+//        FacebookSdk.sdkInitialize(getActivity().getApplicationContext());
+//        mCallbackManger = CallbackManager.Factory.create();
     }
 
     @Override
@@ -82,7 +87,6 @@ public class FeelingLuckyFragment extends Fragment {
     public void setup(View view) {
 
         final Animation bounce = AnimationUtils.loadAnimation(getContext(), R.anim.bounce);
-
 
         IcebreakerDBHelper dbHelper = IcebreakerDBHelper.getInstance(getContext());
         question = dbHelper.getRandomQuestion(1);
@@ -103,6 +107,7 @@ public class FeelingLuckyFragment extends Fragment {
                 question = dbHelper.getRandomQuestion(-1);
                 questionView.setText(question.text);
                 questionView.startAnimation(bounce);
+                currentQuestionText = question.text;
             }
         });
         devilButton.setOnClickListener(new View.OnClickListener() {
@@ -113,6 +118,7 @@ public class FeelingLuckyFragment extends Fragment {
                 question = dbHelper.getRandomQuestion(0);
                 questionView.setText(question.text);
                 questionView.startAnimation(bounce);
+                currentQuestionText = question.text;
             }
         });
         angelButton.setOnClickListener(new View.OnClickListener() {
@@ -123,28 +129,38 @@ public class FeelingLuckyFragment extends Fragment {
                 question = dbHelper.getRandomQuestion(1);
                 questionView.setText(question.text);
                 questionView.startAnimation(bounce);
+                currentQuestionText = question.text;
             }
         });
+
+        ShareButton shareButton = (ShareButton) view.findViewById(R.id.feeling_lucky_share_button);
+        ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                .setContentUrl(Uri.parse("https://github.com/IceIceBB/Icebreakers"))
+                .setContentTitle("Question of the Day")
+                .setContentDescription(currentQuestionText)
+                .build();
+
+        shareButton.setShareContent(linkContent);
     }
 
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+//    @Override
+//    public void onViewCreated(View view, Bundle savedInstanceState) {
+//        super.onViewCreated(view, savedInstanceState);
+//
+//        LoginButton loginButton = (LoginButton) view.findViewById(R.id.login_button);
+//
+//        loginButton.setReadPermissions("email");
+//
+//        loginButton.setFragment(this);
+//
+//        loginButton.registerCallback(mCallbackManger, mCallback);
+//    }
 
-        LoginButton loginButton = (LoginButton) view.findViewById(R.id.login_button);
-
-        loginButton.setReadPermissions("email");
-
-        loginButton.setFragment(this);
-
-        loginButton.registerCallback(mCallbackManger, mCallback);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        mCallbackManger.onActivityResult(requestCode, resultCode, data);
-    }
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        mCallbackManger.onActivityResult(requestCode, resultCode, data);
+//    }
 
 }
 

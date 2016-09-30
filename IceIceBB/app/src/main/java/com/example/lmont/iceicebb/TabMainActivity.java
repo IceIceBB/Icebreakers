@@ -39,6 +39,8 @@ import android.widget.RadioGroup;
 import com.example.lmont.iceicebb.Fragments.FeelingLuckyFragment;
 import com.example.lmont.iceicebb.Fragments.GamesFragment;
 import com.example.lmont.iceicebb.Fragments.ToolsFragment;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 
 public class TabMainActivity extends AppCompatActivity {
 
@@ -89,6 +91,8 @@ Bonus:
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        FacebookSdk.sdkInitialize(this);
+        AppEventsLogger.activateApp(this);
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP){
             TransitionSet transition = new TransitionSet();
