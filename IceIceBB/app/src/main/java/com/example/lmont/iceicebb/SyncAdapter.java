@@ -62,6 +62,9 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 
     }
 
+
+    // Set to true to clear
+    private static boolean first = false;
     /**
      * This is the method that contains the logic for our sync.
      * @param account
@@ -123,10 +126,15 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 
         GamesArrayFromGson g = (new Gson()).fromJson(gamesData, GamesArrayFromGson.class);
 
+        if (first) {
+            first = false;
+            mContentResolver.delete(IcebreakerContentProvider.CONTENT_URI_ICEBREAKERS, null, null);
+            mContentResolver.delete(IcebreakerContentProvider.CONTENT_URI_QUESTIONS, null, null);
+            mContentResolver.delete(IcebreakerContentProvider.CONTENT_URI_COMMENTS, null, null);
+        }
+
         if (g.games.length < TabMainActivity.gamesTableSize)
             mContentResolver.delete(IcebreakerContentProvider.CONTENT_URI_ICEBREAKERS, null, null);
-        //mContentResolver.delete(IcebreakerContentProvider.CONTENT_URI_QUESTIONS, null, null);
-        //mContentResolver.delete(IcebreakerContentProvider.CONTENT_URI_COMMENTS, null, null);
 
         for (Game game: g.games) {
             ContentValues gamesContentValues = new ContentValues();

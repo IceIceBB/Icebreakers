@@ -245,7 +245,7 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
 
     public void addQuestion(ContentValues cv) {
         Cursor c = null;
-        String query = "select * from " + ICEBREAKERS_TABLE_NAME + " where name = \"" + cv.getAsString("name") + "\"";
+        String query = "select * from " + QUESTIONS_TABLE_NAME + " where name = \"" + cv.getAsString("name") + "\"";
         c = getReadableDatabase().rawQuery(query, null);
         if (c.moveToFirst()) {
             return;
@@ -273,7 +273,7 @@ public class IcebreakerDBHelper extends SQLiteOpenHelper {
         Cursor cursor = getReadableDatabase().query(
                 QUESTIONS_TABLE_NAME,
                 QUESTIONS_COLUMNS,
-                null, null, null, null, null);
+                selection, null, null, null, null);
 
         int randomNum = (new Random()).nextInt(cursor.getCount());
         cursor.moveToPosition(randomNum);
