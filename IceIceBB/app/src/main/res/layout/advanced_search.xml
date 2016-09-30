@@ -19,6 +19,7 @@
         android:background="@android:color/holo_blue_light"
         android:layout_weight="1"
         android:layout_margin="10dp"
+        android:padding="@dimen/small_spacing"
         android:gravity="center"/>
 
     <EditText
@@ -29,6 +30,7 @@
         android:background="@android:color/holo_blue_light"
         android:layout_weight="1"
         android:layout_margin="10dp"
+        android:padding="@dimen/small_spacing"
         android:gravity="center"/>
 
     <TextView
@@ -75,13 +77,15 @@
             android:id="@+id/advanced_search_rating_radio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rating"/>
+            android:text="Rating"
+            android:textColor="#9b000000"/>
 
         <RadioButton
             android:id="@+id/advanced_search_alphabetical_radio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Alphabetical"/>
+            android:text="Alphabetical"
+            android:textColor="#9b000000"/>
 
     </RadioGroup>
 
