@@ -24,7 +24,6 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,14 +41,17 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
-
 import org.json.JSONObject;
-
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Connection;
 import java.util.ArrayList;
+import static com.example.lmont.iceicebb.TabMainActivity.isByAlphabetQuery;
+import static com.example.lmont.iceicebb.TabMainActivity.isByRatingQuery;
+import static com.example.lmont.iceicebb.TabMainActivity.isCleanQuery;
+import static com.example.lmont.iceicebb.TabMainActivity.query;
+import static com.example.lmont.iceicebb.TabMainActivity.tagsQuery;
 
 public class GameDetailActivity extends AppCompatActivity {
 
@@ -72,21 +74,21 @@ public class GameDetailActivity extends AppCompatActivity {
         game = dbHelper.getGameWithName(name);
         context = this;
 
-        RelativeLayout titleBar = (RelativeLayout) findViewById(R.id.gameNameLayout);
-        TextView gameName = (TextView) findViewById(R.id.gameNameDetail);
-        TextView playerCount = (TextView) findViewById(R.id.playerCount);
-        ImageView sfwIconAngel = (ImageView) findViewById(R.id.sfwIconAngel);
-        ImageView sfwIconDevil = (ImageView) findViewById(R.id.sfwIconDevil);
-        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBarDetail);
-        TextView gameMaterials = (TextView) findViewById(R.id.gameMaterials);
-        TextView gameRules = (TextView) findViewById(R.id.gameRules);
-        TextView gameComments = (TextView) findViewById(R.id.gameComments);
-        Button diceRollerButton = (Button) findViewById(R.id.diceRollerButton);
-        final Button cardDeckButton = (Button) findViewById(R.id.cardFlipperButton);
+        LinearLayout titleBar = (LinearLayout) findViewById(R.id.gameNameLayout);
+        TextView gameName = (TextView)findViewById(R.id.gameNameDetail);
+        TextView playerCount = (TextView)findViewById(R.id.playerCount);
+        ImageView sfwIconAngel = (ImageView)findViewById(R.id.sfwIconAngel);
+        ImageView sfwIconDevil = (ImageView)findViewById(R.id.sfwIconDevil);
+        RatingBar ratingBar = (RatingBar)findViewById(R.id.ratingBarDetail);
+        TextView gameMaterials = (TextView)findViewById(R.id.gameMaterials);
+        TextView gameRules = (TextView)findViewById(R.id.gameRules);
+        TextView gameComments = (TextView)findViewById(R.id.gameComments);
+        Button diceRollerButton = (Button)findViewById(R.id.diceRollerButton);
+        final Button cardDeckButton = (Button)findViewById(R.id.cardFlipperButton);
 
         LinearLayout tagHolder = (LinearLayout) findViewById(R.id.tagFrameDetail);
-        ImageView drinkIcon = (ImageView) findViewById(R.id.drinkIcon);
-        ImageView movingIcon = (ImageView) findViewById(R.id.movingIcon);
+        final ImageView drinkIcon = (ImageView) findViewById(R.id.drinkIcon);
+        final ImageView movingIcon = (ImageView) findViewById(R.id.movingIcon);
         ImageView carIcon = (ImageView) findViewById(R.id.carIcon);
         final ImageView paperIcon = (ImageView) findViewById(R.id.paperIcon);
 
@@ -161,31 +163,32 @@ public class GameDetailActivity extends AppCompatActivity {
             paperIcon.setVisibility(View.VISIBLE);
         }
 
-        tagHolder.setOnClickListener(new View.OnClickListener() {
+        carIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switch (view.getId()) {
-                    case R.id.drinkIcon:
-                        System.out.println("AAAAAAAA TAG ICON WAS CLICKED AAAAAAAAA");
-                        Toast drinkToast = Toast.makeText(getApplicationContext(), "This game works well with booze", Toast.LENGTH_SHORT);
-                        drinkToast.show();
-                        break;
-                    case R.id.movingIcon:
-                        System.out.println("AAAAAAAA TAG ICON WAS CLICKED AAAAAAAAA");
-                        Toast movingToast = Toast.makeText(getApplicationContext(), "This game requires a bit of physical activity", Toast.LENGTH_SHORT);
-                        movingToast.show();
-                        break;
-                    case R.id.carIcon:
-                        System.out.println("AAAAAAAA TAG ICON WAS CLICKED AAAAAAAAA");
-                        Toast carToast = Toast.makeText(getApplicationContext(), "This is an ideal game to play in a car", Toast.LENGTH_SHORT);
-                        carToast.show();
-                        break;
-                    case R.id.paperIcon:
-                        System.out.println("AAAAAAAA TAG ICON WAS CLICKED AAAAAAAAA");
-                        Toast paperToast = Toast.makeText(getApplicationContext(), "This game requires a pen and paper", Toast.LENGTH_SHORT);
-                        paperToast.show();
-                        break;
-                }
+                Toast carToast = Toast.makeText(getApplicationContext(), "Car: This is an ideal game to play while (someone else is) driving", Toast.LENGTH_SHORT);
+                carToast.show();
+            }
+        });
+        drinkIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast drinkToast = Toast.makeText(getApplicationContext(), "Drinking: This game is best played while drinking. Cheers!", Toast.LENGTH_SHORT);
+                drinkToast.show();
+            }
+        });
+        movingIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast movingToast = Toast.makeText(getApplicationContext(), "Movement: This game requires a bit of physical activity.", Toast.LENGTH_SHORT);
+                movingToast.show();
+            }
+        });
+        paperIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast writingToast = Toast.makeText(getApplicationContext(), "Writing: This game requires you to write something down", Toast.LENGTH_SHORT);
+                writingToast.show();
             }
         });
 
@@ -323,5 +326,16 @@ public class GameDetailActivity extends AppCompatActivity {
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
+    }
+    public void onBackPressed() {
+        query = "";
+        tagsQuery = "";
+        isCleanQuery = false;
+        isByRatingQuery = false;
+        isByAlphabetQuery = false;
+
+        Intent intent = new Intent(this,TabMainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
