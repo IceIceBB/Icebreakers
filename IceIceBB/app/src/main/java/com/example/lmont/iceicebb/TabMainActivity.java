@@ -11,6 +11,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.ContentObserver;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -282,7 +284,7 @@ Bonus:
         RadioButton ratingRadioButton = (RadioButton) dialogView.findViewById(R.id.advanced_search_rating_radio);
         RadioButton alphabetRadioButton = (RadioButton) dialogView.findViewById(R.id.advanced_search_alphabetical_radio);
 
-        builder.setMessage("Add New Card Game")
+        final AlertDialog dialog = builder.setMessage("")
                 .setPositiveButton("Search", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -306,8 +308,18 @@ Bonus:
                     public void onClick(DialogInterface dialogInterface, int i) {
                         // Cancel
                     }
-                });
-        builder.show();
+                }).create();
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                                     @Override
+                                     public void onShow(DialogInterface dialogInterface) {
+                                         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#03a9f4"));
+                                         dialog.getWindow().setBackgroundDrawable(colorDrawable);
+                                         dialog.getWindow().getAttributes().windowAnimations = (R.style.Advanced_Search_Dialog);
+                                     }
+                                 }
+
+        );
+        dialog.show();
     }
 
     public static Account createSyncAccount(Context context) {

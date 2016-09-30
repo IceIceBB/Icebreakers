@@ -5,7 +5,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Paint;
-import android.icu.text.DecimalFormatSymbols;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -211,7 +212,7 @@ public class GameDetailActivity extends AppCompatActivity {
         ListView listView = (ListView) dialogView.findViewById(R.id.comments_dialog_userreviews_listview);
 
         Game.Comment[] comments = dbHelper.getCommentsForGame(name);
-        ArrayAdapter<Game.Comment> adapter = new ArrayAdapter(context, android.R.layout.simple_list_item_1);
+        ArrayAdapter<Game.Comment> adapter = new ArrayAdapter(context, R.layout.comment_listitem);
 
         for (Game.Comment comment : comments) {
             adapter.add(comment);
@@ -219,7 +220,7 @@ public class GameDetailActivity extends AppCompatActivity {
 
         listView.setAdapter(adapter);
 
-        builder.setMessage("Leave a rating!")
+        final AlertDialog dialog = builder.setMessage("Add Your Rating")
                 .setPositiveButton("Comment", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -300,8 +301,18 @@ public class GameDetailActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         // Cancel
                     }
-                });
-        builder.show();
+                }).create();
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#03a9f4"));
+                dialog.getWindow().setBackgroundDrawable(colorDrawable);
+            }
+        });
+        dialog.show();
+        TextView msgTxt = (TextView) dialog.findViewById(android.R.id.message);
+        msgTxt.setTextSize(20);
+        msgTxt.setTextColor(Color.parseColor("#9b000000"));
     }
 
     protected void updateRating() {

@@ -50,6 +50,9 @@ public class CardsActivity extends AppCompatActivity {
     ImageView eSuitIconOne;
     ImageView eSuitIconTwo;
 
+    //Animate card flipping to reveal new card.
+//    Animation flipAnimation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,10 +86,15 @@ public class CardsActivity extends AppCompatActivity {
         eSuitIconOne = (ImageView) findViewById(R.id.eSuitIconOne);
         eSuitIconTwo = (ImageView) findViewById(R.id.eSuitIconTwo);
 
+//        flipAnimation = AnimationUtils.loadAnimation(CardsActivity.this, R.anim.card_flip);
+
 
         nextCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+//                nextCard.startAnimation(flipAnimation);
+
                 setNewCard();
             }
         });

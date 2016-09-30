@@ -48,13 +48,15 @@ public class GamesFragment extends Fragment {
         gameList.setHasFixedSize(true);
 
         gameList.setLayoutManager(new GridLayoutManager(getContext(), 2));
-//        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-//            gameList.setLayoutManager(new GridLayoutManager(getContext(), 2));
-//        } else {
-//            gameList.setLayoutManager(new GridLayoutManager(getContext(), 4));
-//        }
 
-        GameListRecyclerAdapter adapter = new GameListRecyclerAdapter(gameArray);
+        GameListRecyclerAdapter adapter = new GameListRecyclerAdapter(gameArray,getContext());
         gameList.setAdapter(adapter);
+//        gameList.setLayoutManager(new LinearLayoutManager(getContext()));
+//        RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator(R.anim.anticipateovershoot_interpolator);
+//        itemAnimator.setAddDuration(1000);
+//        itemAnimator.setRemoveDuration(1000);
+//        gameList.setItemAnimator(itemAnimator);
+
     }
+
 }
