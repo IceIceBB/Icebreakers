@@ -12,7 +12,7 @@
         android:name=".StethoApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="@string/app_name_pres"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
@@ -30,8 +30,7 @@
         <activity
             android:name=".TabMainActivity"
             android:configChanges=
-                "keyboard|keyboardHidden|screenLayout|screenSize"
-            android:label="@string/title_activity_tab_main">
+                "keyboard|keyboardHidden|screenLayout|screenSize">
 
 
             <intent-filter>
