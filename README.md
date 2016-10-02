@@ -5,13 +5,33 @@ Project 3 for GA
 
 ##Features
 
-- Multiple Games 
-- Ratings for the Games
-- comment / house rules
-- of-the-day / random
-- popular
-- categories
-- equipment
+Splashscreen
+- Splash screen (Gabe)
+
+Game Fragment
+- Animation (Gabe)
+- Search Functionality (Leo)
+- Notifications (Leo)
+- Icons (Paul)
+	- Include: drink, movement, car, writing  
+
+Game Detail
+- Animation (Paul)
+- Breakdown (Paul)
+- Review/Rating (Leo)
+- Video Link (Paul)
+
+Tools Detail
+- Dice & Cards (Spencer)
+- Link from games (Spencer)
+
+Questions
+- Clean, Dirty, Random (Gabe)
+- Facebook share (Gabe)
+
+Design
+- Horizontal design (Paul & Gabe)
+- Node backend (Leo)
 
 ###optionals
 - search

@@ -133,6 +133,7 @@ public class FeelingLuckyFragment extends Fragment {
             }
         });
 
+        // TODO SPENCER
         ShareButton shareButton = (ShareButton) view.findViewById(R.id.feeling_lucky_share_button);
         ShareLinkContent linkContent = new ShareLinkContent.Builder()
                 .setContentUrl(Uri.parse("https://github.com/IceIceBB/Icebreakers"))
