@@ -71,7 +71,7 @@ public class GameDetailActivity extends AppCompatActivity {
         game = dbHelper.getGameWithName(name);
         context = this;
 
-        LinearLayout titleBar = (LinearLayout) findViewById(R.id.gameNameLayout);
+//        LinearLayout titleBar = (LinearLayout) findViewById(R.id.gameNameLayout);
         TextView gameName = (TextView) findViewById(R.id.gameNameDetail);
         TextView playerCount = (TextView) findViewById(R.id.playerCount);
         ImageView sfwIconAngel = (ImageView) findViewById(R.id.sfwIconAngel);
