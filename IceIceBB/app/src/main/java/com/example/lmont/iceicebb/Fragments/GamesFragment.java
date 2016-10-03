@@ -43,7 +43,7 @@ public class GamesFragment extends Fragment {
                 TabMainActivity.isByRatingQuery,
                 TabMainActivity.isByAlphabetQuery);
 
-        //gameArray = dbHelper.getAllGames();
+        //Settin RecyclerView to a Grid Layout of 2 Rows
         RecyclerView gameList = (RecyclerView) view.findViewById(R.id.gameList);
         gameList.setHasFixedSize(true);
 
@@ -51,11 +51,8 @@ public class GamesFragment extends Fragment {
 
         GameListRecyclerAdapter adapter = new GameListRecyclerAdapter(gameArray,getContext());
         gameList.setAdapter(adapter);
-//        gameList.setLayoutManager(new LinearLayoutManager(getContext()));
-//        RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator(R.anim.anticipateovershoot_interpolator);
-//        itemAnimator.setAddDuration(1000);
-//        itemAnimator.setRemoveDuration(1000);
-//        gameList.setItemAnimator(itemAnimator);
+
+
 
     }
 
