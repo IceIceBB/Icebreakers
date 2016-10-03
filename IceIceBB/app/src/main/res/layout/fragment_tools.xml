@@ -7,6 +7,9 @@
     tools:context="com.example.lmont.iceicebb.Fragments.ToolsFragment">
 
 
+
+
+
     <Button
         android:id="@+id/cardToolButton"
         android:layout_width="150dp"
@@ -65,7 +68,7 @@
         android:layout_marginEnd="8dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginRight="8dp"
-        app:layout_constraintHorizontal_bias="0.02"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintBottom_toBottomOf="@+id/diceToolButton"
         app:layout_constraintTop_toTopOf="@+id/diceToolButton"
         app:layout_constraintVertical_bias="0.52"/>
