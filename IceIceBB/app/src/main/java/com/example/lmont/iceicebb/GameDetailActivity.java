@@ -176,7 +176,7 @@ public class GameDetailActivity extends AppCompatActivity {
         drinkIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast drinkToast = Toast.makeText(getApplicationContext(), "Drinking: This game is best played while drinking. Cheers!", Toast.LENGTH_SHORT);
+                Toast drinkToast = Toast.makeText(getApplicationContext(), "Drinking: This game is great to play while drinking. Cheers!", Toast.LENGTH_SHORT);
                 drinkToast.show();
             }
         });
