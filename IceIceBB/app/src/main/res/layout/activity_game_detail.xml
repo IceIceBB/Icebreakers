@@ -19,7 +19,7 @@
         android:background="@drawable/layout_bg_game_detail"
         android:padding="@dimen/small_spacing">
 <!--holds title area stuff-->
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/gameNameLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,18 +29,19 @@
 
             <TextView
                 android:id="@+id/gameNameDetail"
-                android:layout_width="150dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/large_spacing"
                 android:textSize="36sp"
                 android:textStyle="bold"
                 android:clickable="true"
-                android:transitionName="titleTransition"/>
+                android:transitionName="titleTransition" />
 <!--holds players icon and number of players, and SFW icon-->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_alignParentRight="true">
 <!--holds ONLY players icon and number of players-->
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -80,7 +81,7 @@
 
             </LinearLayout>
 
-        </LinearLayout>
+        </RelativeLayout>
 
 
         <RatingBar
