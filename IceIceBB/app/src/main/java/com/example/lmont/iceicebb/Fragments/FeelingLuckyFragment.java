@@ -91,7 +91,11 @@ public class FeelingLuckyFragment extends Fragment {
 
         //Calling DatabaseHelper method getRandomQuestion to generate a question for our questions api
         IcebreakerDBHelper dbHelper = IcebreakerDBHelper.getInstance(getContext());
-        question = dbHelper.getRandomQuestion(1);
+        //question = dbHelper.getRandomQuestion(1);
+
+        question = new Game.Question();
+        question.text = "Hello!";
+        // Fix first time crash
 
         questionView = (TextView) view.findViewById(R.id.questionView);
         questionView.setText(question.text);

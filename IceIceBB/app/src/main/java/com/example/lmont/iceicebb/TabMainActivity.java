@@ -74,7 +74,7 @@ Bonus:
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
-    public static final String ACCOUNT_TYPE = "example.com";
+    public static final String ACCOUNT_TYPE = "com.lmont.iceicebb";
     public static final String ACCOUNT = "default_account";
     public static final String AUTHORITY = "com.example.lmont.iceicebb.IcebreakerContentProvider";
     public static int gamesTableSize;
