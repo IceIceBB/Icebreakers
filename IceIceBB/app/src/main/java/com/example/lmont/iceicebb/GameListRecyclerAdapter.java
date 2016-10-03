@@ -28,10 +28,11 @@ public class GameListRecyclerAdapter extends RecyclerView.Adapter<GameListRecycl
     String gameRules;
 
 
-    public GameListRecyclerAdapter(Game[] gameArray,Context context) {
+    public GameListRecyclerAdapter(Game[] gameArray, Context context) {
         this.context = context;
         this.gameArray = gameArray;
     }
+
     @Override
     public GameListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_game_list, parent, false);
@@ -39,8 +40,8 @@ public class GameListRecyclerAdapter extends RecyclerView.Adapter<GameListRecycl
         return holder;
     }
 
-    public void animate(RecyclerView.ViewHolder viewHolder){
-        final Animation anim = AnimationUtils.loadAnimation(context,R.anim.anticipateovershoot_interpolator);
+    public void animate(RecyclerView.ViewHolder viewHolder) {
+        final Animation anim = AnimationUtils.loadAnimation(context, R.anim.anticipateovershoot_interpolator);
         viewHolder.itemView.setAnimation(anim);
     }
 
@@ -53,7 +54,6 @@ public class GameListRecyclerAdapter extends RecyclerView.Adapter<GameListRecycl
         nameTextView.setText(gameArray[position].name);
 
         animate(holder);
-
 
 
 //        ratingTextView.setText(gameArray[position].materials);

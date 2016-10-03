@@ -12,7 +12,7 @@
         app:showAsAction="collapseActionView|ifRoom"/>
     <item android:id="@+id/reset"
         android:title="Reset"
-        android:icon="@android:drawable/stat_notify_sync_noanim"
+        android:icon="@drawable/ic_refresh"
         app:showAsAction="collapseActionView|ifRoom"/>
 
 </menu>
