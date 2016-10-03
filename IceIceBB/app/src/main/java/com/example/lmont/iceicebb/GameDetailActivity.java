@@ -316,8 +316,10 @@ public class GameDetailActivity extends AppCompatActivity {
     }
 
     protected void updateRating() {
-        RatingBar ratingBar = (RatingBar)findViewById(R.id.ratingBarDetail);
-        ratingBar.setRating(dbHelper.getGameWithName(name).rating / 2);
+//        RatingBar ratingBar = (RatingBar)findViewById(R.id.ratingBarDetail);
+//        ratingBar.setRating(dbHelper.getGameWithName(name).rating / 2);
+        Toast.makeText(context, "Rating Updated", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(GameDetailActivity.this, GameDetailActivity.class).putExtra("name", name));
     }
 
     /**
