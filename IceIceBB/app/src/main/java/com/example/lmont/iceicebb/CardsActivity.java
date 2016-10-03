@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -16,6 +17,7 @@ public class CardsActivity extends AppCompatActivity {
     //TODO: make values left Array Lists into int[]s
     Random random = new Random();
     int[] newCard;
+    int discardSize;
 
     ArrayList<ArrayList<Integer>> playingCards = new ArrayList<>();
     ArrayList<Integer> spadesLeft = new ArrayList<>();
@@ -57,6 +59,7 @@ public class CardsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cards);
+        discardSize = 0;
 
         //Make deck clickable to draw new card.
         nextCard = (Button) findViewById(R.id.deckBack);
@@ -117,6 +120,11 @@ public class CardsActivity extends AppCompatActivity {
         setCardValue(newCard);
         setSuitView(newCard);
         cardIconPopulater(newCard);
+        discardSize++;
+        if (discardSize >= 52){
+            shuffleDeck();
+            discardSize = 0;
+        }
     }
 
     //Shuffle deck to replace all cards.
@@ -188,7 +196,7 @@ public class CardsActivity extends AppCompatActivity {
                 removeFromDeck(cardResult);
             }
         }
-
+        Toast.makeText(this, "Deck Shuffled", Toast.LENGTH_SHORT).show();
         return cardResult;
     }
 
